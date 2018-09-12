@@ -27,8 +27,12 @@ class LoginForm extends React.Component {
 			}
 		}
 
-		fetch(url_post, postData).then(res=>res.json())
-			.then(response=>console.log('Success:', JSON.stringify(response)));
+		fetch(url_post, postData).then(res => res.json())
+			.then(response => console.log('Success:', JSON.stringify(response)))
+
+			.catch((error) => {
+				console.error(error);
+			});
 
 		e.preventDefault();
 	}
