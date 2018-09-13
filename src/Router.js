@@ -1,5 +1,5 @@
 import React from 'react'
-import App from './App';
+import App from './loginForm';
 import {
 	BrowserRouter as Router,
 	Route,
