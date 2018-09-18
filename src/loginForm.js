@@ -4,7 +4,7 @@ import './loginForm.scss';
 class LoginForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {login: '', password: ''};
+		this.state = {Login: '', Password: ''};
 
 		this.onLoginChange = this.onLoginChange.bind(this);
 		this.onPasswordChange = this.onPasswordChange.bind(this);
@@ -12,11 +12,11 @@ class LoginForm extends React.Component {
 	}
 
 	onSubmit(e){
-		const url_post = "https://fb2e2d1a-3b6a-488f-8ab5-68cdb5b2e5c7.mock.pstmn.io/war/resources/AdministrationService/createUser";
+		const url_post = "http://10.82.186.67:7001/war/resources/AdministrationService/getOperatorByLoginParams";
 
 		let requestData = {
-			login: this.state.login,
-			password: this.state.password
+			login: this.state.Login,
+			password: this.state.Password
 		}
 
 		let postData = {
@@ -38,19 +38,19 @@ class LoginForm extends React.Component {
 	}
 
 	onPasswordChange(e){
-		this.setState({password: e.target.value});
+		this.setState({Password: e.target.value});
 	}
 
 	onLoginChange(e) {
-		this.setState({login: e.target.value});
+		this.setState({Login: e.target.value});
 	}
 
 	render() {
 		return (
 			<form onSubmit={this.onSubmit}>
-				<p><label> Логин: <input type="text" name="login" value={this.state.login}
+				<p><label> Логин: <input type="text" name="login" value={this.state.Login}
 										 onChange={this.onLoginChange}/></label></p>
-				<p><label> Пароль: <input type="password" name="password" value={this.state.password}
+				<p><label> Пароль: <input className="password" type="password" name="password" value={this.state.Password}
 										  onChange={this.onPasswordChange}/></label></p>
 				<p><input type="submit" value="Submit" onClick={this.onSubmit}/></p>
 			</form>

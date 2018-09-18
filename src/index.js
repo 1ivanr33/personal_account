@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './loginForm';
+import loginForm from './loginForm';
 import Router from './Router';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render((
 	<Router>
-	<App />
+	<loginForm />
 	</Router>)
 	,document.getElementById('root'));
 registerServiceWorker();
