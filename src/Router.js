@@ -1,10 +1,12 @@
 import React from 'react'
-import App from './loginForm';
+import LoginForm from './loginForm';
+import FooterNavBar from './FooterNavBar';
 import {
 	BrowserRouter as Router,
 	Route,
 	Link
 } from 'react-router-dom'
+
 
 const Home = () => (
 	<div>
@@ -56,16 +58,18 @@ const BasicExample = () => (
 	<Router>
 		<div>
 			<ul>
-				<li><Link to="/App">Form</Link></li>
+				<li><Link to="/LoginForm">LoginForm</Link></li>
 				<li><Link to="/">Home</Link></li>
 				<li><Link to="/topics">Topics</Link></li>
 			</ul>
 
 			<hr/>
 
-			<Route path="/App" component={App}/>
+
+				<Route path="/LoginForm" component={LoginForm} />
 			<Route exact path="/" component={Home}/>
 			<Route path="/topics" component={Topics}/>
+			<Route component={FooterNavBar} />
 		</div>
 	</Router>
 )

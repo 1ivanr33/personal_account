@@ -4,10 +4,15 @@ import './index.css';
 import loginForm from './loginForm';
 import Router from './Router';
 import registerServiceWorker from './registerServiceWorker';
+import FooterNavBar from './FooterNavBar'
+
 
 ReactDOM.render((
-	<Router>
-	<loginForm />
-	</Router>)
-	,document.getElementById('root'));
+		<div className='desktop'>
+			<Router>
+				<loginForm />
+				<FooterNavBar />
+			</Router>
+		</div>)
+	, document.getElementById('root'));
 registerServiceWorker();
