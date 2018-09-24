@@ -48,10 +48,12 @@ class LoginForm extends React.Component {
 	render() {
 		return (
 			<form onSubmit={this.onSubmit}>
+				<h3>Вход</h3>
 				<p><label> Логин: <input type="text" name="login" value={this.state.Login}
 										 onChange={this.onLoginChange}/></label></p>
 				<p><label> Пароль: <input className="password" type="password" name="password" value={this.state.Password}
 										  onChange={this.onPasswordChange}/></label></p>
+				<p><input type="checkbox"/>Чужой компьютер <span className='passwordRecover'>Восстановить пароль</span> </p>
 				<p><input type="submit" value="Submit" onClick={this.onSubmit}/></p>
 			</form>
 		);

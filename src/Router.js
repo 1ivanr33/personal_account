@@ -1,11 +1,9 @@
 import React from 'react'
 import LoginForm from './loginForm';
 import FooterNavBar from './FooterNavBar';
-import {
-	BrowserRouter as Router,
-	Route,
-	Link
-} from 'react-router-dom'
+import Desktop from './Desktop';
+import { BrowserRouter, Link, Route } from 'react-router-dom';
+
 
 
 const Home = () => (
@@ -54,24 +52,28 @@ const Topics = ({ match }) => (
 	</div>
 )
 
-const BasicExample = () => (
-	<Router>
+const Tabs = () => (
+
+	<BrowserRouter>
 		<div>
-			<ul>
-				<li><Link to="/LoginForm">LoginForm</Link></li>
-				<li><Link to="/">Home</Link></li>
-				<li><Link to="/topics">Topics</Link></li>
-			</ul>
+			<Desktop>
+				<ul>
+					<li><Link to="/LoginForm">LoginForm</Link></li>
+					<li><Link to="/">Home</Link></li>
+					<li><Link to="/topics">Topics</Link></li>
+				</ul>
 
-			<hr/>
+				<hr/>
 
+				<Route path="/LoginForm" component={LoginForm}/>
+				<Route exact path="/" component={Home}/>
+				<Route path="/topics" component={Topics}/>
 
-				<Route path="/LoginForm" component={LoginForm} />
-			<Route exact path="/" component={Home}/>
-			<Route path="/topics" component={Topics}/>
-			<Route component={FooterNavBar} />
+			</Desktop>
+			<Route component={FooterNavBar}/>
 		</div>
-	</Router>
+	</BrowserRouter>
+
 )
 
-export default BasicExample
+export default Tabs

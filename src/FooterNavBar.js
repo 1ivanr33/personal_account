@@ -1,4 +1,5 @@
 import React from 'react';
+import './FooterNavBar.scss'
 
 class FooterNavBar extends React.Component {
 	render() {
@@ -11,7 +12,7 @@ class FooterNavBar extends React.Component {
 			)
 		});
 
-		return <div>{navLinks}</div>;
+		return <div className='footerMenu'>{navLinks}</div>;
 	}
 }
 export default FooterNavBar
