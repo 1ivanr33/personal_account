@@ -1,7 +1,8 @@
 .desktop{
 	border: 1px solid #ccc;
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
+	flex-grow: 1;
 
+	.empty{
+		height: 70px;
+	}
 }

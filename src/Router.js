@@ -1,8 +1,11 @@
 import React from 'react'
-import LoginForm from './loginForm';
+import LoginForm from './loginForm/loginForm';
 import FooterNavBar from './FooterNavBar';
 import Desktop from './Desktop';
+import Header from './Header/Header';
+import Notice from './Notice';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
+
 
 
 
@@ -58,15 +61,16 @@ const Tabs = () => (
 		<div>
 			<Desktop>
 				<ul>
-					<li><Link to="/LoginForm">LoginForm</Link></li>
-					<li><Link to="/">Home</Link></li>
+					<li><Link to="/">LoginForm</Link></li>
+					<li><Link to="/Home">Home</Link></li>
 					<li><Link to="/topics">Topics</Link></li>
 				</ul>
 
 				<hr/>
-
-				<Route path="/LoginForm" component={LoginForm}/>
-				<Route exact path="/" component={Home}/>
+				<Route component={Header}/>
+				<Route exact path="/" component={LoginForm}/>
+				<Route component={Notice}/>
+				<Route path="/Home" component={Home}/>
 				<Route path="/topics" component={Topics}/>
 
 			</Desktop>

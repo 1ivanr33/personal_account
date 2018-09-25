@@ -4,7 +4,10 @@ import './loginForm.scss';
 class LoginForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {Login: '', Password: ''};
+		this.state = {
+			Login: '',
+			Password: ''
+		};
 
 		this.onLoginChange = this.onLoginChange.bind(this);
 		this.onPasswordChange = this.onPasswordChange.bind(this);
@@ -37,25 +40,35 @@ class LoginForm extends React.Component {
 		e.preventDefault();
 	}
 
-	onPasswordChange(e){
-		this.setState({Password: e.target.value});
-	}
 
 	onLoginChange(e) {
 		this.setState({Login: e.target.value});
 	}
 
+	onPasswordChange(e){
+		this.setState({Password: e.target.value});
+	}
+
+
 	render() {
+
+
+
 		return (
+
+
+
 			<form onSubmit={this.onSubmit}>
 				<h3>Вход</h3>
-				<p><label> Логин: <input type="text" name="login" value={this.state.Login}
-										 onChange={this.onLoginChange}/></label></p>
-				<p><label> Пароль: <input className="password" type="password" name="password" value={this.state.Password}
-										  onChange={this.onPasswordChange}/></label></p>
-				<p><input type="checkbox"/>Чужой компьютер <span className='passwordRecover'>Восстановить пароль</span> </p>
-				<p><input type="submit" value="Submit" onClick={this.onSubmit}/></p>
+				<p className={this.state.Login ? 'dirty' : ''}><input id="login" type="text" name="login" value={this.state.Login}
+										 onChange={this.onLoginChange}/><label for="login" className='textLabel'> E-mail или СНИЛС </label></p>
+				<p className={this.state.Password ? 'dirty' : ''}><input id="password" type="password" name="password" value={this.state.Password}
+										  onChange={this.onPasswordChange}/><label for="password" className='textLabel'> Пароль </label></p>
+				<p><input id="foreign" type="checkbox"/><label for="foreign">Чужой компьютер </label><span className='passwordRecover'>Восстановить пароль</span> </p>
+				<p><input type="submit" value="Войти" onClick={this.onSubmit}/></p>
 			</form>
+
+
 		);
 	}
 }
