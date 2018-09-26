@@ -83,7 +83,9 @@ class LoginForm extends React.Component {
 
         makeRequest('POST', 'http://localhost:7001/war/resources/AdministrationService/getOperatorByLoginParams')
         //             .then(response => {console.log('Response - ' + response); console.log('Security_Token - ' + response.get('Security_Token'));})
-            .then(response => { console.log('Response - ' + response.responseText); console.log('Security_Token - ' + response.getResponseHeader('Security_Token')); })
+            .then(response => { console.log('Response - ' + response.responseText); console.log('Security_Token - ' + response.getResponseHeader('Security_Token'));
+				this.props.history.push("/home");
+            })
             .catch(function (err) {
                 console.error('Augh, there was an error!', err.statusText);
             });
@@ -106,7 +108,7 @@ class LoginForm extends React.Component {
 
 
 
-			<form onSubmit={this.onSubmit}>
+			<div className='formLogin' onSubmit={this.onSubmit}>
 				<h3>Вход</h3>
 				<p className={this.state.Login ? 'dirty' : ''}><input id="login" type="text" name="login" value={this.state.Login}
 										 onChange={this.onLoginChange}/><label for="login" className='textLabel'> E-mail или СНИЛС </label></p>
@@ -115,7 +117,7 @@ class LoginForm extends React.Component {
 				<p className='checkForeign'><input id="foreign" type="checkbox"/><label for="foreign">Чужой компьютер </label><span className='passwordRecover'>Восстановить пароль</span> </p>
 				<p><input type="submit" value="Войти" onClick={this.onSubmit}/></p>
 				<p className='alternate'>Вы также можете войти через <a href="#">СУДИР</a></p>
-			</form>
+			</div>
 
 
 		);
