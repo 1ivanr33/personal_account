@@ -15,7 +15,7 @@ class LoginForm extends React.Component {
 	}
 
 	onSubmit(e){
-		const url_post = "http://10.82.186.67:7001/war/resources/AdministrationService/getOperatorByLoginParams";
+		const url_post = "https://fb2e2d1a-3b6a-488f-8ab5-68cdb5b2e5c7.mock.pstmn.io/war/resources/AdministrationService/createUser";
 
 		let requestData = {
 			login: this.state.Login,
@@ -30,8 +30,13 @@ class LoginForm extends React.Component {
 			}
 		}
 
+
+
 		fetch(url_post, postData).then(res => res.json())
-			.then(response => console.log('Success:', JSON.stringify(response)))
+			.then(response => {
+				console.log('Success:', JSON.stringify(response))
+				this.props.history.push("/home");
+			})
 
 			.catch((error) => {
 				console.error(error);
@@ -64,8 +69,9 @@ class LoginForm extends React.Component {
 										 onChange={this.onLoginChange}/><label for="login" className='textLabel'> E-mail или СНИЛС </label></p>
 				<p className={this.state.Password ? 'dirty' : ''}><input id="password" type="password" name="password" value={this.state.Password}
 										  onChange={this.onPasswordChange}/><label for="password" className='textLabel'> Пароль </label></p>
-				<p><input id="foreign" type="checkbox"/><label for="foreign">Чужой компьютер </label><span className='passwordRecover'>Восстановить пароль</span> </p>
+				<p className='checkForeign'><input id="foreign" type="checkbox"/><label for="foreign">Чужой компьютер </label><span className='passwordRecover'>Восстановить пароль</span> </p>
 				<p><input type="submit" value="Войти" onClick={this.onSubmit}/></p>
+				<p className='alternate'>Вы также можете войти через <a href="#">СУДИР</a></p>
 			</form>
 
 

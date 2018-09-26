@@ -1,3 +1,18 @@
+@font-face {
+  font-family: "ProximaNova-Reg";
+  src: url("fonts/ProximaNova-Reg.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "ProximaNova-Bold";
+  src: url("fonts/ProximaNova-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Formular-Bold";
+  src: url("fonts/Formular-Bold.otf") format("opentype");
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -7,7 +22,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: sans-serif;
+  font-family: ProximaNova-Reg, arial, verdana, sans-serif;
+  color: #9a9a9a;
 }
 
 #root{
@@ -22,6 +38,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin: 0 auto -70px;
+  margin: 0 auto;
   width: 1440px;
 }

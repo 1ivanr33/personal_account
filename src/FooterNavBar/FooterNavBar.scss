@@ -1,0 +1,45 @@
+.footerMenu {
+	height: 70px;
+	width: 1440px;
+	margin: 80px auto 0;
+	flex-shrink: 0;
+	padding: 0 190px;
+	box-sizing: border-box;
+	border-top: 1px solid #cfcfcf;
+
+	p{
+		margin-top: 12px;
+	}
+
+	a {
+		display: inline-block;
+		color: #9a9a9a;
+		text-decoration: none;
+		padding: 10px 41px 8px;
+		height: 30px;
+	}
+
+	#eirc{
+		background: url("../Header/E.png")0 3px no-repeat;
+	}
+
+	#question{
+		background: url("question.svg")8px 12px no-repeat;
+		margin-left: 137px;
+	}
+
+	#help{
+		background: url("help.svg")11px 8px no-repeat;
+	}
+
+	#dit{
+		background: url("dit.svg")11px 8px no-repeat;
+		margin-left: 160px;
+	}
+
+	#lastLink{
+		background: url("prostor.svg")5px 20px no-repeat;
+		padding: 0 44px;
+	}
+
+}
