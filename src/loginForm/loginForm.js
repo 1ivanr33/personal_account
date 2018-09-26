@@ -14,8 +14,8 @@ class LoginForm extends React.Component {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
-	onSubmit(e){
-		const url_post = "https://fb2e2d1a-3b6a-488f-8ab5-68cdb5b2e5c7.mock.pstmn.io/war/resources/AdministrationService/createUser";
+	onSubmitOld(e){
+		const url_post = "http://10.82.186.67:7001/war/resources/AdministrationService/getOperatorByLoginParams";
 
 		let requestData = {
 			login: this.state.Login,
@@ -45,7 +45,50 @@ class LoginForm extends React.Component {
 		e.preventDefault();
 	}
 
+    onSubmit(e) {
+        var requestData = {
+            Login: this.state.Login,
+            Password: this.state.Password
+        }
 
+        function makeRequest (method, url) {
+            return new Promise(function (resolve, reject) {
+                var xhr = new XMLHttpRequest();
+
+                xhr.open(method, url);
+                xhr.setRequestHeader("Content-Type", "application/json");
+////                xhr.send('{"Login":"Andrew","Password":"welcome1"}');
+                xhr.send(JSON.stringify(requestData));
+
+                xhr.onload = function () {
+                    if (this.status === 200) {
+////                         resolve(xhr.response);
+                        resolve(xhr);
+                    } else {
+                        reject({
+                            status: this.status,
+                            statusText: xhr.statusText
+                        });
+                    }
+                };
+                xhr.onerror = function () {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                };
+//                 xhr.send();
+            });
+        }
+
+        makeRequest('POST', 'http://localhost:7001/war/resources/AdministrationService/getOperatorByLoginParams')
+        //             .then(response => {console.log('Response - ' + response); console.log('Security_Token - ' + response.get('Security_Token'));})
+            .then(response => { console.log('Response - ' + response.responseText); console.log('Security_Token - ' + response.getResponseHeader('Security_Token')); })
+            .catch(function (err) {
+                console.error('Augh, there was an error!', err.statusText);
+            });
+
+    }
 	onLoginChange(e) {
 		this.setState({Login: e.target.value});
 	}
