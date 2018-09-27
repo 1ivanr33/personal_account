@@ -1,12 +1,14 @@
 import React from 'react';
 import './loginForm.scss';
+import Notice from '../Notice';
 
 class LoginForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			Login: '',
-			Password: ''
+			Password: '',
+			Message: 'У вас нет аккаунта? Для регистрации в системе ЕИРЦ обратитесь к своему руководителю, у которого есть права на создание заявки новых пользователей'
 		};
 
 		this.onLoginChange = this.onLoginChange.bind(this);
@@ -81,14 +83,30 @@ class LoginForm extends React.Component {
             });
         }
 
-        makeRequest('POST', 'http://localhost:7001/war/resources/AdministrationService/getOperatorByLoginParams')
-        //             .then(response => {console.log('Response - ' + response); console.log('Security_Token - ' + response.get('Security_Token'));})
-            .then(response => { console.log('Response - ' + response.responseText); console.log('Security_Token - ' + response.getResponseHeader('Security_Token'));
-				this.props.history.push("/home");
-            })
-            .catch(function (err) {
-                console.error('Augh, there was an error!', err.statusText);
-            });
+        makeRequest('POST', 'http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getOperatorByLoginParams')
+		////            .then(response => { console.log('Response - ' + response.responseText); console.log('Security_Token - ' + response.getResponseHeader('Security_Token'));
+			.then(response => {
+				var respJSON = JSON.parse(response.responseText);
+				var errorCode = respJSON.operationResult.ErrorCode;
+				//            	console.log('Response - ' + response.responseText);
+				console.log('Security_Token - ' + response.getResponseHeader('Security_Token'));
+				if (errorCode == 0) {
+					console.log('errorCode - ' + errorCode);
+					this.props.history.push("/home");
+				} else {
+					var errorDescription = respJSON.operationResult.ErrorDescription;
+					if (errorCode == 410) {
+						this.setState({Message: 'Не указан логин. Пожалуйста, введите логин'})
+					} else if (errorCode == 411) {
+						this.setState({Message: 'Не указан пароль. Пожалуйста, введите пароль.'})
+					} else if (errorCode == 412 || errorCode == 413) {
+						this.setState({Message: 'Пользователь с заданным логином или паролем не найден. Пожалуйста, проверьте правильность написания логина или пароля.'})
+					}
+				}
+			})
+			.catch(function (err) {
+				console.error('Augh, there was an error!', err.statusText);
+			});
 
     }
 	onLoginChange(e) {
@@ -117,6 +135,7 @@ class LoginForm extends React.Component {
 				<p className='checkForeign'><input id="foreign" type="checkbox"/><label for="foreign">Чужой компьютер </label><span className='passwordRecover'>Восстановить пароль</span> </p>
 				<p><input type="submit" value="Войти" onClick={this.onSubmit}/></p>
 				<p className='alternate'>Вы также можете войти через <a href="#">СУДИР</a></p>
+				<Notice message={this.state.Message}/>
 			</div>
 
 

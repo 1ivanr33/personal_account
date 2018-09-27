@@ -1,13 +1,12 @@
 .notice{
 	display: inline-block;
-	float: right;
 	width: 334px;
 	height: 481px;
 	padding: 50px;
 	border: 1px solid #cfcfcf;
-	position: relative;
-	right: 357px;
-	top: 30px;
+	position: absolute;
+	left: 500px;
+	top: 0px;
 	box-sizing: border-box;
 
 	p{

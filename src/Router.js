@@ -4,16 +4,17 @@ import FooterNavBar from './FooterNavBar/FooterNavBar';
 import Desktop from './Desktop';
 import Header from './Header/Header';
 import Notice from './Notice';
+import Home from './Home';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 
 
 
 
-const Home = () => (
+/*const Home = () => (
 	<div>
 		<h2>Home</h2>
 	</div>
-)
+)*/
 
 /*const About = () => (
 	<div>
@@ -60,16 +61,16 @@ const Tabs = () => (
 	<BrowserRouter>
 		<div>
 			<Desktop>
-				<ul>
+				{/*<ul>
 					<li><Link to="/">LoginForm</Link></li>
 					<li><Link to="/Home">Home</Link></li>
 					<li><Link to="/topics">Topics</Link></li>
 				</ul>
 
-				<hr/>
+				<hr/>*/}
 				<Route component={Header}/>
 				<Route exact path="/" component={LoginForm}/>
-				<Route component={Notice}/>
+				{/*//<Route component={Notice}/>*/}
 				<Route path="/Home" component={Home}/>
 				<Route path="/topics" component={Topics}/>
 
