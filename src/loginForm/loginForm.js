@@ -107,7 +107,6 @@ class LoginForm extends React.Component {
 			.catch(function (err) {
 				console.error('Augh, there was an error!', err.statusText);
 			});
-
     }
 	onLoginChange(e) {
 		this.setState({Login: e.target.value});
@@ -124,20 +123,20 @@ class LoginForm extends React.Component {
 
 		return (
 
-
-
+			
 			<div className='formLogin' onSubmit={this.onSubmit}>
+
 				<h3>Вход</h3>
 				<p className={this.state.Login ? 'dirty' : ''}><input id="login" type="text" name="login" value={this.state.Login}
-										 onChange={this.onLoginChange}/><label for="login" className='textLabel'> E-mail или СНИЛС </label></p>
+										 onChange={this.onLoginChange}/><label for="login" className='textLabel'> E-mail  </label></p>
 				<p className={this.state.Password ? 'dirty' : ''}><input id="password" type="password" name="password" value={this.state.Password}
 										  onChange={this.onPasswordChange}/><label for="password" className='textLabel'> Пароль </label></p>
 				<p className='checkForeign'><input id="foreign" type="checkbox"/><label for="foreign">Чужой компьютер </label><span className='passwordRecover'>Восстановить пароль</span> </p>
 				<p><input type="submit" value="Войти" onClick={this.onSubmit}/></p>
 				<p className='alternate'>Вы также можете войти через <a href="#">СУДИР</a></p>
 				<Notice message={this.state.Message}/>
-			</div>
 
+			</div>
 
 		);
 	}
