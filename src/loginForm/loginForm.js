@@ -8,12 +8,16 @@ class LoginForm extends React.Component {
 		this.state = {
 			Login: '',
 			Password: '',
+			ShowPassword: 'password',
+			Eye: 'eyeClosed',
 			Message: 'У вас нет аккаунта? Для регистрации в системе ЕИРЦ обратитесь к своему руководителю, у которого есть права на создание заявки новых пользователей'
 		};
 
 		this.onLoginChange = this.onLoginChange.bind(this);
 		this.onPasswordChange = this.onPasswordChange.bind(this);
+		this.onPasswordShow = this.onPasswordShow.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.handleKeyPress = this.handleKeyPress.bind(this);
 	}
 
 	onSubmitOld(e){
@@ -31,8 +35,6 @@ class LoginForm extends React.Component {
 				'Content-Type': 'application/json'
 			}
 		}
-
-
 
 		fetch(url_post, postData).then(res => res.json())
 			.then(response => {
@@ -116,22 +118,42 @@ class LoginForm extends React.Component {
 		this.setState({Password: e.target.value});
 	}
 
+	handleKeyPress(target) {
+		if(target.charCode===13){
+			this.onSubmit();
+		}
+	}
+
+	onPasswordShow(e){
+		let oldState = this.state.ShowPassword;
+		let isTextOrHide = (oldState === 'password');
+		let newState = (isTextOrHide) ? 'text' : 'password';
+		let newEye = (isTextOrHide) ? 'eyeOpen' : 'eyeClosed';
+
+		this.setState({
+			ShowPassword: newState,
+			Eye: newEye
+		});
+	}
 
 	render() {
 
-
-
 		return (
 
-			
-			<div className='formLogin' onSubmit={this.onSubmit}>
+			<div className='formLogin' onKeyPress={this.handleKeyPress} onSubmit={this.onSubmit}>
 
 				<h3>Вход</h3>
-				<p className={this.state.Login ? 'dirty' : ''}><input id="login" type="text" name="login" value={this.state.Login}
-										 onChange={this.onLoginChange}/><label for="login" className='textLabel'> E-mail  </label></p>
-				<p className={this.state.Password ? 'dirty' : ''}><input id="password" type="password" name="password" value={this.state.Password}
-										  onChange={this.onPasswordChange}/><label for="password" className='textLabel'> Пароль </label></p>
-				<p className='checkForeign'><input id="foreign" type="checkbox"/><label for="foreign">Чужой компьютер </label><span className='passwordRecover'>Восстановить пароль</span> </p>
+				<p className={this.state.Login ? 'dirty' : ''}>
+					<input id="login" type="text" name="login" value={this.state.Login} onChange={this.onLoginChange}/>
+					<label for="login" className='textLabel'> E-mail </label>
+				</p>
+				<p className={this.state.Password ? 'dirty' : ''}>
+					<input id="password" type={this.state.ShowPassword} name="password" value={this.state.Password} onChange={this.onPasswordChange}/>
+					<label htmlFor="password" className='textLabel'> Пароль </label>
+					<div className={this.state.Eye} onClick={this.onPasswordShow}> </div>
+				</p>
+				<p className='checkForeign'><input id="foreign" type="checkbox"/><label for="foreign">Чужой
+					компьютер </label><span className='passwordRecover'>Восстановить пароль</span></p>
 				<p><input type="submit" value="Войти" onClick={this.onSubmit}/></p>
 				<p className='alternate'>Вы также можете войти через <a href="#">СУДИР</a></p>
 				<Notice message={this.state.Message}/>

@@ -1,0 +1,20 @@
+
+<svg width="20px" height="10px" viewBox="0 0 20 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Long-version" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.1-Gis.-Auth-w-login" transform="translate(-658.000000, -311.000000)" stroke="#9A9A9A">
+            <g id="Group-2" transform="translate(308.000000, 110.000000)">
+                <g id="Group-4" transform="translate(350.000000, 201.000000)">
+                    <path d="M18.0944455,0.5 L1.90555449,0.5 C1.93871748,0.548278349 1.97339973,0.59815144 2.00959349,0.649523234 C2.4883514,1.32905059 3.05398252,2.00904429 3.70183154,2.64249667 C5.53384976,4.43380336 7.64201129,5.5 10,5.5 C12.3579887,5.5 14.4661502,4.43380336 16.2981685,2.64249667 C16.9460175,2.00904429 17.5116486,1.32905059 17.9904065,0.649523234 C18.0266003,0.59815144 18.0612825,0.548278349 18.0944455,0.5 Z" id="Shape"></path>
+                    <path d="M14.3333333,5.375 L15.6666667,7.625" id="Line-Copy" stroke-linecap="square"></path>
+                    <path d="M10,6.3 L10,8.7" id="Line" stroke-linecap="square"></path>
+                    <path d="M4.33333333,5.375 L5.66666667,7.625" id="Line-Copy" stroke-linecap="square" transform="translate(5.000000, 6.500000) scale(-1, 1) translate(-5.000000, -6.500000) "></path>
+                    <path d="M0.375,2.33333333 L2.625,3.66666667" id="Line-Copy-2" stroke-linecap="square" transform="translate(1.500000, 3.000000) scale(-1, 1) translate(-1.500000, -3.000000) "></path>
+                    <path d="M17.5,2.5 L19.5,4.5" id="Line-Copy-3" stroke-linecap="square"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

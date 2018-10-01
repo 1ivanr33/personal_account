@@ -30,6 +30,10 @@
 		position: relative;
 	}
 
+	input[name='showPassword']{
+
+	}
+
 	input[type="text"]:focus, input[type="password"]:focus{
 		box-shadow: 0 0 3px 0 #208cff;
 		border: solid 1px #208cff;
@@ -50,6 +54,27 @@
 		transition: 0.3s;
 	}
 
+	.eyeOpen, .eyeClosed{
+		position: absolute;
+		right: 15px;
+		width: 30px;
+		height: 20px;
+
+	}
+
+	.eyeClosed{
+		right: 15px;
+		bottom: 21px;
+		background: url("eyeClosed.svg") no-repeat 0px 6px;
+		background-size: contain;
+	}
+
+	.eyeOpen{
+		bottom: 24px;
+		background: url("eyeOpen.svg") no-repeat 0 8px;
+		background-size: contain;
+	}
+
 
 	/*Блок Чужой компьютер, восстановить пароль*/
 
@@ -57,7 +82,7 @@
 		margin: 20px 0;
 	}
 
-	input[type="checkbox"]{
+	input[id="foreign"]{
 		display: none;
 	}
 
