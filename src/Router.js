@@ -5,6 +5,7 @@ import Desktop from './Desktop';
 import Header from './Header/Header';
 import Notice from './Notice';
 import Home from './Home';
+import UserProfile from './UserProfile';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 
 
@@ -28,7 +29,7 @@ const Topic = ({ match }) => (
 	</div>
 )
 
-const Topics = ({ match }) => (
+export const Topics = ({ match }) => (
 	<div>
 		<h2>Topics</h2>
 		<ul>
@@ -72,7 +73,7 @@ const Tabs = () => (
 				<Route exact path="/" component={LoginForm}/>
 				{/*//<Route component={Notice}/>*/}
 				<Route path="/Home" component={Home}/>
-				<Route path="/topics" component={Topics}/>
+				<Route path="/topics" component={UserProfile}/>
 
 			</Desktop>
 			<Route component={FooterNavBar}/>
