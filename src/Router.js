@@ -5,7 +5,8 @@ import Desktop from './Desktop';
 import Header from './Header/Header';
 import Notice from './Notice';
 import Home from './Home';
-import UserProfile from './UserProfile';
+import UserProfile from './ProfileSelect/UserProfile';
+import CompanyProfile from './ProfileSelect/CompanyProfile'
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 
 
@@ -73,8 +74,8 @@ const Tabs = () => (
 				<Route exact path="/" component={LoginForm}/>
 				{/*//<Route component={Notice}/>*/}
 				<Route path="/Home" component={Home}/>
-				<Route path="/topics" component={UserProfile}/>
-
+				<Route path="/UserProfile" component={UserProfile}/>
+				<Route path="/CompanyProfile" component={CompanyProfile}/>
 			</Desktop>
 			<Route component={FooterNavBar}/>
 		</div>
