@@ -6,7 +6,6 @@ class UserProfile extends React.Component {
 	render() {
 		return (
 			<div>
-				<ProfileSelect/>
 				<h1>UserProfile</h1>
 			</div>
 		);

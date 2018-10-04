@@ -1,8 +1,8 @@
 
-	.hidden  ul{
+	.hidden + ul{
 		display: none;
 	}
 
-	.visible ul{
+	.visible + ul{
 		display: block;
 	}

@@ -6,8 +6,10 @@ import Header from './Header/Header';
 import Notice from './Notice';
 import Home from './Home';
 import UserProfile from './ProfileSelect/UserProfile';
-import CompanyProfile from './ProfileSelect/CompanyProfile'
+import CompanyProfile from './ProfileSelect/CompanyProfile';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { Provider } from 'mobx-react';
+import RootStore from './stores/RootStore';
 
 
 
@@ -61,24 +63,26 @@ export const Topics = ({ match }) => (
 const Tabs = () => (
 
 	<BrowserRouter>
-		<div>
-			<Desktop>
-				{/*<ul>
-					<li><Link to="/">LoginForm</Link></li>
-					<li><Link to="/Home">Home</Link></li>
-					<li><Link to="/topics">Topics</Link></li>
-				</ul>
+		<Provider Store={RootStore}>
+			<div>
+				<Desktop>
+					{/*<ul>
+					 <li><Link to="/">LoginForm</Link></li>
+					 <li><Link to="/Home">Home</Link></li>
+					 <li><Link to="/topics">Topics</Link></li>
+					 </ul>
 
-				<hr/>*/}
-				<Route component={Header}/>
-				<Route exact path="/" component={LoginForm}/>
-				{/*//<Route component={Notice}/>*/}
-				<Route path="/Home" component={Home}/>
-				<Route path="/UserProfile" component={UserProfile}/>
-				<Route path="/CompanyProfile" component={CompanyProfile}/>
-			</Desktop>
-			<Route component={FooterNavBar}/>
-		</div>
+					 <hr/>*/}
+					<Header/>
+					<Route exact path="/" component={LoginForm}/>
+					{/*//<Route component={Notice}/>*/}
+					<Route path="/Home" component={Home}/>
+					<Route path="/UserProfile" component={UserProfile}/>
+					<Route path="/CompanyProfile" component={CompanyProfile}/>
+				</Desktop>
+				<FooterNavBar/>
+			</div>
+		</Provider>
 	</BrowserRouter>
 
 )

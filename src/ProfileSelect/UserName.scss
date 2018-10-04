@@ -1,0 +1,21 @@
+.userName{
+	float: right;
+	text-align: right;
+
+	.hidden{
+		display: none;
+	}
+
+	.visible{
+		display: block;
+	}
+
+	ul{
+		list-style: none;
+	}
+
+	ul a{
+		text-decoration: none;
+	}
+
+}

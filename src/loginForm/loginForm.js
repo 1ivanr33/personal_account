@@ -1,7 +1,10 @@
 import React from 'react';
 import './loginForm.scss';
 import Notice from '../Notice';
+import { inject, observer } from "mobx-react";
 
+@inject("Store")
+@observer
 class LoginForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -55,6 +58,8 @@ class LoginForm extends React.Component {
             Password: this.state.Password
         }
 
+        const {Store} = this.props;
+
         function makeRequest (method, url) {
             return new Promise(function (resolve, reject) {
                 var xhr = new XMLHttpRequest();
@@ -95,6 +100,7 @@ class LoginForm extends React.Component {
 				if (errorCode == 0) {
 					console.log('errorCode - ' + errorCode);
 					this.props.history.push("/home");
+					Store.UserNameVisible = true;
 				} else {
 					var errorDescription = respJSON.operationResult.ErrorDescription;
 					if (errorCode == 410) {
