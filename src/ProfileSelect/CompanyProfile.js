@@ -7,6 +7,7 @@ class CompanyProfile extends React.Component {
 		return (
 			<div>
 				<h1>CompanyProfile</h1>
+				<ProfileSelect/>
 			</div>
 		);
 	}

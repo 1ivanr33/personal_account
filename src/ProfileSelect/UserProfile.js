@@ -7,6 +7,7 @@ class UserProfile extends React.Component {
 		return (
 			<div>
 				<h1>UserProfile</h1>
+				<ProfileSelect/>
 			</div>
 		);
 	}
