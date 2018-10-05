@@ -1,6 +1,8 @@
 import React from 'react';
 import ProfileSelect from './ProfileSelect';
-import './UserName.scss'
+import './UserName.scss';
+//import $ from 'jquery';
+//window.jQuery = window.$ = $;
 
 class UserName extends React.Component {
 
@@ -10,47 +12,37 @@ class UserName extends React.Component {
 			showMenu: 'hidden'
 		};
 		this.toggleMenuShow = this.toggleMenuShow.bind(this);
-		this.userHide = this.userHide.bind(this);
-		this.menuRef = React.createRef();
+		this.onProfileSelectBlur = this.onProfileSelectBlur.bind(this);
 	}
 
+
+
+	render() {
+		return (
+			<div className='userName'>
+				<span tabIndex={2} onClick={this.toggleMenuShow}>User Name</span>
+				{
+					this.state.showMenu === 'visible' && (
+						<ProfileSelect onBlur={this.onProfileSelectBlur}/>
+					)
+				}
+			</div>
+		);
+	}
 	toggleMenuShow(){
 		let oldState = this.state.showMenu;
 		let isVisibleOrHidden = (oldState === 'hidden');
 		let newState = (isVisibleOrHidden) ? 'visible' : 'hidden';
-
-
 		this.setState({
-			showMenu: newState,
-
+			showMenu: newState
+		});
+	}
+	onProfileSelectBlur() {
+		this.setState({
+			showMenu: 'hidden'
 		});
 	}
 
-	userHide() {
-		this.setState({ showMenu: 'hidden' });
-	}
 
-	componentDidUpdate() {
-		if (this.state.showMenu === 'visible') {
-			//this.menuRef.current.focus();
-		}
-	}
-
-	/*userShow() {
-		this.setState({ showMenu: 'visible' });
-
-		console.log(this.menuRef.current);
-	}*/
-
-
-	render() {
-
-		return (
-			<div tabindex="1" className='userName' onBlur={this.userHide}>
-			<span onClick={this.toggleMenuShow}>User Name</span>
-			<ProfileSelect ref={this.menuRef}  show={this.state.showMenu} />
-				</div>
-		);
-	}
 }
 export default UserName

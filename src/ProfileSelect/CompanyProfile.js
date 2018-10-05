@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileSelect from './ProfileSelect';
+import { BrowserRouter, Link } from 'react-router-dom';
 
 
 class CompanyProfile extends React.Component {
@@ -7,7 +7,11 @@ class CompanyProfile extends React.Component {
 		return (
 			<div>
 				<h1>CompanyProfile</h1>
-				<ProfileSelect/>
+				<ul>
+					<li><Link to="/UserProfile">Профиль пользователя</Link></li>
+					<li><Link to="/CompanyProfile">Профиль компании</Link></li>
+					<li><Link to="/">Выйти из ЕИРЦ</Link></li>
+				</ul>
 			</div>
 		);
 	}
