@@ -1,21 +1,37 @@
 .userName{
 	float: right;
 	text-align: right;
+	position: relative;
+	top: 19px;
+	color: #000;
 
-	.hidden{
-		display: none;
+	span{
+		margin-right: 15px;
 	}
 
-	.visible{
-		display: block;
-	}
+}
 
-	ul{
-		list-style: none;
-	}
+#hidden span:before{
+	position: absolute;
+	right: 0;
+	top: 3px;
+	display: block;
+	content: '';
+	background: url(up-down.svg) no-repeat 0 6px;
+	width: 10px;
+	height: 15px;
+	transition-duration: .3s;
+}
 
-	ul a{
-		text-decoration: none;
-	}
-
+#visible span:before{
+	position: absolute;
+	right: 0;
+	top: 3px;
+	display: block;
+	content: '';
+	background: url(up-down.svg) no-repeat 0 6px;
+	width: 10px;
+	height: 15px;
+	transform: rotate(180deg);
+	transition-duration: .3s;
 }

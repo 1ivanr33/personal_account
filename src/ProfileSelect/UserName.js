@@ -1,8 +1,6 @@
 import React from 'react';
 import ProfileSelect from './ProfileSelect';
-import './UserName.scss';
-//import $ from 'jquery';
-//window.jQuery = window.$ = $;
+import './UserName.scss'
 
 class UserName extends React.Component {
 
@@ -13,22 +11,9 @@ class UserName extends React.Component {
 		};
 		this.toggleMenuShow = this.toggleMenuShow.bind(this);
 		this.onProfileSelectBlur = this.onProfileSelectBlur.bind(this);
+		this.onLinkClick = this.onLinkClick.bind(this);
 	}
 
-
-
-	render() {
-		return (
-			<div className='userName'>
-				<span tabIndex={2} onClick={this.toggleMenuShow}>User Name</span>
-				{
-					this.state.showMenu === 'visible' && (
-						<ProfileSelect onBlur={this.onProfileSelectBlur}/>
-					)
-				}
-			</div>
-		);
-	}
 	toggleMenuShow(){
 		let oldState = this.state.showMenu;
 		let isVisibleOrHidden = (oldState === 'hidden');
@@ -37,12 +22,33 @@ class UserName extends React.Component {
 			showMenu: newState
 		});
 	}
-	onProfileSelectBlur() {
+
+	render() {
+		return (
+			<div className='userName' tabIndex={1} id={this.state.showMenu}>
+				<span onClick={this.toggleMenuShow}>User Name</span>
+				{
+					this.state.showMenu === 'visible' && (
+						<ProfileSelect
+							onLinkClick={this.onLinkClick}
+							onBlur={this.onProfileSelectBlur}
+						/>
+					)
+				}
+			</div>
+		);
+	}
+
+	onLinkClick() {
 		this.setState({
-			showMenu: 'hidden'
+			showMenu: 'visible'
 		});
 	}
 
-
+	onProfileSelectBlur() {
+		this.setState({
+			showMenu: 'visible'
+		});
+	}
 }
 export default UserName

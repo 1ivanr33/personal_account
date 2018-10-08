@@ -1,8 +1,29 @@
+.profileSelect {
+	list-style: none;
+	text-align: left;
+	margin: 0;
+	background-color: #fff;
+	width: 216px;
+	padding: 20px 0;
+	border-radius: 2px;
+	box-shadow: rgba(0, 0, 0, 10) 0 2px 4px 0;
 
-	.hidden{
-		display: none;
-	}
-
-	.visible{
+	a {
+		text-decoration: none;
+		color: #000;
 		display: block;
+		height: 35px;
+		line-height: 35px;
+		padding: 0 20px;
 	}
+
+	a:hover{
+		background-color: #F2F8FF;
+	}
+
+	li {
+
+	}
+
+}
+
