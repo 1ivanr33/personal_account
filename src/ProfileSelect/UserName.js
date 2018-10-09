@@ -41,13 +41,13 @@ class UserName extends React.Component {
 
 	onLinkClick() {
 		this.setState({
-			showMenu: 'visible'
+			showMenu: 'visible' //после тестирования == hidden
 		});
 	}
 
 	onProfileSelectBlur() {
 		this.setState({
-			showMenu: 'visible'
+			showMenu: 'visible' //после тестирования == hidden
 		});
 	}
 }
