@@ -1,0 +1,43 @@
+.userProfileForm{
+
+	overflow: auto;
+	max-height: 75vh;
+	width: 100%;
+	background-color: #fff;
+	padding-left: 30px;
+
+	h2, h3{
+		color: #000;
+	}
+
+	h2{
+		font-size: 24px;
+	}
+
+	h3{
+		font-size: 18px;
+	}
+
+	input[type="text"]{
+		height: 60px;
+		width: 340px;
+		border-radius: 2px;
+		border: 1px solid #cfcfcf;
+		box-sizing: border-box;
+		padding: 25px 0 7px 14px;
+		font-size: 18px;
+	}
+
+	.textLabel{
+		position: absolute;
+		color: #6e7478;
+		left: 15px;
+		top: 13px;
+		font-size: 13px;
+	}
+
+	p{
+		position: relative;
+	}
+
+}

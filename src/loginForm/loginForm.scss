@@ -30,10 +30,6 @@
 		position: relative;
 	}
 
-	input[name='showPassword']{
-
-	}
-
 	input[type="text"]:focus, input[type="password"]:focus{
 		box-shadow: 0 0 3px 0 #208cff;
 		border: solid 1px #208cff;
