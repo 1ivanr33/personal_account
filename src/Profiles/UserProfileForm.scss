@@ -4,7 +4,7 @@
 	max-height: 75vh;
 	width: 100%;
 	background-color: #fff;
-	padding-left: 30px;
+	padding: 10px 0 0 40px;
 
 	h2, h3{
 		color: #000;
@@ -22,10 +22,12 @@
 		height: 60px;
 		width: 340px;
 		border-radius: 2px;
-		border: 1px solid #cfcfcf;
+		border: 1px solid #D4D9DC;
 		box-sizing: border-box;
 		padding: 25px 0 7px 14px;
 		font-size: 18px;
+		background-color: #F5F6F7;
+		color: rgba(0, 0, 0, .5);
 	}
 
 	.textLabel{

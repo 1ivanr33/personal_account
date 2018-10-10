@@ -22,13 +22,13 @@ class UserProfileForm extends React.Component {
 						<label htmlFor="some33" className='textLabel'> Отчество </label>
 					</p>
 					<p>
-						<input disabled id="some44" type="text" value="Мария"/>
-						<label htmlFor="some44" className='textLabel'> Имя </label>
+						<input disabled id="some44" type="text" value="ГБУ «Жилищник Таганский» "/>
+						<label htmlFor="some44" className='textLabel'> Компания </label>
 					</p>
 
 					<p>
-						<input disabled id="some55" type="text" value="Иванова"/>
-						<label htmlFor="some55" className='textLabel'> Фамилия </label>
+						<input disabled id="some55" type="text" value="Таганский"/>
+						<label htmlFor="some55" className='textLabel'> Филиал/Отделение </label>
 					</p>
 					<p>
 						<input disabled id="some66" type="text" value="Менеджер"/>

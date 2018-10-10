@@ -26,7 +26,7 @@ class UserName extends React.Component {
 	render() {
 		return (
 			<div className='userName' tabIndex={1} id={this.state.showMenu}>
-				<span onClick={this.toggleMenuShow}>User Name</span>
+				<span onClick={this.toggleMenuShow}>Иванова М. П.</span>
 				{
 					this.state.showMenu === 'visible' && (
 						<ProfileSelect
