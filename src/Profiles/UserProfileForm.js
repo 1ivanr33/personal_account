@@ -4,7 +4,7 @@ import './UserProfileForm.scss';
 class UserProfileForm extends React.Component {
 	render() {
 		return (
-			<div className='userProfileForm'>
+			<div className='userProfileForm' onScroll={() => console.log('scroll')}>
 				<section>
 					<h2>Профиль пользователя</h2>
 					<h3>Общие данные</h3>

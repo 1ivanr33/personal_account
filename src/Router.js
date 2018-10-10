@@ -1,9 +1,7 @@
 import React from 'react'
 import LoginForm from './loginForm/loginForm';
-import FooterNavBar from './FooterNavBar/FooterNavBar';
 import Desktop from './Desktop';
 import Header from './Header/Header';
-import Notice from './Notice';
 import Home from './Home';
 import UserProfile from './ProfileSelect/UserProfile';
 import CompanyProfile from './ProfileSelect/CompanyProfile';
@@ -80,7 +78,7 @@ const Tabs = () => (
 					<Route path="/UserProfile" component={UserProfile}/>
 					<Route path="/CompanyProfile" component={CompanyProfile}/>
 				</Desktop>
-				<FooterNavBar/>
+
 			</div>
 		</Provider>
 	</BrowserRouter>

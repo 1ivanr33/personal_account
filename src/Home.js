@@ -1,12 +1,11 @@
 import React from 'react';
-import ProfileSelect from './ProfileSelect/ProfileSelect';
-//import UserName from './ProfileSelect/UserName';
+import './Home.scss';
 
 
 class Home extends React.Component {
 	render() {
 		return (
-			<div>
+			<div className='home'>
 
 			<h1>Home</h1>
 				</div>

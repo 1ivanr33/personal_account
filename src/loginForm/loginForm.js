@@ -1,6 +1,7 @@
 import React from 'react';
 import './loginForm.scss';
 import Notice from '../Notice';
+import FooterNavBar from '../FooterNavBar/FooterNavBar';
 import { inject, observer } from "mobx-react";
 
 @inject("Store")
@@ -146,24 +147,34 @@ class LoginForm extends React.Component {
 
 		return (
 
-			<div className='formLogin' onKeyPress={this.handleKeyPress} onSubmit={this.onSubmit}>
+			<div className='loginForm'>
+				<div className='loginFormWrapper'>
 
-				<h3>Вход</h3>
-				<p className={this.state.Login ? 'dirty' : ''}>
-					<input id="login" type="text" name="login" value={this.state.Login} onChange={this.onLoginChange}/>
-					<label for="login" className='textLabel'> E-mail </label>
-				</p>
-				<p className={this.state.Password ? 'dirty' : ''}>
-					<input id="password" type={this.state.ShowPassword} name="password" value={this.state.Password} onChange={this.onPasswordChange}/>
-					<label htmlFor="password" className='textLabel'> Пароль </label>
-					<div className={this.state.Eye} onClick={this.onPasswordShow}> </div>
-				</p>
-				<p className='checkForeign'><input id="foreign" type="checkbox"/><label for="foreign">Чужой
-					компьютер </label><span className='passwordRecover'>Восстановить пароль</span></p>
-				<p><input type="submit" value="Войти" onClick={this.onSubmit}/></p>
-				<p className='alternate'>Вы также можете войти через <a href="#">СУДИР</a></p>
-				<Notice message={this.state.Message}/>
+					<div className='mainFormLogin' onKeyPress={this.handleKeyPress} onSubmit={this.onSubmit}>
 
+						<h3>Вход</h3>
+						<p className={this.state.Login ? 'dirty' : ''}>
+							<input id="login" type="text" name="login" value={this.state.Login}
+								   onChange={this.onLoginChange}/>
+							<label for="login" className='textLabel'> E-mail </label>
+						</p>
+						<p className={this.state.Password ? 'dirty' : ''}>
+							<input id="password" type={this.state.ShowPassword} name="password"
+								   value={this.state.Password}
+								   onChange={this.onPasswordChange}/>
+							<label htmlFor="password" className='textLabel'> Пароль </label>
+							<div className={this.state.Eye} onClick={this.onPasswordShow}></div>
+						</p>
+						<p className='checkForeign'><input id="foreign" type="checkbox"/><label for="foreign">Чужой
+							компьютер </label><span className='passwordRecover'>Восстановить пароль</span></p>
+						<p><input type="submit" value="Войти" onClick={this.onSubmit}/></p>
+						<p className='alternate'>Вы также можете войти через <a href="#">СУДИР</a></p>
+						<Notice message={this.state.Message}/>
+
+					</div>
+
+				</div>
+				<FooterNavBar/>
 			</div>
 
 		);

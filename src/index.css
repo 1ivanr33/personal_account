@@ -31,13 +31,11 @@ body {
   flex-direction: column;
   min-height: 100vh;
   background-color: #FAFBFB;
-
 }
 
+/*
 #root>div{
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+
   margin: 0 auto;
-  width: 1440px;
-}
+  width: 1060px;
+}*/

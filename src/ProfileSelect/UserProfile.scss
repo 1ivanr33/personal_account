@@ -1,11 +1,15 @@
 .userProfile{
 
-	display: flex;
+	//display: flex;
+	width: 1060px;
+	margin: 0 auto;
 
 	ul {
+		display: inline-block;
+		float: left;
 		list-style: none;
 		text-align: left;
-		margin: 10px 0 0 190px;
+		margin: 10px 0 0;
 		//background-color: #fff;
 		width: 400px;
 		padding: 20px 0;
