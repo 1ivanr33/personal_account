@@ -1,6 +1,18 @@
 .desktop{
 	display: flex;
-	min-height: 100vh;
+	/*min-height: 100vh;
+	max-height: 100vh;*/
 	flex-direction: column;
 	position: relative;
+
+	/*.header:after{
+		content: '';
+		display: block;
+		width: 100vw;
+		height: 1px;
+		background-color: #979797;
+		position: absolute;
+		top: 60px;
+		left: 0;
+	}*/
 }

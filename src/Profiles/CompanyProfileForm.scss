@@ -1,4 +1,4 @@
-.userProfileForm{
+.companyProfileForm{
 	overflow: auto;
 	display: inline-block;
 	background-color: #fff;
@@ -19,7 +19,7 @@
 		font-size: 18px;
 	}
 
-	input[type="text"]{
+	input[type="text"], textarea{
 		height: 60px;
 		width: 340px;
 		border-radius: 2px;
@@ -45,4 +45,4 @@
 
 }
 
-.userProfileForm::-webkit-scrollbar { width: 0 !important;}
+.companyProfileForm::-webkit-scrollbar { width: 0 !important;}

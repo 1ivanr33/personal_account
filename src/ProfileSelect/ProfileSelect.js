@@ -20,7 +20,7 @@ class ProfileSelect extends React.Component {
 			<ul className='profileSelect' ref={this.menuRef} tabIndex={1} onBlur={this.onBlur}>
 				<li><Link onClick={this.onLinkClick} to="/UserProfile">Профиль пользователя</Link></li>
 				<li><Link onClick={this.onLinkClick} to="/CompanyProfile">Профиль компании</Link></li>
-				<li><Link onClick={this.onLinkClick} to="/">Выйти из ЕИРЦ</Link></li>
+				<li><Link onClick={this.onLinkClick} to="/">Выйти</Link></li>
 			</ul>
 		);
 	}

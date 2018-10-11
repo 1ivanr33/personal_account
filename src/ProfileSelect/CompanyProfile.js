@@ -1,18 +1,23 @@
 import React from 'react';
 import './CompanyProfile.scss';
 import { BrowserRouter, Link } from 'react-router-dom';
-
+import CompanyProfileForm from '../Profiles/CompanyProfileForm';
+import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 
 class CompanyProfile extends React.Component {
 	render() {
 		return (
-			<div>
+			<div className='companyProfile'>
 
-				<ul className='companyProfile'>
-					<li><Link to="/UserProfile">Профиль пользователя</Link></li>
-					<li><Link to="/CompanyProfile" id='link-current'>Профиль компании</Link></li>
-					<li><Link to="/">Выйти из ЕИРЦ</Link></li>
+				<BreadCrumbs/>
+
+				<ul>
+					<li><Link to='/UserProfile'>Профиль пользователя</Link></li>
+					<li><Link to='/CompanyProfile'  id='link-current' >Профиль компании</Link></li>
+					<li><Link to='/'>Выйти</Link></li>
 				</ul>
+
+				<CompanyProfileForm/>
 			</div>
 		);
 	}

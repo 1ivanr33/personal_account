@@ -1,0 +1,22 @@
+.breadcrumbs{
+	position: absolute;
+	top: -44px;
+	left: 33px;
+
+	span{
+		display: inline-block;
+		position: relative;
+		margin-left: 20px;
+		color: #6E7478;
+	}
+
+	span:before{
+		content: '';
+		display: block;
+		position: absolute;
+		left: -11px;
+		width: 10px;
+		height: 15px;
+		background: url("ArrowIcon.svg") no-repeat 0 4px;
+	}
+}

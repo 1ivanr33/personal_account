@@ -163,7 +163,7 @@ class LoginForm extends React.Component {
 								   value={this.state.Password}
 								   onChange={this.onPasswordChange}/>
 							<label htmlFor="password" className='textLabel'> Пароль </label>
-							<div className={this.state.Eye} onClick={this.onPasswordShow}></div>
+							<div className={this.state.Eye} onMouseDown={this.onPasswordShow} onMouseUp={this.onPasswordShow}> </div>
 						</p>
 						<p className='checkForeign'><input id="foreign" type="checkbox"/><label for="foreign">Чужой
 							компьютер </label><span className='passwordRecover'>Восстановить пароль</span></p>
