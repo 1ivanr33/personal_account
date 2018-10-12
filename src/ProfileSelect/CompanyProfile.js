@@ -2,14 +2,14 @@ import React from 'react';
 import './CompanyProfile.scss';
 import { BrowserRouter, Link } from 'react-router-dom';
 import CompanyProfileForm from '../Profiles/CompanyProfileForm';
-import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
+import BreadCrumbsCompany from '../BreadCrumbs/BreadCrumbsCompany';
 
 class CompanyProfile extends React.Component {
 	render() {
 		return (
 			<div className='companyProfile'>
 
-				<BreadCrumbs/>
+				<BreadCrumbsCompany/>
 
 				<ul>
 					<li><Link to='/UserProfile'>Профиль пользователя</Link></li>

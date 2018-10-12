@@ -22,6 +22,7 @@ class LoginForm extends React.Component {
 		this.onPasswordShow = this.onPasswordShow.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.handleKeyPress = this.handleKeyPress.bind(this);
+		this.onEyeMouseOut = this.onEyeMouseOut.bind(this);
 	}
 
 	onSubmitOld(e){
@@ -98,17 +99,17 @@ class LoginForm extends React.Component {
 				var errorCode = respJSON.operationResult.ErrorCode;
 				//            	console.log('Response - ' + response.responseText);
 				console.log('Security_Token - ' + response.getResponseHeader('Security_Token'));
-				if (errorCode === 0) {
+				if (errorCode === "0") {
 					console.log('errorCode - ' + errorCode);
 					this.props.history.push("/home");
 					Store.UserNameVisible = true;
 				} else {
 					var errorDescription = respJSON.operationResult.ErrorDescription;
-					if (errorCode === 410) {
+					if (errorCode == "410") {
 						this.setState({Message: 'Не указан логин. Пожалуйста, введите логин'})
-					} else if (errorCode === 411) {
+					} else if (errorCode == "411") {
 						this.setState({Message: 'Не указан пароль. Пожалуйста, введите пароль.'})
-					} else if (errorCode === 412 || errorCode == 413) {
+					} else if (errorCode == "412" || errorCode == "413") {
 						this.setState({Message: 'Пользователь с заданным логином или паролем не найден. Пожалуйста, проверьте правильность написания логина или пароля.'})
 					}
 				}
@@ -143,6 +144,15 @@ class LoginForm extends React.Component {
 		});
 	}
 
+	onEyeMouseOut() {
+		this.setState({
+			Eye: 'eyeClosed',
+			ShowPassword: 'password'
+		})
+	}
+
+
+
 	render() {
 
 		return (
@@ -163,7 +173,7 @@ class LoginForm extends React.Component {
 								   value={this.state.Password}
 								   onChange={this.onPasswordChange}/>
 							<label htmlFor="password" className='textLabel'> Пароль </label>
-							<div className={this.state.Eye} onMouseDown={this.onPasswordShow} onMouseUp={this.onPasswordShow}> </div>
+							<div className={this.state.Eye} onMouseDown={this.onPasswordShow} onMouseUp={this.onPasswordShow} onMouseOut={this.onEyeMouseOut}> </div>
 						</p>
 						<p className='checkForeign'><input id="foreign" type="checkbox"/><label for="foreign">Чужой
 							компьютер </label><span className='passwordRecover'>Восстановить пароль</span></p>

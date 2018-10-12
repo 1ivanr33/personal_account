@@ -1,9 +1,14 @@
 .loginForm {
 
+	min-height: 670px;
+	position: relative;
+	background-color: #FAFBFB;
+	height: 100vh;
+
 	.loginFormWrapper {
 		width: 1060px;
 		margin: 0 auto;
-		height: 650px;
+		height: 540px;
 
 		.mainFormLogin {
 			width: 340px;
