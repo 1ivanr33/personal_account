@@ -1,6 +1,7 @@
 import React from 'react';
 import ProfileSelect from './ProfileSelect';
 import './UserName.scss'
+import { BrowserRouter, Link } from 'react-router-dom';
 
 class UserName extends React.Component {
 
@@ -9,9 +10,11 @@ class UserName extends React.Component {
 		this.state = {
 			showMenu: 'hidden'
 		};
+		this.menuRef = React.createRef();
 		this.toggleMenuShow = this.toggleMenuShow.bind(this);
 		this.onProfileSelectBlur = this.onProfileSelectBlur.bind(this);
 		this.onLinkClick = this.onLinkClick.bind(this);
+		this.onBlur = this.onBlur.bind(this);
 	}
 
 	toggleMenuShow(){
@@ -23,31 +26,40 @@ class UserName extends React.Component {
 		});
 	}
 
+
 	render() {
 		return (
-			<div className='userName' tabIndex={1} id={this.state.showMenu}>
+			<div className='userName' ref={this.menuRef} tabIndex={1} onBlur={this.onBlur} id={this.state.showMenu}>
 				<span onClick={this.toggleMenuShow}>Иванова М. П.</span>
 				{
 					this.state.showMenu === 'visible' && (
-						<ProfileSelect
-							onLinkClick={this.onLinkClick}
-							onBlur={this.onProfileSelectBlur}
-						/>
+						<ul className='profileSelect' >
+							<li><Link onClick={this.onLinkClick} to="/UserProfile">Профиль пользователя</Link></li>
+							<li><Link onClick={this.onLinkClick} to="/CompanyProfile">Профиль компании</Link></li>
+							<li><Link onClick={this.onLinkClick} to="/">Выйти</Link></li>
+						</ul>
 					)
 				}
 			</div>
 		);
 	}
 
+	onBlur(event) {
+		const wrapperEl = this.menuRef.current;
+		if (!(wrapperEl.contains(event.target) && wrapperEl.contains(event.relatedTarget))) {
+			this.onProfileSelectBlur();
+		}
+	}
+
 	onLinkClick() {
 		this.setState({
-			showMenu: 'visible' //после тестирования == hidden
+			showMenu: 'hidden' //после тестирования == hidden
 		});
 	}
 
 	onProfileSelectBlur() {
 		this.setState({
-			showMenu: 'visible' //после тестирования == hidden
+			showMenu: 'hidden' //после тестирования == hidden
 		});
 	}
 }

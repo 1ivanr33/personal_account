@@ -1,3 +1,7 @@
+/*
+Совмещен с UserName
+
+
 import React from 'react';
 import './ProfileSelect.scss';
 import { BrowserRouter, Link } from 'react-router-dom';
@@ -39,4 +43,4 @@ class ProfileSelect extends React.Component {
 	}
 
 }
-export default ProfileSelect
+export default ProfileSelect*/

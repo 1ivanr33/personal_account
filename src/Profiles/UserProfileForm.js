@@ -2,6 +2,12 @@ import React from 'react';
 import './UserProfileForm.scss';
 
 class UserProfileForm extends React.Component {
+/*
+	componentWillMount() {
+		console.log("request - " + request);
+	}
+*/
+
 	render() {
 		return (
 			<div className='userProfileForm' onScroll={() => console.log('scroll')}>

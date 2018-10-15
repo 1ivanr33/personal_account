@@ -166,7 +166,7 @@ class LoginForm extends React.Component {
 						<p className={this.state.Login ? 'dirty' : ''}>
 							<input id="login" type="text" name="login" value={this.state.Login}
 								   onChange={this.onLoginChange}/>
-							<label for="login" className='textLabel'> E-mail </label>
+							<label htmlFor="login" className='textLabel'> E-mail </label>
 						</p>
 						<p className={this.state.Password ? 'dirty' : ''}>
 							<input id="password" type={this.state.ShowPassword} name="password"

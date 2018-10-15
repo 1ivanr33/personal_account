@@ -2,7 +2,13 @@ import React from 'react';
 import './CompanyProfileForm.scss';
 
 class CompanyProfileForm extends React.Component {
+	/*componentDidMount = async () => {
+		// await
+		console.log('111');
+	}*/
+
 	render() {
+		//this.props.Store.
 		return (
 			<div className='companyProfileForm' onScroll={() => console.log('scroll')}>
 				<section>
