@@ -1,7 +1,10 @@
 import React from 'react';
-import ProfileSelect from './ProfileSelect';
 import './UserName.scss'
 import { BrowserRouter, Link } from 'react-router-dom';
+import { inject, observer } from "mobx-react";
+
+@inject("Store")
+@observer
 
 class UserName extends React.Component {
 
@@ -17,14 +20,18 @@ class UserName extends React.Component {
 		this.onBlur = this.onBlur.bind(this);
 	}
 
-	toggleMenuShow(){
+
+	toggleMenuShow() {
+		const { Store } = this.props;
 		let oldState = this.state.showMenu;
 		let isVisibleOrHidden = (oldState === 'hidden');
 		let newState = (isVisibleOrHidden) ? 'visible' : 'hidden';
 		this.setState({
 			showMenu: newState
 		});
+		Store.UserNameVisible = this.state.showMenu;
 	}
+
 
 
 	render() {
