@@ -5,7 +5,6 @@ import { inject, observer } from "mobx-react";
 
 @inject("Store")
 @observer
-
 class UserName extends React.Component {
 
 	constructor(props) {
@@ -22,19 +21,22 @@ class UserName extends React.Component {
 
 
 	toggleMenuShow() {
-		const { Store } = this.props;
+
 		let oldState = this.state.showMenu;
 		let isVisibleOrHidden = (oldState === 'hidden');
 		let newState = (isVisibleOrHidden) ? 'visible' : 'hidden';
 		this.setState({
 			showMenu: newState
 		});
-		Store.UserNameVisible = this.state.showMenu;
 	}
 
-
+	componentDidUpdate(){
+		const { Store } = this.props;
+		Store.UserMenuVisible = this.state.showMenu;
+	}
 
 	render() {
+
 		return (
 			<div className='userName' ref={this.menuRef} tabIndex={1} onBlur={this.onBlur} id={this.state.showMenu}>
 				<span onClick={this.toggleMenuShow}>Иванова М. П.</span>

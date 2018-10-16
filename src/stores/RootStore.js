@@ -10,7 +10,7 @@ import React from "react";
 
 class RootStore {
 	@observable UserNameVisible = '';
-	@observable UserMenuVisible = '';
+	@observable UserMenuVisible = 'hidden';
 }
 
 export default new RootStore();
