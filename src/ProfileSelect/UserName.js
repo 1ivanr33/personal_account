@@ -1,5 +1,6 @@
 import React from 'react';
 import './UserName.scss'
+import BackOpacity from '../ProfileSelect/BackOpacity';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { inject, observer } from "mobx-react";
 
@@ -36,19 +37,27 @@ class UserName extends React.Component {
 	}
 
 	render() {
+		const { Store } = this.props;
+		let backGroundOpacity = null;
+		if (Store.UserMenuVisible === 'visible') {
+			backGroundOpacity = <BackOpacity/>;
+		}
 
 		return (
-			<div className='userName' ref={this.menuRef} tabIndex={1} onBlur={this.onBlur} id={this.state.showMenu}>
-				<span onClick={this.toggleMenuShow}>Иванова М. П.</span>
-				{
-					this.state.showMenu === 'visible' && (
-						<ul className='profileSelect' >
-							<li><Link onClick={this.onLinkClick} to="/UserProfile">Профиль пользователя</Link></li>
-							<li><Link onClick={this.onLinkClick} to="/CompanyProfile">Профиль компании</Link></li>
-							<li><Link onClick={this.onLinkClick} to="/">Выйти</Link></li>
-						</ul>
-					)
-				}
+			<div>
+				<div className='userName' ref={this.menuRef} tabIndex={1} onBlur={this.onBlur} id={this.state.showMenu}>
+					<span onClick={this.toggleMenuShow}>Иванова М. П.</span>
+					{
+						this.state.showMenu === 'visible' && (
+							<ul className='profileSelect'>
+								<li><Link onClick={this.onLinkClick} to="/UserProfile">Профиль пользователя</Link></li>
+								<li><Link onClick={this.onLinkClick} to="/CompanyProfile">Профиль компании</Link></li>
+								<li><Link onClick={this.onLinkClick} to="/">Выйти</Link></li>
+							</ul>
+						)
+					}
+				</div>
+				{backGroundOpacity}
 			</div>
 		);
 	}

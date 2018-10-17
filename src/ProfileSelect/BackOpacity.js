@@ -4,7 +4,7 @@ import './BackOpacity.scss';
 class BackOpacity extends React.Component {
 	render() {
 		return (
-			<div className='opacity'>
+			<div className='backOpacity'>
 			</div>
 		);
 	}

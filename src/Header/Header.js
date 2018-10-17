@@ -18,9 +18,9 @@ class Header extends React.Component {
 			<div className='header'>
 				{this.props.children}
 				{
-					//profileSelectMenu  раскомментить после тестирования
+					profileSelectMenu  //раскомментить после тестирования
 				}
-				<UserName/> {/*Удалить после тестирования*/}
+				{/*<UserName/> Удалить после тестирования*/}
 			</div>
 		);
 	}
