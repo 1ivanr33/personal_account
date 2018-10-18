@@ -1,7 +1,7 @@
 import React from 'react';
 import './UserName.scss'
 import BackOpacity from '../ProfileSelect/BackOpacity';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { inject, observer } from "mobx-react";
 
 @inject("Store")

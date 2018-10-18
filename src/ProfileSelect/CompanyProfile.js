@@ -1,6 +1,6 @@
 import React from 'react';
 import './CompanyProfile.scss';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CompanyProfileForm from '../Profiles/CompanyProfileForm';
 import BreadCrumbsCompany from '../BreadCrumbs/BreadCrumbsCompany';
 
