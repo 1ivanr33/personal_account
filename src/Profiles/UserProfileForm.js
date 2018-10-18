@@ -23,6 +23,7 @@ class UserProfileForm extends React.Component {
             surName: '',
             companyName: '',
             subOrgName: '',
+            jobTitle: '',
             phone: '',
             email: ''
         };
@@ -92,6 +93,9 @@ class UserProfileForm extends React.Component {
                     this.userInfo.surName = userInfo.parentName;
                     this.userInfo.companyName = userInfo.company;
                     this.userInfo.subOrgName = userInfo.subOrg;
+
+                    this.userInfo.jobTitle = userInfo.jobTitle;
+
                     this.userInfo.phone = userInfo.phone;
                     this.userInfo.email = userInfo.email;
 
@@ -100,12 +104,10 @@ class UserProfileForm extends React.Component {
 //                    Store.UserNameVisible = true;
                 } else {
                     var errorDescription = respJSON.operationResult.ErrorDescription;
-                    if (errorCode == "410") {
-                        this.setState({Message: 'Не указан логин. Пожалуйста, введите логин'})
-                    } else if (errorCode == "411") {
-                        this.setState({Message: 'Не указан пароль. Пожалуйста, введите пароль.'})
-                    } else if (errorCode == "412" || errorCode == "413") {
-                        this.setState({Message: 'Пользователь с заданным логином или паролем не найден. Пожалуйста, проверьте правильность написания логина или пароля.'})
+                    if (errorCode == "500") {
+                        this.setState({Message: 'No user id is found by token'})
+                    } else if (errorCode == "501") {
+                        this.setState({Message: 'Profile with given id not found'})
                     }
                 }
                 this.setState({ loading: 'false' });
@@ -129,6 +131,7 @@ class UserProfileForm extends React.Component {
         }
 
         console.log('This happens 8th - after I get data.');
+
         return (
             <div className='userProfileForm' onScroll={() => console.log('scroll')}>
                 <section>
@@ -148,16 +151,16 @@ class UserProfileForm extends React.Component {
                         <label htmlFor="some33" className='textLabel'> Отчество </label>
                     </p>
                     <p>
-                        <input disabled id="some44" type="text" value="ГБУ «Жилищник Таганский» "/>
-                        <label htmlFor="some44" className='textLabel'> {this.userInfo.companyName} </label>
+                        <input disabled id="some44" type="text" value={this.userInfo.companyName}/>
+                        <label htmlFor="some44" className='textLabel'> Компания </label>
                     </p>
 
                     <p>
-                        <input disabled id="some55" type="text" value="Таганский"/>
-                        <label htmlFor="some55" className='textLabel'> {this.userInfo.subOrgName} </label>
+                        <input disabled id="some55" type="text" value={this.userInfo.subOrgName}/>
+                        <label htmlFor="some55" className='textLabel'> Филиал/Отделение </label>
                     </p>
                     <p>
-                        <input disabled id="some66" type="text" value="Менеджер"/>
+                        <input disabled id="some66" type="text" value={this.userInfo.jobTitle}/>
                         <label htmlFor="some66" className='textLabel'> Должность </label>
                     </p>
 
