@@ -95,7 +95,7 @@ class LoginForm extends React.Component {
         makeRequest('POST', 'http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getOperatorByLoginParams')
 		////            .then(response => { console.log('Response - ' + response.responseText); console.log('Security_Token - ' + response.getResponseHeader('Security_Token'));
 			.then(response => {
-				const { Store } = this.props;
+//				const { Store } = this.props;
 				var respJSON = JSON.parse(response.responseText);
 				var errorCode = respJSON.operationResult.ErrorCode;
 				//            	console.log('Response - ' + response.responseText);
