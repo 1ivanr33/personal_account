@@ -1,4 +1,58 @@
 .home{
 	width: 1060px;
 	margin: 0 auto;
+	color: #000;
+
+	h2{
+		font-size: 24px;
+	}
+
+	.module_select {
+		display: flex;
+		flex-direction: row;
+
+		a {
+			margin-left: 20px;
+			text-decoration: none;
+			border-radius: 2px;
+		}
+
+		a:hover{
+			box-shadow: rgba(0, 0, 0, .2) 0 2px 5px 0;
+		}
+
+		a:first-child {
+			margin: 0 !important;
+		}
+
+		.module {
+			width: 340px;
+			height: 300px;
+			box-sizing: border-box;
+			background-color: #fff;
+			padding: 35px;
+			color: #000;
+			font-size: 16px;
+			position: relative;
+			border-radius: 2px;
+
+			.top {
+				margin-top: 0;
+				font-size: 18px;
+			}
+
+			.middle {
+
+			}
+
+			.bottom {
+				color: #9A9A9A;
+				position: absolute;
+				bottom: 0;
+				margin-bottom: 35px;
+			}
+
+		}
+	}
+
 }
