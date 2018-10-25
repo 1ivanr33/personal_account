@@ -136,12 +136,10 @@ class CompanyProfileForm extends React.Component {
 //                    Store.UserNameVisible = true;
                 } else {
                     var errorDescription = respJSON.operationResult.ErrorDescription;
-                    if (errorCode == "410") {
-                        this.setState({Message: 'Не указан логин. Пожалуйста, введите логин'})
-                    } else if (errorCode == "411") {
-                        this.setState({Message: 'Не указан пароль. Пожалуйста, введите пароль.'})
-                    } else if (errorCode == "412" || errorCode == "413") {
-                        this.setState({Message: 'Пользователь с заданным логином или паролем не найден. Пожалуйста, проверьте правильность написания логина или пароля.'})
+                    if (errorCode == "500") {
+                        this.setState({Message: 'No user id is found by token'})
+                    } else if (errorCode == "501") {
+                        this.setState({Message: 'Profile with given id not found'})
                     }
                 }
                 this.setState({ loading: 'false' });
