@@ -28,8 +28,19 @@ class CompanyProfileForm extends React.Component {
             legalZipCode: '',
             phone: '',
             site: '',
-			email: ''
-
+			email: '',
+			bankAccounts: {
+                bankName: '',
+                bankInn: '',
+                bankKpp: '',
+                corrAccount: '',
+                bankBic: '',
+                bankSwift: '',
+                settlementAccount: '',
+                orgName: '',
+                orgInn: '',
+                orgOgrn: ''
+			}
         };
     }
 
@@ -103,6 +114,20 @@ class CompanyProfileForm extends React.Component {
                     this.organizationInfo.phone = organizationInfo[0].phone;
                     this.organizationInfo.site = organizationInfo[0].site;
                     this.organizationInfo.email = organizationInfo[0].email;
+
+                    let bankAccount = organizationInfo[0].bankAccounts[0];
+
+                    this.organizationInfo.bankAccounts.bankName = bankAccount.bankName;
+                    this.organizationInfo.bankAccounts.bankInn = bankAccount.bankInn;
+                    this.organizationInfo.bankAccounts.bankKpp = bankAccount.bankKpp;
+                    this.organizationInfo.bankAccounts.corrAccount = bankAccount.corrAccount;
+                    this.organizationInfo.bankAccounts.bankBic = bankAccount.bankBic;
+                    this.organizationInfo.bankAccounts.bankSwift = bankAccount.bankSwift;
+                    this.organizationInfo.bankAccounts.settlementAccount = bankAccount.settlementAccount;
+                    this.organizationInfo.bankAccounts.orgName = bankAccount.orgName;
+                    this.organizationInfo.bankAccounts.orgInn = bankAccount.orgInn;
+                    this.organizationInfo.bankAccounts.orgOgrn = bankAccount.orgOgrn;
+
 //                    this.organizationInfo.subOrgName = organizationInfo.subOrg;
 //                    this.organizationInfo.subOrgName = organizationInfo.subOrg;
 
@@ -111,12 +136,10 @@ class CompanyProfileForm extends React.Component {
 //                    Store.UserNameVisible = true;
                 } else {
                     var errorDescription = respJSON.operationResult.ErrorDescription;
-                    if (errorCode == "410") {
-                        this.setState({Message: 'Не указан логин. Пожалуйста, введите логин'})
-                    } else if (errorCode == "411") {
-                        this.setState({Message: 'Не указан пароль. Пожалуйста, введите пароль.'})
-                    } else if (errorCode == "412" || errorCode == "413") {
-                        this.setState({Message: 'Пользователь с заданным логином или паролем не найден. Пожалуйста, проверьте правильность написания логина или пароля.'})
+                    if (errorCode == "500") {
+                        this.setState({Message: 'No user id is found by token'})
+                    } else if (errorCode == "501") {
+                        this.setState({Message: 'Profile with given id not found'})
                     }
                 }
                 this.setState({ loading: 'false' });
@@ -202,7 +225,7 @@ class CompanyProfileForm extends React.Component {
 
 					<h3>Банковские счета</h3>
 					<p>
-						<input disabled id="some99" type="text" value=" "/>
+						<input disabled id="some99" type="text" value={this.organizationInfo.bankAccounts.bankName}/>
 						<label htmlFor="some99" className='textLabel'> Банк </label>
 					</p>
 					<p>
@@ -210,39 +233,39 @@ class CompanyProfileForm extends React.Component {
 						<label htmlFor="some111" className='textLabel'> Комментарий </label>
 					</p>
 					<p>
-						<input disabled id="some222" type="text" value=" "/>
+						<input disabled id="some222" type="text" value={this.organizationInfo.bankAccounts.bankBic}/>
 						<label htmlFor="some222" className='textLabel'> БИК </label>
 					</p>
 					<p>
-						<input disabled id="some333" type="text" value=" "/>
+						<input disabled id="some333" type="text" value={this.organizationInfo.bankAccounts.bankSwift}/>
 						<label htmlFor="some333" className='textLabel'> SWIFT </label>
 					</p>
 					<p>
-						<input disabled id="some99" type="text" value=" "/>
+						<input disabled id="some99" type="text" value={this.organizationInfo.bankAccounts.bankInn}/>
 						<label htmlFor="some99" className='textLabel'> ИНН банка </label>
 					</p>
 					<p>
-						<input disabled id="some111" type="text" value=" "/>
+						<input disabled id="some111" type="text" value={this.organizationInfo.bankAccounts.bankKpp}/>
 						<label htmlFor="some111" className='textLabel'> КПП банка </label>
 					</p>
 					<p>
-						<input disabled id="some222" type="text" value=" "/>
+						<input disabled id="some222" type="text" value={this.organizationInfo.bankAccounts.corrAccount}/>
 						<label htmlFor="some222" className='textLabel'> Корреспондентский счет </label>
 					</p>
 					<p>
-						<input disabled id="some333" type="text" value=" "/>
+						<input disabled id="some333" type="text" value={this.organizationInfo.bankAccounts.settlementAccount}/>
 						<label htmlFor="some333" className='textLabel'> Расчетный счет </label>
 					</p>
 					<p>
-						<input disabled id="some99" type="text" value=" "/>
+						<input disabled id="some99" type="text" value={this.organizationInfo.bankAccounts.orgName}/>
 						<label htmlFor="some99" className='textLabel'> Полное наименование получателя </label>
 					</p>
 					<p>
-						<input disabled id="some111" type="text" value=" "/>
+						<input disabled id="some111" type="text" value={this.organizationInfo.bankAccounts.orgInn}/>
 						<label htmlFor="some111" className='textLabel'> ИНН получателя </label>
 					</p>
 					<p>
-						<input disabled id="some222" type="text" value=" "/>
+						<input disabled id="some222" type="text" value={this.organizationInfo.bankAccounts.orgOgrn}/>
 						<label htmlFor="some222" className='textLabel'> ОГРН получателя </label>
 					</p>
 
