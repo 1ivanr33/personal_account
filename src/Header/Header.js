@@ -11,6 +11,7 @@ class Header extends React.Component {
 		const {Store} = this.props;
 		let profileSelectMenu = null;
 		if(Store.UserNameVisible === true){
+
 			profileSelectMenu = <UserName/>
 		}
 

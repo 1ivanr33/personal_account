@@ -1,0 +1,53 @@
+
+<svg width="82px" height="79px" viewBox="0 0 82 79" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="MVP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.-EIRC.-MSP.-MVP.-Main-page-after-auth" transform="translate(-947.000000, -412.000000)">
+            <g id="Group-9" transform="translate(7.000000, 6.000000)">
+                <g id="Group-3" transform="translate(910.000000, 210.000000)">
+                    <g id="Group-129" transform="translate(30.000000, 196.000000)">
+                        <g id="Group-191">
+                            <g id="Group-190">
+                                <g id="Group-197">
+                                    <path d="M49.033955,2.81801948 C48.1900413,1.97410578 47.0454487,1.5 45.8519745,1.5 L2,1.5 C1.72385763,1.5 1.5,1.72385763 1.5,2 L1.5,77 C1.5,77.2761424 1.72385763,77.5 2,77.5 L61,77.5 C61.2761424,77.5 61.5,77.2761424 61.5,77 L61.5,17.1480255 C61.5,15.9545513 61.0258942,14.8099587 60.1819805,13.966045 L49.033955,2.81801948 Z" id="Combined-Shape" stroke="#208CFF" stroke-width="3" fill="#FFFFFF"></path>
+                                    <path d="M48,3 L48,14 C48,15.1045695 48.8954305,16 50,16 L61,16" id="Path-15" stroke="#208CFF" stroke-width="3"></path>
+                                    <rect id="Rectangle-27" fill="#BCDDFF" x="19" y="49" width="25" height="3"></rect>
+                                    <rect id="Rectangle-27" fill="#BCDDFF" x="19" y="57" width="25" height="3"></rect>
+                                </g>
+                            </g>
+                            <g id="Group-188" transform="translate(19.000000, 17.000000)">
+                                <g id="Group-193" transform="translate(1.000000, 0.000000)"></g>
+                            </g>
+                        </g>
+
+
+
+<g id="Icons-/-Side-icon-(case)" transform="translate(19.000000, 19.000000)">
+                    <g id="Group-2">
+                        <rect id="Rectangle-28" stroke="#208CFF" stroke-width="3" x="1.5" y="7.5" width="20" height="13" rx="2"></rect>
+                        <rect id="Rectangle-29" stroke="#208CFF" stroke-width="3" x="7.5" y="1.5" width="8" height="6" rx="2"></rect>
+                        <rect id="Rectangle-30" fill="#3A9AFF" x="7" y="11" width="3" height="5" rx="1"></rect>
+                        <rect id="Rectangle-30" fill="#3A9AFF" x="13" y="11" width="3" height="5" rx="1"></rect>
+                    </g>
+                </g>
+
+
+
+
+                        <g id="Group-126" transform="translate(41.000000, 38.000000)">
+                            <circle id="Oval-4" stroke="#FF7712" stroke-width="3" fill="#FFFFFF" cx="20.5" cy="20.5" r="19"></circle>
+                            <g id="Group-6" transform="translate(13.000000, 14.000000)" fill="#208CFF" fill-rule="nonzero">
+                                <rect id="Rectangle-22" x="0" y="6" width="3" height="6"></rect>
+                                <rect id="Rectangle-22" x="6" y="0" width="3" height="12"></rect>
+                                <rect id="Rectangle-22" x="12" y="3" width="3" height="9"></rect>
+                            </g>
+                            <g id="Group-128" transform="translate(13.000000, 15.000000)"></g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
