@@ -58,7 +58,7 @@ export const Topics = ({ match }) => (
 	</div>
 )
 
-const Tabs = () => (
+const Router = () => (
 
 	<BrowserRouter>
 		<Provider Store={RootStore}>
@@ -85,4 +85,4 @@ const Tabs = () => (
 
 )
 
-export default Tabs
+export default Router
