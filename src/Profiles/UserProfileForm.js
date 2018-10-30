@@ -33,7 +33,7 @@ class UserProfileForm extends React.Component {
         var promise = new Promise((resolve, reject) => {
 ///            setTimeout(() => {
                 const {Store} = this.props;
-                console.log('Store.SecurityToken - ' + Store.SecurityToken);
+                console.log('Store.SecurityToken - ' + localStorage.getItem('securityToken'));
 
                 var xhr = new XMLHttpRequest();
 
@@ -41,7 +41,7 @@ class UserProfileForm extends React.Component {
                 xhr.setRequestHeader("Content-Type", "application/json");
 
                 let requestData = {
-                    token: Store.SecurityToken
+                    token: localStorage.getItem('securityToken')
                 }
 
                 xhr.send(JSON.stringify(requestData));

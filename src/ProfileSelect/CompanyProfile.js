@@ -14,12 +14,16 @@ class CompanyProfile extends React.Component {
 				<ul>
 					<li><Link to='/UserProfile'>Профиль пользователя</Link></li>
 					<li><Link to='/CompanyProfile'  id='link-current' >Профиль компании</Link></li>
-					<li><Link to='/'>Выйти</Link></li>
+					<li><Link onClick={this.onLinkClickExit} to='/'>Выйти</Link></li>
 				</ul>
 
 				<CompanyProfileForm/>
 			</div>
 		);
+	}
+
+	onLinkClickExit() {
+		localStorage.clear();
 	}
 }
 export default CompanyProfile

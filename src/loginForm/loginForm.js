@@ -99,12 +99,13 @@ class LoginForm extends React.Component {
 				var respJSON = JSON.parse(response.responseText);
 				var errorCode = respJSON.operationResult.ErrorCode;
 				//            	console.log('Response - ' + response.responseText);
-				Store.SecurityToken = response.getResponseHeader('Security_Token');
+				localStorage.setItem('securityToken', response.getResponseHeader('Security_Token'));
 				console.log('Security_Token - ' + Store.SecurityToken);
 				if (errorCode === "0") {
 					console.log('errorCode - ' + errorCode);
 					this.props.history.push("/home");
-					Store.UserNameVisible = true;
+					Store.IsUserAuthenticated = 'true';
+					localStorage.setItem('isUserAuthenticated', Store.IsUserAuthenticated)
 				} else {
 					var errorDescription = respJSON.operationResult.ErrorDescription;
 					if (errorCode == "410") {

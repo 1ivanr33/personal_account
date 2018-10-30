@@ -2,15 +2,11 @@ import React from 'react';
 import './Header.scss';
 import UserName from '../ProfileSelect/UserName'
 import RootStore from '../stores/RootStore';
-import { inject, observer } from "mobx-react";
 
-@inject("Store")
-@observer
 class Header extends React.Component {
 	render() {
-		const {Store} = this.props;
 		let profileSelectMenu = null;
-		if(Store.UserNameVisible === true){
+		if(localStorage.getItem('securityToken')){
 
 			profileSelectMenu = <UserName/>
 		}
@@ -19,9 +15,8 @@ class Header extends React.Component {
 			<div className='header'>
 				{this.props.children}
 				{
-					profileSelectMenu  // раскомментить после тестирования
+					profileSelectMenu
 				}
-				{/*<UserName/> Удалить после тестирования*/}
 			</div>
 		);
 	}

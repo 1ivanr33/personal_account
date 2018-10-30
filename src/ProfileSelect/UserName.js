@@ -31,8 +31,8 @@ class UserName extends React.Component {
     makeRequest(method, url) {
         var promise = new Promise((resolve, reject) => {
 ///            setTimeout(() => {
-            const {Store} = this.props;
-            console.log('Store.SecurityToken - ' + Store.SecurityToken);
+            //const {Store} = this.props;
+            console.log('Store.SecurityToken - ' + localStorage.getItem('securityToken'));
 
             var xhr = new XMLHttpRequest();
 
@@ -40,7 +40,7 @@ class UserName extends React.Component {
             xhr.setRequestHeader("Content-Type", "application/json");
 
             let requestData = {
-                token: Store.SecurityToken
+                token: localStorage.getItem('securityToken')
             }
 
             xhr.send(JSON.stringify(requestData));
@@ -175,10 +175,9 @@ class UserName extends React.Component {
 	}
 
 	onLinkClickExit() {
-		const { Store } = this.props;
-		Store.UserNameVisible = " ";
+		localStorage.clear();
 		this.setState({
-			showMenu: 'hidden',//после тестирования == hidden
+			showMenu: 'hidden'
 		});
 
 	}
