@@ -5,6 +5,10 @@ import './Home.scss';
 class Home extends React.Component {
 	render() {
 
+		if (!(localStorage.getItem('securityToken'))){
+			this.props.history.push("/");
+		}
+
 		const Msp = () => <div className='module module_1'>
 			<p className='top'>Меры социальной поддержки</p>
 			<p className='middle'>Меры социальной поддержки</p>
@@ -23,8 +27,6 @@ class Home extends React.Component {
 
 		return (
 			<div className='home'>
-
-
 				<h2>Здравствуйте, Иванова Мария</h2>
 				<p>Выберите подсистему ЕИРЦ или услугу для продолжения работы</p>
 				<div className='module_select'>

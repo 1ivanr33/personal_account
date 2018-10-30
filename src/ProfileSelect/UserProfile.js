@@ -6,7 +6,11 @@ import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 
 class UserProfile extends React.Component {
 	render() {
+		if (!(localStorage.getItem('securityToken'))){
+			this.props.history.push("/");
+		}
 		return (
+
 			<div className='userProfile'>
 
 				<BreadCrumbs/>

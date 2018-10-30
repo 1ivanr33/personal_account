@@ -6,6 +6,9 @@ import BreadCrumbsCompany from '../BreadCrumbs/BreadCrumbsCompany';
 
 class CompanyProfile extends React.Component {
 	render() {
+		if (!(localStorage.getItem('securityToken'))){
+			this.props.history.push("/");
+		}
 		return (
 			<div className='companyProfile'>
 
