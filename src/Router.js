@@ -5,6 +5,7 @@ import Header from './Header/Header';
 import Home from './Home';
 import UserProfile from './ProfileSelect/UserProfile';
 import CompanyProfile from './ProfileSelect/CompanyProfile';
+import PasswordRecovery from './PasswordRecovery/PasswordRecovery';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import RootStore from './stores/RootStore';
@@ -77,6 +78,7 @@ const Router = () => (
 					<Route path="/Home" component={Home}/>
 					<Route path="/UserProfile" component={UserProfile}/>
 					<Route path="/CompanyProfile" component={CompanyProfile}/>
+					<Route path="/PasswordRecovery" component={PasswordRecovery}/>
 				</Desktop>
 
 			</div>

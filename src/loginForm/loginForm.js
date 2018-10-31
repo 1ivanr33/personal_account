@@ -2,6 +2,7 @@ import React from 'react';
 import './loginForm.scss';
 import Notice from '../Notice';
 import FooterNavBar from '../FooterNavBar/FooterNavBar';
+import { Link } from 'react-router-dom';
 import { inject, observer } from "mobx-react";
 
 @inject("Store")
@@ -179,7 +180,7 @@ class LoginForm extends React.Component {
 							<div className={this.state.Eye} onMouseDown={this.onPasswordShow} onMouseUp={this.onPasswordShow} onMouseOut={this.onEyeMouseOut}> </div>
 						</p>
 						<p className='checkForeign'><input id="foreign" type="checkbox"/><label for="foreign">Чужой
-							компьютер </label><span className='passwordRecover'>Восстановить пароль</span></p>
+							компьютер </label><Link to="/PasswordRecovery" className='passwordRecover'>Восстановить пароль</Link></p>
 						<p><input type="submit" value="Войти" onClick={this.onSubmit}/></p>
 						<p className='alternate'>Вы также можете войти через <a href="#">СУДИР</a></p>
 						<Notice message={this.state.Message}/>

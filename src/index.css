@@ -27,7 +27,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: FiraSans-Regular, arial, verdana, sans-serif;
+  font-family: ProximaNova-Reg, arial, verdana, sans-serif;
   color: #9a9a9a;
 }
 
