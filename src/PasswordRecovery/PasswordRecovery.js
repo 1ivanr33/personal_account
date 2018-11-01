@@ -18,12 +18,11 @@ class PasswordRecovery extends React.Component {
 		this.onEmailChange = this.onEmailChange.bind(this);
 	}
 
-	onSubmitOld(e){
+	onSubmit(e){
 		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getOperatorByLoginParams";
 
 		let requestData = {
-			login: this.state.Login,
-			password: this.state.Password
+			email: this.state.Email
 		}
 
 		let postData = {
@@ -47,87 +46,15 @@ class PasswordRecovery extends React.Component {
 		e.preventDefault();
 	}
 
-	onSubmit(e) {
-		var requestData = {
-			Login: this.state.Login,
-			Password: this.state.Password
-		}
-
-		const {Store} = this.props;
-
-		function makeRequest (method, url) {
-			return new Promise(function (resolve, reject) {
-				var xhr = new XMLHttpRequest();
-
-				xhr.open(method, url);
-				xhr.setRequestHeader("Content-Type", "application/json");
-				////                xhr.send('{"Login":"Andrew","Password":"welcome1"}');
-				xhr.send(JSON.stringify(requestData));
-
-				xhr.onload = function () {
-					if (this.status === 200) {
-						////                         resolve(xhr.response);
-						resolve(xhr);
-					} else {
-						reject({
-							status: this.status,
-							statusText: xhr.statusText
-						});
-					}
-				};
-				xhr.onerror = function () {
-					reject({
-						status: this.status,
-						statusText: xhr.statusText
-					});
-				};
-				//                 xhr.send();
-			});
-		}
-
-		makeRequest('POST', 'http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getOperatorByLoginParams')
-		////            .then(response => { console.log('Response - ' + response.responseText); console.log('Security_Token - ' + response.getResponseHeader('Security_Token'));
-			.then(response => {
-				//				const { Store } = this.props;
-				var respJSON = JSON.parse(response.responseText);
-				var errorCode = respJSON.operationResult.ErrorCode;
-				//            	console.log('Response - ' + response.responseText);
-				localStorage.setItem('securityToken', response.getResponseHeader('Security_Token'));
-				console.log('Security_Token - ' + Store.SecurityToken);
-				if (errorCode === "0") {
-					console.log('errorCode - ' + errorCode);
-					this.props.history.push("/home");
-					Store.IsUserAuthenticated = 'true';
-					localStorage.setItem('isUserAuthenticated', Store.IsUserAuthenticated)
-				} else {
-					var errorDescription = respJSON.operationResult.ErrorDescription;
-					if (errorCode == "410") {
-						this.setState({Message: 'Не указан логин. Пожалуйста, введите логин'})
-					} else if (errorCode == "411") {
-						this.setState({Message: 'Не указан пароль. Пожалуйста, введите пароль.'})
-					} else if (errorCode == "412" || errorCode == "413") {
-						this.setState({Message: 'Пользователь с заданным логином или паролем не найден. Пожалуйста, проверьте правильность написания логина или пароля.'})
-					}
-				}
-			})
-			.catch(function (err) {
-				console.error('Augh, there was an error!', err.statusText);
-			});
-	}
 	onEmailChange(e) {
 		this.setState({Email: e.target.value});
 	}
-
 
 	handleKeyPress(target) {
 		if(target.charCode===13){
 			this.onSubmit();
 		}
 	}
-
-
-
-
 
 
 	render() {
@@ -150,7 +77,7 @@ class PasswordRecovery extends React.Component {
 						</p>
 
 
-						<p><input type="submit" value="Восстановить пароль" onClick={this.onSubmit}/></p>
+						<p className='recoverPasswordBtn'><input type="submit" value="Восстановить пароль" onClick={this.onSubmit}/></p>
 						<p className='alternate'><Link to="/">Я вспомнил пароль</Link></p>
 
 					</div>
