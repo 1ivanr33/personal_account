@@ -8,11 +8,11 @@ class FooterNavBar extends React.Component {
 
 		return <div className='footerMenu'>
 			<p>
-			<a id='eirc' href="#"> ЕИРЦ 2018 г. </a>
-			<a id='question' href="#">Задать вопрос </a>
-			<a id='help' href="#">Помощь </a>
-			<a id='dit' href="#">ДИТ </a>
-			<a id='lastLink' href="#">  </a>
+			<a id='eirc' href=" "> ЕИРЦ 2018 г. </a>
+			<a id='question' href=" ">Задать вопрос </a>
+			<a id='help' href=" ">Помощь </a>
+			<a id='dit' href=" ">ДИТ </a>
+			<a id='lastLink' href=" ">  </a>
 			</p>
 		</div>;
 	}

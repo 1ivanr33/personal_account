@@ -1,18 +1,18 @@
-.userNotFound {
+.checkYourEmail {
 
 	min-height: 670px;
 	position: relative;
 	background-color: #FAFBFB;
 	height: 100vh;
 
-	.userNotFoundWrapper {
+	.checkYourEmailWrapper {
 		width: 1060px;
 		margin: 0 auto;
 		height: 540px;
 
-		.mainFormUserNotFound {
+		.mainFormCheckYourEmail {
 			width: 340px;
-			height: 340px;
+			height: 290px;
 			background-color: #fff;
 			display: inline-block;
 			border-radius: 4px;
@@ -21,9 +21,9 @@
 			position: relative;
 
 			.notice{
-				height: 440px;
-				background: #fff;
-				border: none;
+				height: 390px;
+				border: solid 1px #d4d9dc;
+				opacity: .5;
 
 				h4 {
 					color: #000;
@@ -74,8 +74,12 @@
 				color: #000;
 			}
 
-			.recoverPasswordBtn{
+			.sendOneMoreBtn{
 				margin: 25px 0;
+				font-family: ProximaNova-Reg, arial, verdana, sans-serif;
+				font-size: 14px;
+				line-height: 1.14;
+				color: #208cff;
 			}
 
 			input[type="text"]:focus, input[type="password"]:focus {
@@ -137,7 +141,7 @@
 			}
 
 			.alternate {
-				margin: 34px 0;
+				margin: 54px 0 0;
 				color: #6E7478;
 				font-size: 14px;
 

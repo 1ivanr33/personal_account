@@ -1,5 +1,5 @@
 import React from 'react';
-import './UserNotFound.scss';
+import './CheckYourEmail.scss';
 import Notice from '../Notice';
 import FooterNavBar from '../FooterNavBar/FooterNavBar';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,7 @@ import emailMask from 'text-mask-addons/dist/emailMask';
 
 @inject("Store")
 @observer
-class UserNotFound extends React.Component {
+class CheckYourEmail extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -62,14 +62,14 @@ class UserNotFound extends React.Component {
 
 		return (
 
-			<div className='userNotFound'>
-				<div className='userNotFoundWrapper'>
+			<div className='checkYourEmail'>
+				<div className='checkYourEmailWrapper'>
 
-					<div className='mainFormUserNotFound' onKeyPress={this.handleKeyPress} onSubmit={this.onSubmit}>
+					<div className='mainFormCheckYourEmail' onKeyPress={this.handleKeyPress} onSubmit={this.onSubmit}>
 
-						<h3>Восстановление пароля</h3>
+						<h3>Проверьте ваш e-mail</h3>
 						<p>
-							Введите e-mail, который вы указывали при регистрации. Мы отправим вам письмо с инструкцией по восстановлению пароля
+							Мы отправили инструкцию	по восстановлению пароля на вашу почту
 						</p>
 						<p className={this.state.Email ? 'dirty' : ''}>
 							<MaskedInput mask={emailMask} id="login" type="text" name="login" value={this.state.Login}
@@ -78,13 +78,13 @@ class UserNotFound extends React.Component {
 						</p>
 
 
-						<p className='recoverPasswordBtn'><input type="submit" value="Восстановить пароль" onClick={this.onSubmit}/></p>
+						<p className='sendOneMoreBtn' onClick={this.onSubmit}>Отправить еще раз</p>
 						<p className='alternate'><Link to="/">Я вспомнил пароль</Link></p>
 						<Notice>
 
-							<h4>Пользователь не найден</h4>
-							<p>Извините, но мы не нашли	пользователя. Проверьте правильность написания логина и повторите попытку.</p>
-							<p>Если у вас возникли проблемы с авторизацией, вы можете <a href=' '>задать вопрос в техничскую поддержку</a></p>
+							<h4>Не приходит письмо?</h4>
+							<p>Получение письма может занимать несколько минут.	Если письмо не пришло — проверьте папку «спам».</p>
+							<p>Если вы не обнаружили письмо, повторите отправку.</p>
 
 						</Notice>
 					</div>
@@ -97,4 +97,4 @@ class UserNotFound extends React.Component {
 	}
 }
 
-export default UserNotFound;
+export default CheckYourEmail;

@@ -10,6 +10,7 @@ import UserNotFound from './PasswordRecovery/UserNotFound';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import RootStore from './stores/RootStore';
+import CheckYourEmail from './PasswordRecovery/CheckYourEmail';
 
 
 
@@ -48,6 +49,7 @@ const Router = () => (
 					<Route path="/CompanyProfile" component={CompanyProfile}/>
 					<Route path="/PasswordRecovery" component={PasswordRecovery}/>
 					<Route path="/UserNotFound" component={UserNotFound}/>
+					<Route path="/CheckYourEmail" component={CheckYourEmail}/>
 				</Desktop>
 
 			</div>

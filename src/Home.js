@@ -30,9 +30,9 @@ class Home extends React.Component {
 				<h2>Здравствуйте, Иванова Мария</h2>
 				<p>Выберите подсистему ЕИРЦ или услугу для продолжения работы</p>
 				<div className='module_select'>
-					<a href="#"><Msp/></a>
-					<a href="#"><Contracts/></a>
-					<a href="#"><Reports/></a>
+					<a href=" "><Msp/></a>
+					<a href=" "><Contracts/></a>
+					<a href=" "><Reports/></a>
 				</div>
 			</div>
 		);
