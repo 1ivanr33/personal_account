@@ -18,8 +18,8 @@ class PasswordRecovery extends React.Component {
 		this.onEmailChange = this.onEmailChange.bind(this);
 	}
 
-	onSubmit(e){
-		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getOperatorByLoginParams";
+	onSubmitFetch(e){
+		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/putUserGenerateCodeByEmail";
 
 		let requestData = {
 			email: this.state.Email
@@ -44,6 +44,57 @@ class PasswordRecovery extends React.Component {
 			});
 
 		e.preventDefault();
+	}
+
+	onSubmit(e) {
+		let requestData = {
+			email: this.state.Email
+		};
+
+		function makeRequest (method, url) {
+			return new Promise(function (resolve, reject) {
+				var xhr = new XMLHttpRequest();
+
+				xhr.open(method, url);
+				xhr.setRequestHeader("Content-Type", "application/json");
+				xhr.send(JSON.stringify(requestData));
+
+				xhr.onload = function () {
+					if (this.status === 200) {
+						////                         resolve(xhr.response);
+						resolve(xhr);
+					} else {
+						reject({
+							status: this.status,
+							statusText: xhr.statusText
+						});
+					}
+				};
+				xhr.onerror = function () {
+					reject({
+						status: this.status,
+						statusText: xhr.statusText
+					});
+				};
+				//                 xhr.send();
+			});
+		}
+
+		makeRequest('POST', 'http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/putUserGenerateCodeByEmail')
+			.then(response => {
+				var respJSON = JSON.parse(response.responseText);
+				var errorCode = respJSON.operationResult.ErrorCode;
+				//            	console.log('Response - ' + response.responseText);
+				if (errorCode === "0") {
+					console.log('errorCode - ' + errorCode);
+					this.props.history.push("/CheckYourEmail");
+				} else {
+					this.props.history.push("/UserNotFound");
+				}
+			})
+			.catch(function (err) {
+				console.error('Augh, there was an error!', err.statusText);
+			});
 	}
 
 	onEmailChange(e) {

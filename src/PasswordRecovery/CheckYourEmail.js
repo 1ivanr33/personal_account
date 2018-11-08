@@ -15,6 +15,7 @@ class CheckYourEmail extends React.Component {
 		this.state = {
 			Email: ''
 		};
+		this.resendRef = React.createRef();
 		this.onSubmit = this.onSubmit.bind(this);
 		this.onEmailChange = this.onEmailChange.bind(this);
 	}
@@ -78,7 +79,7 @@ class CheckYourEmail extends React.Component {
 						</p>
 
 
-						<p className='sendOneMoreBtn' onClick={this.onSubmit}>Отправить еще раз</p>
+						<p className='resendBtn' ref={this.resendRef} onClick={this.onSubmit}><a href=' '>Отправить еще раз</a></p>
 						<p className='alternate'><Link to="/">Я вспомнил пароль</Link></p>
 						<Notice>
 

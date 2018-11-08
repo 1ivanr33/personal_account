@@ -74,12 +74,27 @@
 				color: #000;
 			}
 
-			.sendOneMoreBtn{
-				margin: 25px 0;
+			.resendBtn{
+				margin: 25px 0 25px 33px;
 				font-family: ProximaNova-Reg, arial, verdana, sans-serif;
 				font-size: 14px;
 				line-height: 1.14;
-				color: #208cff;
+
+
+				:before {
+					position: absolute;
+					left: -34px;
+					top: -4px;
+					display: block;
+					content: '';
+					background: url(resend.svg) no-repeat;
+					width: 26px;
+					height: 26px;
+				}
+				a{
+					text-decoration: none;
+					color: #208cff;
+				}
 			}
 
 			input[type="text"]:focus, input[type="password"]:focus {
