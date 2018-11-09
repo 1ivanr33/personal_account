@@ -11,7 +11,7 @@ import { BrowserRouter, Link, Route } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import RootStore from './stores/RootStore';
 import CheckYourEmail from './PasswordRecovery/CheckYourEmail';
-
+import EnterNewPassword from './PasswordRecovery/EnterNewPassword';
 
 
 
@@ -50,6 +50,7 @@ const Router = () => (
 					<Route path="/PasswordRecovery" component={PasswordRecovery}/>
 					<Route path="/UserNotFound" component={UserNotFound}/>
 					<Route path="/CheckYourEmail" component={CheckYourEmail}/>
+					<Route path="/EnterNewPassword" component={EnterNewPassword}/>
 				</Desktop>
 
 			</div>
