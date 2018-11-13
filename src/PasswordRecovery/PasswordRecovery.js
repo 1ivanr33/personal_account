@@ -15,11 +15,11 @@ class PasswordRecovery extends React.Component {
 			Email: ''
 		};
 		this.onSubmit = this.onSubmit.bind(this);
-		this.onSubmitFetch = this.onSubmitFetch.bind(this);
 		this.onEmailChange = this.onEmailChange.bind(this);
+		this.handleKeyPress = this.handleKeyPress.bind(this);
 	}
 
-	onSubmitFetch(e){
+	onSubmit(){
 		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/putUserGenerateCodeByEmail";
 
 		const requestData = {
@@ -37,7 +37,6 @@ class PasswordRecovery extends React.Component {
 		fetch(url_post, postData)
 			.then(response => {
 				return response.json();
-
 			})
 			.then(data => {
 				let emailStatus = data.operationResult.ErrorCode;
@@ -48,7 +47,6 @@ class PasswordRecovery extends React.Component {
 				} else {
 					this.props.history.push("/UserNotFound");
 				}
-
 			})
 			.catch((err) => {
 				console.error('Augh, there was an error!', err.statusText);
@@ -59,10 +57,9 @@ class PasswordRecovery extends React.Component {
 			const data = await response.json();
 		})();
 
-		e.preventDefault();
 	}
 
-	onSubmit(e) {
+	/*onSubmitXhr(e) {
 		let requestData = {
 			email: this.state.Email
 		};
@@ -111,7 +108,7 @@ class PasswordRecovery extends React.Component {
 			.catch(function (err) {
 				console.error('Augh, there was an error!', err.statusText);
 			});
-	}
+	}*/
 
 	onEmailChange(e) {
 		this.setState({Email: e.target.value});
@@ -119,7 +116,7 @@ class PasswordRecovery extends React.Component {
 
 	handleKeyPress(target) {
 		if(target.charCode===13){
-			this.onSubmitFetch();
+			this.onSubmit();
 		}
 	}
 
@@ -144,7 +141,7 @@ class PasswordRecovery extends React.Component {
 						</p>
 
 
-						<p className='recoverPasswordBtn'><input type="submit" value="Восстановить пароль" onClick={this.onSubmitFetch}/></p>
+						<p className='recoverPasswordBtn'><input type="submit" value="Восстановить пароль" onClick={this.onSubmit}/></p>
 						<p className='alternate'><Link to="/">Я вспомнил пароль</Link></p>
 
 					</div>
