@@ -15,33 +15,49 @@ class PasswordRecovery extends React.Component {
 			Email: ''
 		};
 		this.onSubmit = this.onSubmit.bind(this);
+		this.onSubmitFetch = this.onSubmitFetch.bind(this);
 		this.onEmailChange = this.onEmailChange.bind(this);
 	}
 
 	onSubmitFetch(e){
 		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/putUserGenerateCodeByEmail";
 
-		let requestData = {
+		const requestData = {
 			email: this.state.Email
-		}
+		};
 
-		let postData = {
+		const postData = {
 			method: 'POST',
 			body: JSON.stringify(requestData),
 			headers:{
 				'Content-Type': 'application/json'
 			}
-		}
+		};
 
-		fetch(url_post, postData).then(res => res.json())
+		fetch(url_post, postData)
 			.then(response => {
-				console.log('Success:', JSON.stringify(response))
-				this.props.history.push("/home");
-			})
+				return response.json();
 
-			.catch((error) => {
-				console.error(error);
+			})
+			.then(data => {
+				let emailStatus = data.operationResult.ErrorCode;
+				console.log(emailStatus);
+				if (emailStatus === "0") {
+					console.log('errorCode - ' + emailStatus);
+					this.props.history.push("/CheckYourEmail");
+				} else {
+					this.props.history.push("/UserNotFound");
+				}
+
+			})
+			.catch((err) => {
+				console.error('Augh, there was an error!', err.statusText);
 			});
+
+		(async function() {
+			const response = await fetch(url_post, postData);
+			const data = await response.json();
+		})();
 
 		e.preventDefault();
 	}
@@ -103,7 +119,7 @@ class PasswordRecovery extends React.Component {
 
 	handleKeyPress(target) {
 		if(target.charCode===13){
-			this.onSubmit();
+			this.onSubmitFetch();
 		}
 	}
 
@@ -128,7 +144,7 @@ class PasswordRecovery extends React.Component {
 						</p>
 
 
-						<p className='recoverPasswordBtn'><input type="submit" value="Восстановить пароль" onClick={this.onSubmit}/></p>
+						<p className='recoverPasswordBtn'><input type="submit" value="Восстановить пароль" onClick={this.onSubmitFetch}/></p>
 						<p className='alternate'><Link to="/">Я вспомнил пароль</Link></p>
 
 					</div>
