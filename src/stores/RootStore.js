@@ -1,12 +1,12 @@
 import {
 	// configure,
-	action,
+	//action,
 	observable,
 	// runInAction,
 	// flow,
 	// decorate
 } from "mobx";
-import React from "react";
+//import React from "react";
 
 class RootStore {
 	@observable UserMenuVisible = 'hidden';

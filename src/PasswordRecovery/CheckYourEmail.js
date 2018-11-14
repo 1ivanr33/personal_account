@@ -43,8 +43,9 @@ class CheckYourEmail extends React.Component {
 			.then(data => {
 				let emailStatus = data.operationResult.ErrorCode;
 				console.log(emailStatus);
-				if (emailStatus !== "0") {
+				if (emailStatus === "0") {
 					console.log('errorCode - ' + emailStatus);
+				} else {
 					this.props.history.push("/UserNotFound");
 				}
 			})
@@ -90,7 +91,7 @@ class CheckYourEmail extends React.Component {
 						</p>
 
 
-						<p className='resendBtn' ref={this.resendRef} onClick={this.onSubmit}><a href=' '>Отправить еще раз</a></p>
+						<p className='resendBtn' ref={this.resendRef} onClick={this.onSubmit}><span>Отправить еще раз</span></p>
 						<p className='alternate'><Link to="/">Я вспомнил пароль</Link></p>
 						<Notice>
 

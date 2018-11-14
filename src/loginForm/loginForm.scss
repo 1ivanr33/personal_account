@@ -65,11 +65,12 @@
 			}
 
 			.eyeOpen, .eyeClosed {
+				display: block;
 				position: absolute;
 				right: 15px;
 				width: 30px;
 				height: 20px;
-
+				margin: 0;
 			}
 
 			.eyeClosed {

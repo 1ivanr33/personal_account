@@ -13,18 +13,20 @@ class EnterNewPassword extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			Email: ''
+			password1: '',
+			password2: ''
 		};
-		this.resendRef = React.createRef();
 		this.onSubmit = this.onSubmit.bind(this);
-		this.onEmailChange = this.onEmailChange.bind(this);
+		this.onPasswordOneChange = this.onPasswordOneChange.bind(this);
+		this.onPasswordTwoChange = this.onPasswordTwoChange.bind(this);
+		this.handleKeyPress = this.handleKeyPress.bind(this);
 	}
 
 	onSubmit(e){
 		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getOperatorByLoginParams";
 
 		let requestData = {
-			email: this.state.Email
+			password: this.state.password2
 		}
 
 		let postData = {
@@ -48,8 +50,16 @@ class EnterNewPassword extends React.Component {
 		e.preventDefault();
 	}
 
-	onEmailChange(e) {
-		this.setState({Email: e.target.value});
+	onPasswordOneChange(e) {
+		let passwordOne = e.target.value;
+		let res = /\W/gi;
+		if (res.test(passwordOne)){
+			passwordOne = passwordOne.replace(res, '')
+		}
+		this.setState({password1: passwordOne});
+	}
+	onPasswordTwoChange(e) {
+		this.setState({password2: e.target.value});
 	}
 
 	handleKeyPress(target) {
@@ -72,23 +82,23 @@ class EnterNewPassword extends React.Component {
 						<p>
 							Ваш пароль успешно сброшен.	Придумайте новый пароль для авторизации
 						</p>
-						<p className={this.state.Email ? 'dirty' : ''}>
-							<MaskedInput mask={emailMask} id="login" type="text" name="login" value={this.state.Login}
-										 onChange={this.onEmailChange}/>
-							<label htmlFor="login" className='textLabel'> Новый пароль </label>
+						<p className={this.state.password1 ? 'dirty' : ''}>
+							<input minLength='6' maxLength='16' id="password1" type="text" name="login" value={this.state.password1}
+										 onChange={this.onPasswordOneChange}/>
+							<label htmlFor="password1" className='textLabel'> Новый пароль </label>
 						</p>
 
 
-						<p className={this.state.Email ? 'dirty' : ''}>
-							<MaskedInput mask={emailMask} id="login" type="text" name="login" value={this.state.Login}
-										 onChange={this.onEmailChange}/>
-							<label htmlFor="login" className='textLabel'> Повторите пароль </label>
+						<p className={this.state.password2 ? 'dirty' : ''}>
+							<input minLength='6' maxLength='16' id="password2" type="text" name="login" value={this.state.password2}
+										 onChange={this.onPasswordTwoChange}/>
+							<label htmlFor="password2" className='textLabel'> Повторите пароль </label>
 						</p>
 						<p className='savePassword'><input type="submit" value="Сохранить пароль" onClick={this.onSubmit}/></p>
 						<Notice>
 
 							<h4>Для вашей безопасности</h4>
-							<p>Пароль должен быть длиннее 4 символов</p>
+							<p>Пароль должен быть длиннее 6 символов</p>
 							<p>Используйте в пароле одну заглавную букву и одну цифру</p>
 
 						</Notice>

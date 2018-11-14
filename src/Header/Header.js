@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.scss';
 import UserName from '../ProfileSelect/UserName'
-import RootStore from '../stores/RootStore';
+//import RootStore from '../stores/RootStore';
 
 class Header extends React.Component {
 	render() {

@@ -1,6 +1,5 @@
 import React from 'react';
 import './Desktop.scss';
-import RootStore from './stores/RootStore';
 
 class Desktop extends React.Component {
 	render() {

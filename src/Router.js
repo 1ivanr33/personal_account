@@ -7,7 +7,7 @@ import UserProfile from './ProfileSelect/UserProfile';
 import CompanyProfile from './ProfileSelect/CompanyProfile';
 import PasswordRecovery from './PasswordRecovery/PasswordRecovery';
 import UserNotFound from './PasswordRecovery/UserNotFound';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { BrowserRouter, /*Link,*/ Route } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import RootStore from './stores/RootStore';
 import CheckYourEmail from './PasswordRecovery/CheckYourEmail';

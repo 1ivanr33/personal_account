@@ -75,7 +75,7 @@
 			}
 
 			.resendBtn{
-				margin: 25px 0 25px 33px;
+				margin: 23px 0 25px 33px;
 				font-family: ProximaNova-Reg, arial, verdana, sans-serif;
 				font-size: 14px;
 				line-height: 1.14;
@@ -84,16 +84,21 @@
 				:before {
 					position: absolute;
 					left: -34px;
-					top: -4px;
+					top: -5px;
 					display: block;
 					content: '';
 					background: url(resend.svg) no-repeat;
 					width: 26px;
 					height: 26px;
 				}
-				a{
+				span{
 					text-decoration: none;
 					color: #208cff;
+					cursor: pointer;
+					display: block;
+					width: 135px;
+					text-align: right;
+					margin-left: -9px;
 				}
 			}
 
@@ -156,7 +161,7 @@
 			}
 
 			.alternate {
-				margin: 54px 0 0;
+				margin: 55px 0 0;
 				color: #6E7478;
 				font-size: 14px;
 
