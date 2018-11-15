@@ -51,6 +51,7 @@ const Router = () => (
 					<Route path="/UserNotFound" component={UserNotFound}/>
 					<Route path="/CheckYourEmail" component={CheckYourEmail}/>
 					<Route path="/EnterNewPassword" component={EnterNewPassword}/>
+					<Route path="/EnterNewPassword/:id" component={EnterNewPassword}/>
 				</Desktop>
 
 			</div>
