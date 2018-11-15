@@ -53,11 +53,6 @@ class CheckYourEmail extends React.Component {
 				console.error('Augh, there was an error!', err.statusText);
 			});
 
-		(async function() {
-			const response = await fetch(url_post, postData);
-			const data = await response.json();
-		})();
-
 	}
 
 	onEmailChange(e) {
