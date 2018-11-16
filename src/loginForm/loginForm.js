@@ -182,7 +182,7 @@ class LoginForm extends React.Component {
 						<p className='checkForeign'><input id="foreign" type="checkbox"/><label htmlFor="foreign">Чужой
 							компьютер </label><Link to="/PasswordRecovery" className='passwordRecover'>Восстановить пароль</Link></p>
 						<p><input type="submit" value="Войти" onClick={this.onSubmit}/></p>
-						<p className='alternate'>Вы также можете войти через <a href="#">СУДИР</a></p>
+						<p className='alternate'>Вы также можете войти через <a href="">СУДИР</a></p>
 						<Notice message={this.state.Message}/>
 
 					</div>

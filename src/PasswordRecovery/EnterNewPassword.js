@@ -30,6 +30,8 @@ class EnterNewPassword extends React.Component {
 		this.onEyeMouseOutTwo = this.onEyeMouseOutTwo.bind(this);
 	}
 
+
+
 	onSubmit(e){
 		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/putUserNewPasswordByCode";
 
@@ -59,9 +61,11 @@ class EnterNewPassword extends React.Component {
 		else {
 			fetch(url_post, postData).then(res => res.json())
 				.then(response => {
-					console.log('Success:', JSON.stringify(response));
+					let newPasswordStatus = response.operationResult.ErrorCode;
+					console.log('код ' + this.props.match.params.id);
+					console.log(newPasswordStatus);
 					console.log('Пароль успешно сохранен');
-					this.props.history.push('/home');
+
 				})
 
 				.catch((error) => {
@@ -144,17 +148,17 @@ class EnterNewPassword extends React.Component {
 							Ваш пароль успешно сброшен.	Придумайте новый пароль для авторизации
 						</p>
 						<p className={this.state.password1 ? 'dirty' : ''}>
-							<input maxLength='16' id="password1" type={this.state.showPassword1} value={this.state.password1}
+							<input maxLength='16' id="passwordOne" type={this.state.showPassword1} value={this.state.password1}
 										 onChange={this.onPasswordOneChange}/>
-							<label htmlFor="password1" className='textLabel'> Новый пароль </label>
+							<label htmlFor="passwordOne" className='textLabel'> Новый пароль </label>
 							<span className={this.state.EyeOne} onMouseDown={this.onPasswordShowOne} onMouseUp={this.onPasswordShowOne} onMouseOut={this.onEyeMouseOutOne}> </span>
 						</p>
 
 
 						<p className={this.state.password2 ? 'dirty' : ''}>
-							<input maxLength='16' id='password2' type={this.state.showPassword2} value={this.state.password2}
+							<input maxLength='16' id='passwordTwo' type={this.state.showPassword2} value={this.state.password2}
 										 onChange={this.onPasswordTwoChange}/>
-							<label htmlFor="password2" className='textLabel'> Повторите пароль </label>
+							<label htmlFor="passwordTwo" className='textLabel'> Повторите пароль </label>
 							<span className={this.state.EyeTwo} onMouseDown={this.onPasswordShowTwo} onMouseUp={this.onPasswordShowTwo} onMouseOut={this.onEyeMouseOutTwo}> </span>
 						</p>
 

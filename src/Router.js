@@ -43,15 +43,14 @@ const Router = () => (
 					 <hr/>*/}
 					<Header/>
 					<Route exact path="/" component={LoginForm}/>
-					{/*//<Route component={Notice}/>*/}
 					<Route path="/Home" component={Home}/>
 					<Route path="/UserProfile" component={UserProfile}/>
 					<Route path="/CompanyProfile" component={CompanyProfile}/>
 					<Route path="/PasswordRecovery" component={PasswordRecovery}/>
 					<Route path="/UserNotFound" component={UserNotFound}/>
 					<Route path="/CheckYourEmail" component={CheckYourEmail}/>
-					<Route path="/EnterNewPassword" component={EnterNewPassword}/>
 					<Route path="/EnterNewPassword/:id" component={EnterNewPassword}/>
+
 				</Desktop>
 
 			</div>
