@@ -72,6 +72,8 @@ class UserName extends React.Component {
 
     componentDidMount() {
 
+		const {Store} = this.props;
+
         console.log('This happens 3rd.');
 
         this.setState({ loading: 'true' });
@@ -87,12 +89,12 @@ class UserName extends React.Component {
                     console.log('errorCode - ' + errorCode);
                     var userName = respJSON.UserName;
 
-                    this.userNameInfo.firstName = userName.firstName;
+                    Store.UserFirstName = userName.firstName;
 ///                    let firstInitial = this.userNameInfo.firstName.charAt(0);
 //                    console.log('firstName - ' + this.userNameInfo.firstName);
-                    this.userNameInfo.lastName = userName.lastName;
+                    Store.UserSurname = userName.lastName;
 //                    console.log('lastName - ' + this.userNameInfo.lastName);
-                    this.userNameInfo.surName = userName.surname;
+                    Store.UserPatronymic = userName.surname;
 //                    console.log('surName - ' + this.userNameInfo.surName);
                 } else {
                     var errorDescription = respJSON.operationResult.ErrorDescription;
@@ -148,8 +150,8 @@ class UserName extends React.Component {
 			<div>
 				<div className='userName' ref={this.menuRef} tabIndex={1} onBlur={this.onBlur} id={this.state.showMenu}>
 					<span onClick={this.toggleMenuShow}>
-						{this.userNameInfo.lastName + ' ' + this.userNameInfo.firstName.charAt(0)
-							.toLocaleUpperCase() + '. ' + this.userNameInfo.surName.charAt(0).toLocaleUpperCase() + '.'}
+						{Store.UserSurname + ' ' + Store.UserFirstName.charAt(0)
+							.toLocaleUpperCase() + '. ' + Store.UserPatronymic.charAt(0).toLocaleUpperCase() + '.'}
 						</span>
 
 					{

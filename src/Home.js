@@ -1,9 +1,17 @@
 import React from 'react';
 import './Home.scss';
+import { inject, observer } from "mobx-react";
 
+@inject("Store")
+@observer
 
 class Home extends React.Component {
+	constructor(props) {
+		super(props);
+	}
 	render() {
+
+		const {Store} = this.props;
 
 		if (!(localStorage.getItem('securityToken'))){
 			this.props.history.push("/");
@@ -27,7 +35,7 @@ class Home extends React.Component {
 
 		return (
 			<div className='home'>
-				<h2>Здравствуйте, Иванова Мария</h2>
+				<h2>Здравствуйте, {Store.UserFirstName} {Store.UserSurname} </h2>
 				<p>Выберите подсистему ЕИРЦ или услугу для продолжения работы</p>
 				<div className='module_select'>
 					<a href=" "><Msp/></a>
