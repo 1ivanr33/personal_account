@@ -30,7 +30,13 @@ class EnterNewPassword extends React.Component {
 		this.onEyeMouseOutTwo = this.onEyeMouseOutTwo.bind(this);
 	}
 
+	errorMessageListener = () => {
+		let errorMessageClear = () => {
+			this.setState({passwordError: 'hidden', passwordErrorMessage: ''});
+		};
 
+		setTimeout (errorMessageClear, 4000);
+	};
 
 	onSubmit(e){
 		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/putUserNewPasswordByCode";
@@ -50,12 +56,14 @@ class EnterNewPassword extends React.Component {
 
 		if (this.state.password1.length < 6 && this.state.password2.length < 6) {
 			console.log('Пароль не должен быть короче 6 символов');
-			this.setState({passwordError: '', passwordErrorMessage: 'Пароль не должен быть короче 6 символов'});
+			this.setState({password1: '', password2: '', passwordError: 'visible', passwordErrorMessage: 'Пароль не должен быть короче 6 символов'});
+			this.errorMessageListener();
 		}
 
 		else if (this.state.password1 !== this.state.password2) {
 			console.log('Пароли не совпадают');
-			this.setState({passwordError: '', passwordErrorMessage: 'Пароли не совпадают'});
+			this.setState({password1: '', password2: '', passwordError: 'visible', passwordErrorMessage: 'Пароли не совпадают'});
+			this.errorMessageListener();
 		}
 
 		else {
@@ -65,7 +73,7 @@ class EnterNewPassword extends React.Component {
 					console.log('код ' + this.props.match.params.id);
 					console.log(newPasswordStatus);
 					console.log('Пароль успешно сохранен');
-
+					this.setState({password1: '', password2: '', passwordError: 'visible', passwordErrorMessage: 'Пароль успешно сохранен'});
 				})
 
 				.catch((error) => {
