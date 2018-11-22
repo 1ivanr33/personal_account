@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.scss';
 import { inject, observer } from "mobx-react";
+import {withRouter} from "react-router-dom";
 
 @inject("Store")
 @observer
@@ -9,14 +10,15 @@ class Home extends React.Component {
 	constructor(props) {
 		super(props);
 	}
-	render() {
 
-		const {Store} = this.props;
-
-		if (!(localStorage.getItem('securityToken'))){
+	componentWillMount() {
+		if (!( localStorage.getItem('securityToken') || (sessionStorage.getItem('securityToken')))){
 			this.props.history.push("/");
 		}
+	};
 
+	render() {
+		const {Store} = this.props;
 		const Msp = () => <div className='module module_1'>
 			<p className='top'>Меры социальной поддержки</p>
 			<p className='middle'>Меры социальной поддержки</p>
@@ -46,4 +48,4 @@ class Home extends React.Component {
 		);
 	}
 }
-export default Home
+export default withRouter(Home)

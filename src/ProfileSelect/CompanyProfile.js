@@ -6,7 +6,7 @@ import BreadCrumbsCompany from '../BreadCrumbs/BreadCrumbsCompany';
 
 class CompanyProfile extends React.Component {
 	render() {
-		if (!(localStorage.getItem('securityToken'))){
+		if (!( localStorage.getItem('securityToken') || (sessionStorage.getItem('securityToken')))){
 			this.props.history.push("/");
 		}
 		return (
@@ -26,6 +26,7 @@ class CompanyProfile extends React.Component {
 	}
 
 	onLinkClickExit() {
+		sessionStorage.clear();
 		localStorage.clear();
 	}
 }

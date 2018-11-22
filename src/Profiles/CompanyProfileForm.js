@@ -2,8 +2,8 @@ import React from 'react';
 import './CompanyProfileForm.scss';
 import { inject, observer } from "mobx-react";
 
-/*@inject("Store")
-@observer*/
+@inject("Store")
+@observer
 class CompanyProfileForm extends React.Component {
     constructor() {
         super();
@@ -45,9 +45,10 @@ class CompanyProfileForm extends React.Component {
     }
 
     makeRequest(method, url) {
+		const { Store } = this.props;
         var promise = new Promise((resolve, reject) => {
 ///            setTimeout(() => {
-            console.log('Store.SecurityToken - ' + localStorage.getItem('securityToken'));
+            console.log('Store.SecurityToken - ' + window[Store.BrowserStorageType].getItem('securityToken'));
 
             var xhr = new XMLHttpRequest();
 
@@ -55,7 +56,7 @@ class CompanyProfileForm extends React.Component {
             xhr.setRequestHeader("Content-Type", "application/json");
 
             let requestData = {
-                token: localStorage.getItem('securityToken')
+                token: window[Store.BrowserStorageType].getItem('securityToken')
             }
 
             xhr.send(JSON.stringify(requestData));

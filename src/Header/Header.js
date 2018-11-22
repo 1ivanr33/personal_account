@@ -6,8 +6,7 @@ import UserName from '../ProfileSelect/UserName'
 class Header extends React.Component {
 	render() {
 		let profileSelectMenu = null;
-		if(localStorage.getItem('securityToken')){
-
+		if (localStorage.getItem('securityToken') || sessionStorage.getItem('securityToken')){
 			profileSelectMenu = <UserName/>
 		}
 

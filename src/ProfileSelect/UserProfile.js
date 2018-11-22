@@ -6,7 +6,7 @@ import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 
 class UserProfile extends React.Component {
 	render() {
-		if (!(localStorage.getItem('securityToken'))){
+		if (!( localStorage.getItem('securityToken') || (sessionStorage.getItem('securityToken')))){
 			this.props.history.push("/");
 		}
 		return (
@@ -27,6 +27,7 @@ class UserProfile extends React.Component {
 	}
 
 	onLinkClickExit() {
+		sessionStorage.clear();
 		localStorage.clear();
 	}
 }

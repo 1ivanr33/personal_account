@@ -1,6 +1,6 @@
 import {
 	// configure,
-	//action,
+	action,
 	observable,
 	// runInAction,
 	// flow,
@@ -13,6 +13,11 @@ class RootStore {
 	@observable UserFirstName = '';
 	@observable UserSurname = '';
 	@observable UserPatronymic = '';
+	@observable BrowserStorageType = 'localStorage';
+
+	/*@action BrowserStorageType(){
+		localStorage.setItem();
+	}*/
 }
 
 export default new RootStore();

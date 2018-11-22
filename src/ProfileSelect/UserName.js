@@ -31,8 +31,8 @@ class UserName extends React.Component {
     makeRequest(method, url) {
         var promise = new Promise((resolve, reject) => {
 ///            setTimeout(() => {
-            //const {Store} = this.props;
-            console.log('Store.SecurityToken - ' + localStorage.getItem('securityToken'));
+            const {Store} = this.props;
+            console.log('Store.SecurityToken - ' + window[Store.BrowserStorageType].getItem('securityToken'));
 
             var xhr = new XMLHttpRequest();
 
@@ -40,7 +40,7 @@ class UserName extends React.Component {
             xhr.setRequestHeader("Content-Type", "application/json");
 
             let requestData = {
-                token: localStorage.getItem('securityToken')
+                token: window[Store.BrowserStorageType].getItem('securityToken')
             }
 
             xhr.send(JSON.stringify(requestData));
@@ -177,6 +177,7 @@ class UserName extends React.Component {
 	}
 
 	onLinkClickExit() {
+		sessionStorage.clear();
 		localStorage.clear();
 		this.setState({
 			showMenu: 'hidden'
@@ -186,13 +187,13 @@ class UserName extends React.Component {
 
 	onLinkClick() {
 		this.setState({
-			showMenu: 'hidden' //после тестирования == hidden
+			showMenu: 'hidden'
 		});
 	}
 
 	onProfileSelectBlur() {
 		this.setState({
-			showMenu: 'hidden' //после тестирования == hidden
+			showMenu: 'hidden'
 		});
 	}
 }

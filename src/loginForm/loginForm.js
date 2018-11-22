@@ -20,7 +20,6 @@ class LoginForm extends React.Component {
 
 		this.onLoginChange = this.onLoginChange.bind(this);
 		this.onPasswordChange = this.onPasswordChange.bind(this);
-		this.onPasswordShow = this.onPasswordShow.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.handleKeyPress = this.handleKeyPress.bind(this);
 		this.onEyeMouseOut = this.onEyeMouseOut.bind(this);
@@ -55,13 +54,11 @@ class LoginForm extends React.Component {
 		e.preventDefault();
 	}
 
-    onSubmit(e) {
+	onSubmit(e) {
         var requestData = {
             Login: this.state.Login,
             Password: this.state.Password
         }
-
-        const {Store} = this.props;
 
         function makeRequest (method, url) {
             return new Promise(function (resolve, reject) {
@@ -96,19 +93,15 @@ class LoginForm extends React.Component {
         makeRequest('POST', 'http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getOperatorByLoginParams')
 		////            .then(response => { console.log('Response - ' + response.responseText); console.log('Security_Token - ' + response.getResponseHeader('Security_Token'));
 			.then(response => {
-//				const { Store } = this.props;
+				const { Store } = this.props;
 				var respJSON = JSON.parse(response.responseText);
 				var errorCode = respJSON.operationResult.ErrorCode;
-				//            	console.log('Response - ' + response.responseText);
-				localStorage.setItem('securityToken', response.getResponseHeader('Security_Token'));
-				console.log('Security_Token - ' + Store.SecurityToken);
+				window[Store.BrowserStorageType].setItem('securityToken', response.getResponseHeader('Security_Token'));
 				if (errorCode === "0") {
 					console.log('errorCode - ' + errorCode);
 					this.props.history.push("/home");
-					Store.IsUserAuthenticated = 'true';
-					localStorage.setItem('isUserAuthenticated', Store.IsUserAuthenticated)
 				} else {
-					var errorDescription = respJSON.operationResult.ErrorDescription;
+					//var errorDescription = respJSON.operationResult.ErrorDescription;
 					if (errorCode == "410") {
 						this.setState({Message: 'Не указан логин. Пожалуйста, введите логин'})
 					} else if (errorCode == "411") {
@@ -136,7 +129,7 @@ class LoginForm extends React.Component {
 		}
 	}
 
-	onPasswordShow(e){
+	onPasswordShow = () => {
 		let oldState = this.state.ShowPassword;
 		let isTextOrHide = (oldState === 'password');
 		let newState = (isTextOrHide) ? 'text' : 'password';
@@ -155,7 +148,11 @@ class LoginForm extends React.Component {
 		})
 	}
 
-
+	OnBrowserStorageTypeChange = event => {
+		let newType = (event.currentTarget.checked) ? 'sessionStorage' : 'localStorage';
+		const {Store} = this.props;
+		Store.BrowserStorageType = newType;
+	}
 
 	render() {
 
@@ -179,7 +176,7 @@ class LoginForm extends React.Component {
 							<label htmlFor="password" className='textLabel'> Пароль </label>
 							<span className={this.state.Eye} onMouseDown={this.onPasswordShow} onMouseUp={this.onPasswordShow} onMouseOut={this.onEyeMouseOut}> </span>
 						</p>
-						<p className='checkForeign'><input id="foreign" type="checkbox"/><label htmlFor="foreign">Чужой
+						<p className='checkForeign'><input id="foreign" type="checkbox" onChange={this.OnBrowserStorageTypeChange}/><label htmlFor="foreign">Чужой
 							компьютер </label><Link to="/PasswordRecovery" className='passwordRecover'>Восстановить пароль</Link></p>
 						<p><input type="submit" value="Войти" onClick={this.onSubmit}/></p>
 						<p className='alternate'>Вы также можете войти через <a href="">СУДИР</a></p>
