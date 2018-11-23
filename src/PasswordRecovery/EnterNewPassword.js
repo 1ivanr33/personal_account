@@ -74,6 +74,7 @@ class EnterNewPassword extends React.Component {
 					console.log(newPasswordStatus);
 					console.log('Пароль успешно сохранен');
 					this.setState({password1: '', password2: '', passwordError: 'visible', passwordErrorMessage: 'Пароль успешно сохранен'});
+					this.errorMessageListener();
 				})
 
 				.catch((error) => {
