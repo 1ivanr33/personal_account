@@ -96,8 +96,8 @@ class LoginForm extends React.Component {
 				const { Store } = this.props;
 				var respJSON = JSON.parse(response.responseText);
 				var errorCode = respJSON.operationResult.ErrorCode;
-				window[Store.BrowserStorageType].setItem('securityToken', response.getResponseHeader('Security_Token'));
 				if (errorCode === "0") {
+					window[Store.BrowserStorageType].setItem('securityToken', response.getResponseHeader('Security_Token'));
 					console.log('errorCode - ' + errorCode);
 					this.props.history.push("/home");
 				} else {
