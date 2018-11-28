@@ -3,43 +3,56 @@
 	position: absolute;
 	bottom: 0;
 	box-sizing: border-box;
-	border-top: 1px solid #cfcfcf;
 	width: 100%;
 
-	p{
+	p {
 		width: 1060px;
-		margin: 12px auto 0;
-	}
+		margin: 0 auto;
+		height: 100%;
 
-	a {
-		display: inline-block;
-		color: #9a9a9a;
-		text-decoration: none;
-		padding: 10px 41px 8px;
-		height: 30px;
-	}
+		a {
+			display: inline-block;
+			color: #9a9a9a;
+			text-decoration: none;
+			padding: 30px 41px 8px;
+			height: 30px;
+		}
 
-	#eirc{
-		background: url("../Header/E.png")0 3px no-repeat;
-	}
+		#dit {
+			background: url("dit.svg") 0 27px no-repeat;
+			padding-left: 30px;
+			font-family: ProximaNova-Bold, arial, verdana, sans-serif;
+			font-size: 13px;
+		}
 
-	#question{
-		background: url("question.svg")8px 12px no-repeat;
-		margin-left: 137px;
-	}
+		#lastLink {
+			background: url("prostor.svg") 5px 20px no-repeat;
+			padding: 0 44px;
+		}
 
-	#help{
-		background: url("help.svg")11px 8px no-repeat;
-	}
+		/*#eirc{
+			background: url("../Header/E.png")0 3px no-repeat;
+		}*/
 
-	#dit{
-		background: url("dit.svg")11px 8px no-repeat;
-		margin-left: 160px;
-	}
+		#question {
+			background: url("question.svg") 8px 12px no-repeat;
+			margin-left: 137px;
+		}
 
-	#lastLink{
-		background: url("prostor.svg")5px 20px no-repeat;
-		padding: 0 44px;
+		#help {
+			background: url("help.svg") 42px 24px no-repeat;
+			float: right;
+			border: 1px solid #dddedd;
+			border-bottom: none;
+			padding: 25px 40px 14px 72px;
+		}
+
+		#logoProstor {
+			background: url("prostor.svg") 9px 27px no-repeat;
+			padding: 6px 50px;
+			margin-bottom: -6px;
+		}
+
 	}
 
 }
