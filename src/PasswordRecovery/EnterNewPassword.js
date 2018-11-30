@@ -7,10 +7,14 @@ import { inject, observer } from "mobx-react";
 
 @inject("Store")
 @observer
+
+
+
 class EnterNewPassword extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			isLinkValid: 'verifying',
 			password1: '',
 			password2: '',
 			passwordError: 'hidden',
@@ -37,6 +41,45 @@ class EnterNewPassword extends React.Component {
 
 		setTimeout (errorMessageClear, 4000);
 	};
+
+	componentWillMount(){
+		console.log('code verifying');
+
+		const url_checkCodePost = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/checkCode";
+
+		let requestCodeData = {
+			code: this.props.match.params.id,
+		}
+
+		const postCodeData = {
+			method: 'POST',
+			body: JSON.stringify(requestCodeData),
+			headers:{
+				'Content-Type': 'application/json'
+			}
+		};
+
+		fetch(url_checkCodePost, postCodeData)
+			.then(response => {
+				return response.json();
+			})
+			.then(data => {
+				let checkCodeStatus = data.operationResult.ErrorCode;
+				console.log(checkCodeStatus);
+				if (checkCodeStatus === "0") {
+					console.log('errorCode - ' + checkCodeStatus);
+					this.setState({isLinkValid: 'success'})
+				} else {
+					console.log("Link is not valid");
+					this.setState({isLinkValid: 'failed'})
+				}
+			})
+			.catch((err) => {
+				console.error('Augh, there was an error!', err.statusText);
+			});
+	}
+
+
 
 	onSubmit(e){
 		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/putUserNewPasswordByCode";
@@ -144,6 +187,18 @@ class EnterNewPassword extends React.Component {
 	}
 
 	render() {
+
+		if (this.state.isLinkValid === 'verifying'){
+			return(
+				<div> </div>
+			)
+		}
+
+		if (this.state.isLinkValid === 'failed'){
+			return(
+				<h3 className='enterNewPassword linkCodeExpired'> Ссылка устарела или недействительна </h3>
+			)
+		}
 
 		return (
 
