@@ -45,6 +45,7 @@ class CheckYourEmail extends React.Component {
 				console.log(emailStatus);
 				if (emailStatus === "0") {
 					console.log('errorCode - ' + emailStatus);
+					this.setState({Email: ''});
 				} else {
 					this.props.history.push("/UserNotFound");
 				}
@@ -80,9 +81,9 @@ class CheckYourEmail extends React.Component {
 							Мы отправили инструкцию	по восстановлению пароля на вашу почту
 						</p>
 						<p className={this.state.Email ? 'dirty' : ''}>
-							<MaskedInput mask={emailMask} id="login" type="text" name="login" value={this.state.Login}
+							<MaskedInput mask={emailMask} id="email" type="text" value={this.state.Email}
 										 onChange={this.onEmailChange}/>
-							<label htmlFor="login" className='textLabel'> E-mail </label>
+							<label htmlFor="email" className='textLabel'> E-mail </label>
 						</p>
 
 

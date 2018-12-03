@@ -130,7 +130,9 @@ class EnterNewPassword extends React.Component {
 		let passwordOne = e.target.value;
 		let res = /\W/gi;
 		if (res.test(passwordOne)){
-			passwordOne = passwordOne.replace(res, '')
+			passwordOne = passwordOne.replace(res, '');
+			this.setState({passwordError: 'visible', passwordErrorMessage: 'Проверьте раскладку клавиатуры'});
+			this.errorMessageListener();
 		}
 		this.setState({password1: passwordOne});
 	}
@@ -138,7 +140,9 @@ class EnterNewPassword extends React.Component {
 		let passwordTwo = e.target.value;
 		let res = /\W/gi;
 		if (res.test(passwordTwo)){
-			passwordTwo = passwordTwo.replace(res, '')
+			passwordTwo = passwordTwo.replace(res, '');
+			this.setState({passwordError: 'visible', passwordErrorMessage: 'Проверьте раскладку клавиатуры'});
+			this.errorMessageListener();
 		}
 		this.setState({password2: passwordTwo});
 	}
