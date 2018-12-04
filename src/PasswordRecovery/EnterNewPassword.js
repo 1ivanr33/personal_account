@@ -38,9 +38,16 @@ class EnterNewPassword extends React.Component {
 		let errorMessageClear = () => {
 			this.setState({passwordError: 'hidden', passwordErrorMessage: ''});
 		};
-
 		setTimeout (errorMessageClear, 4000);
 	};
+
+	onSuccessfulPasswordChange = () => {
+		let passwordChangeResult = () => {
+			this.props.history.push("/home");
+		};
+		setTimeout (passwordChangeResult, 3000);
+	};
+
 
 	componentWillMount(){
 		console.log('code verifying');
@@ -117,7 +124,8 @@ class EnterNewPassword extends React.Component {
 					console.log(newPasswordStatus);
 					console.log('Пароль успешно сохранен');
 					this.setState({password1: '', password2: '', passwordError: 'visible', passwordErrorMessage: 'Пароль успешно сохранен'});
-					this.errorMessageListener();
+					this.onSuccessfulPasswordChange();
+
 				})
 
 				.catch((error) => {
