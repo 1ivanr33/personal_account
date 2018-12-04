@@ -12,7 +12,7 @@ import { Provider } from 'mobx-react';
 import RootStore from './stores/RootStore';
 import CheckYourEmail from './PasswordRecovery/CheckYourEmail';
 import EnterNewPassword from './PasswordRecovery/EnterNewPassword';
-
+import MobxProvider from './MobxProvider'
 
 
 /*const Home = () => (
@@ -27,11 +27,12 @@ import EnterNewPassword from './PasswordRecovery/EnterNewPassword';
 	</div>
 )*/
 
+// TODO Перенести определение rootStore в файл src/MobxProvider.ts (например путем наследования MobxProvider от Provider).
 
 const Router = () => (
 
 	<BrowserRouter>
-		<Provider Store={RootStore}>
+		<MobxProvider rootStore={RootStore}>
 			<div>
 				<Desktop>
 					{/*<ul>
@@ -54,7 +55,7 @@ const Router = () => (
 				</Desktop>
 
 			</div>
-		</Provider>
+		</MobxProvider>
 	</BrowserRouter>
 
 )

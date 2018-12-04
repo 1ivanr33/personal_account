@@ -1,14 +1,26 @@
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent, MouseEvent} from 'react';
 import './loginForm.scss';
 import Notice from '../Notice';
 import FooterNavBar from '../FooterNavBar/FooterNavBar';
-import { Link } from 'react-router-dom';
+import {Link, RouteComponentProps} from 'react-router-dom';
 import { inject, observer } from "mobx-react";
+import {IMobxProviderInjectedProps} from '../MobxProvider';
 
-@inject("Store")
+interface ILoginFormState {
+	Login: string;
+	Password: string;
+	ShowPassword: string;
+	Eye: string;
+	Message: string
+}
+
+/**
+ * RouteComponentProps - добавляет prop history. IMobxProviderInjectedProps - добавляет prop rootStore
+ */
+@inject("rootStore")
 @observer
-class LoginForm extends React.Component {
-	constructor(props) {
+class LoginForm extends React.Component<RouteComponentProps & IMobxProviderInjectedProps, ILoginFormState> {
+	constructor(props: RouteComponentProps & IMobxProviderInjectedProps) {
 		super(props);
 		this.state = {
 			Login: '',
@@ -25,7 +37,7 @@ class LoginForm extends React.Component {
 		this.onEyeMouseOut = this.onEyeMouseOut.bind(this);
 	}
 
-	onSubmitOld(e){
+	/*onSubmitOld(e){
 		const url_post = "http://10.82.186.67:7001/war/resources/AdministrationService/getOperatorByLoginParams";
 
 		let requestData = {
@@ -52,15 +64,15 @@ class LoginForm extends React.Component {
 			});
 
 		e.preventDefault();
-	}
+	}*/
 
-	onSubmit(e) {
+	onSubmit() {
         var requestData = {
             Login: this.state.Login,
             Password: this.state.Password
         }
 
-        function makeRequest (method, url) {
+        function makeRequest (method: string, url: string): Promise<XMLHttpRequest> {
             return new Promise(function (resolve, reject) {
                 var xhr = new XMLHttpRequest();
 
@@ -93,11 +105,11 @@ class LoginForm extends React.Component {
         makeRequest('POST', 'http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getOperatorByLoginParams')
 		////            .then(response => { console.log('Response - ' + response.responseText); console.log('Security_Token - ' + response.getResponseHeader('Security_Token'));
 			.then(response => {
-				const { Store } = this.props;
+				const { rootStore } = this.props;
 				var respJSON = JSON.parse(response.responseText);
 				var errorCode = respJSON.operationResult.ErrorCode;
 				if (errorCode === "0") {
-					window[Store.BrowserStorageType].setItem('securityToken', response.getResponseHeader('Security_Token'));
+					window[rootStore.BrowserStorageType].setItem('securityToken', response.getResponseHeader('Security_Token'));
 					console.log('errorCode - ' + errorCode);
 					this.props.history.push("/home");
 				} else {
@@ -115,16 +127,16 @@ class LoginForm extends React.Component {
 				console.error('Augh, there was an error!', err.statusText);
 			});
     }
-	onLoginChange(e) {
+	onLoginChange(e: ChangeEvent<HTMLInputElement>) {
 		this.setState({Login: e.target.value});
 	}
 
-	onPasswordChange(e){
+	onPasswordChange(e: ChangeEvent<HTMLInputElement>){
 		this.setState({Password: e.target.value});
 	}
 
-	handleKeyPress(target) {
-		if(target.charCode===13){
+	handleKeyPress(e: ChangeEvent<KeyboardEvent>) {
+		if(e.charCode===13){
 			this.onSubmit();
 		}
 	}

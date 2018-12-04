@@ -8,16 +8,18 @@ import {
 } from "mobx";
 //import React from "react";
 
-class RootStore {
+export class RootStore {
 	@observable UserMenuVisible = 'hidden';
 	@observable UserFirstName = '';
 	@observable UserSurname = '';
 	@observable UserPatronymic = '';
-	@observable BrowserStorageType = 'localStorage';
+	@observable BrowserStorageType: keyof Window = 'localStorage';
 
 	/*@action BrowserStorageType(){
 		localStorage.setItem();
 	}*/
 }
 
-export default new RootStore();
+
+
+export const rootStore = new RootStore();
