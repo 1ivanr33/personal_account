@@ -1,17 +1,27 @@
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import './EnterNewPassword.scss';
 import Notice from '../Notice';
 import FooterNavBar from '../FooterNavBar/FooterNavBar';
 //import { Link } from 'react-router-dom';
 import { inject, observer } from "mobx-react";
+import {TRouteComponentProps} from '../TRouteComponentProps';
+
+interface IEnterNewPasswordState {
+	isLinkValid: string;
+	password1?: string;
+	password2?: string;
+	passwordError: string;
+	showPassword1: string;
+	showPassword2: string;
+	EyeOne: string;
+	EyeTwo: string;
+	passwordErrorMessage: string;
+}
 
 @inject("Store")
 @observer
-
-
-
-class EnterNewPassword extends React.Component {
-	constructor(props) {
+class EnterNewPassword extends React.Component<TRouteComponentProps, IEnterNewPasswordState> {
+	constructor(props: TRouteComponentProps) {
 		super(props);
 		this.state = {
 			isLinkValid: 'verifying',
@@ -88,7 +98,7 @@ class EnterNewPassword extends React.Component {
 
 
 
-	onSubmit(e){
+	onSubmit(){
 		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/putUserNewPasswordByCode";
 
 		let requestData = {
@@ -103,11 +113,17 @@ class EnterNewPassword extends React.Component {
 				'Content-Type': 'application/json'
 			}
 		}
-
-		if (this.state.password1.length < 6 && this.state.password2.length < 6) {
-			console.log('Пароль не должен быть короче 6 символов');
-			this.setState({password1: '', password2: '', passwordError: 'visible', passwordErrorMessage: 'Пароль не должен быть короче 6 символов'});
-			this.errorMessageListener();
+		if (this.state.password1 && this.state.password2) {
+			if (this.state.password1.length < 6 && this.state.password2.length < 6) {
+				console.log('Пароль не должен быть короче 6 символов');
+				this.setState({
+					password1: '',
+					password2: '',
+					passwordError: 'visible',
+					passwordErrorMessage: 'Пароль не должен быть короче 6 символов'
+				});
+				this.errorMessageListener();
+			}
 		}
 
 		else if (this.state.password1 !== this.state.password2) {
@@ -134,7 +150,7 @@ class EnterNewPassword extends React.Component {
 		}
 	}
 
-	onPasswordOneChange(e) {
+	onPasswordOneChange(e: ChangeEvent<HTMLInputElement>) {
 		let passwordOne = e.target.value;
 		let res = /\W/gi;
 		if (res.test(passwordOne)){
@@ -144,7 +160,7 @@ class EnterNewPassword extends React.Component {
 		}
 		this.setState({password1: passwordOne});
 	}
-	onPasswordTwoChange(e) {
+	onPasswordTwoChange(e: ChangeEvent<HTMLInputElement>) {
 		let passwordTwo = e.target.value;
 		let res = /\W/gi;
 		if (res.test(passwordTwo)){
@@ -155,13 +171,13 @@ class EnterNewPassword extends React.Component {
 		this.setState({password2: passwordTwo});
 	}
 
-	handleKeyPress(target) {
+	handleKeyPress(target: KeyboardEvent<HTMLDivElement>) {
 		if(target.charCode===13){
 			this.onSubmit();
 		}
 	}
 
-	onPasswordShowOne(e){
+	onPasswordShowOne(){
 		let oldState = this.state.showPassword1;
 		let isTextOrHide = (oldState === 'password');
 		let newState = (isTextOrHide) ? 'text' : 'password';
@@ -173,7 +189,7 @@ class EnterNewPassword extends React.Component {
 		});
 	}
 
-	onPasswordShowTwo(e){
+	onPasswordShowTwo(){
 		let oldState = this.state.showPassword2;
 		let isTextOrHide = (oldState === 'password');
 		let newState = (isTextOrHide) ? 'text' : 'password';
@@ -224,7 +240,7 @@ class EnterNewPassword extends React.Component {
 							Ваш пароль успешно сброшен.	Придумайте новый пароль для авторизации
 						</p>
 						<p className={this.state.password1 ? 'dirty' : ''}>
-							<input maxLength='16' id="passwordOne" type={this.state.showPassword1} value={this.state.password1}
+							<input maxLength={16} id="passwordOne" type={this.state.showPassword1} value={this.state.password1}
 										 onChange={this.onPasswordOneChange}/>
 							<label htmlFor="passwordOne" className='textLabel'> Новый пароль </label>
 							<span className={this.state.EyeOne} onMouseDown={this.onPasswordShowOne} onMouseUp={this.onPasswordShowOne} onMouseOut={this.onEyeMouseOutOne}> </span>
@@ -232,7 +248,7 @@ class EnterNewPassword extends React.Component {
 
 
 						<p className={this.state.password2 ? 'dirty' : ''}>
-							<input maxLength='16' id='passwordTwo' type={this.state.showPassword2} value={this.state.password2}
+							<input maxLength={16} id='passwordTwo' type={this.state.showPassword2} value={this.state.password2}
 										 onChange={this.onPasswordTwoChange}/>
 							<label htmlFor="passwordTwo" className='textLabel'> Повторите пароль </label>
 							<span className={this.state.EyeTwo} onMouseDown={this.onPasswordShowTwo} onMouseUp={this.onPasswordShowTwo} onMouseOut={this.onEyeMouseOutTwo}> </span>

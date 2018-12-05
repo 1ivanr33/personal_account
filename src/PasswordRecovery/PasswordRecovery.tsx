@@ -1,15 +1,19 @@
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import '../PasswordRecovery/PasswordRecovery.scss';
 import FooterNavBar from '../FooterNavBar/FooterNavBar';
 import { inject, observer } from "mobx-react";
-import { Link } from 'react-router-dom';
+import {Link, RouteComponentProps} from 'react-router-dom';
 import MaskedInput from 'react-text-mask';
 import emailMask from 'text-mask-addons/dist/emailMask'
 
+interface IPasswordRecoveryState {
+	Email: string;
+}
+
 @inject("Store")
 @observer
-class PasswordRecovery extends React.Component {
-	constructor(props) {
+class PasswordRecovery extends React.Component<RouteComponentProps, IPasswordRecoveryState> {
+	constructor(props: RouteComponentProps) {
 		super(props);
 		this.state = {
 			Email: ''
@@ -105,11 +109,11 @@ class PasswordRecovery extends React.Component {
 			});
 	}*/
 
-	onEmailChange(e) {
+	onEmailChange(e: ChangeEvent<HTMLInputElement>) {
 		this.setState({Email: e.target.value});
 	}
 
-	handleKeyPress(target) {
+	handleKeyPress(target: KeyboardEvent<HTMLDivElement>) {
 		if(target.charCode===13){
 			this.onSubmit();
 		}
@@ -130,7 +134,7 @@ class PasswordRecovery extends React.Component {
 							Введите e-mail, который вы указывали при регистрации. Мы отправим вам письмо с инструкцией по восстановлению пароля
 						</p>
 						<p className={this.state.Email ? 'dirty' : ''}>
-							<MaskedInput mask={emailMask} id="login" type="text" name="login" value={this.state.Login}
+							<MaskedInput mask={emailMask} id="login" type="text" name="login" value={this.state.Email}
 								   onChange={this.onEmailChange}/>
 							<label htmlFor="login" className='textLabel'> E-mail </label>
 						</p>

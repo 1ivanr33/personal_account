@@ -1,10 +1,10 @@
 import React from 'react';
 import './CompanyProfile.scss';
-import { Link } from 'react-router-dom';
+import {Link, RouteComponentProps} from 'react-router-dom';
 import CompanyProfileForm from '../Profiles/CompanyProfileForm';
 import BreadCrumbsCompany from '../BreadCrumbs/BreadCrumbsCompany';
 
-class CompanyProfile extends React.Component {
+class CompanyProfile extends React.Component<RouteComponentProps> {
 	render() {
 		if (!( localStorage.getItem('securityToken') || (sessionStorage.getItem('securityToken')))){
 			this.props.history.push("/");

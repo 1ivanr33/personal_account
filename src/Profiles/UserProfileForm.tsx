@@ -1,12 +1,29 @@
 import React from 'react';
 import './UserProfileForm.scss';
 import { inject, observer } from "mobx-react";
+import {IMobxProviderInjectedProps} from '../MobxProvider';
+
+interface IUserProfileFormState {
+    loading: string;
+    data: string;
+}
 
 @inject("Store")
 @observer
-class UserProfileForm extends React.Component {
-    constructor() {
-        super();
+class UserProfileForm extends React.Component<IMobxProviderInjectedProps, IUserProfileFormState> {
+    firstName: string;
+    userInfo: {
+		firstName: string;
+		lastName: string;
+		surName: string;
+		companyName: string;
+		subOrgName: string;
+		jobTitle: string;
+		phone: string;
+		email: string;
+    };
+    constructor(props: IMobxProviderInjectedProps) {
+        super(props);
 
         console.log('This happens 1st.');
 
@@ -29,11 +46,12 @@ class UserProfileForm extends React.Component {
         };
     }
 
-    makeRequest(method, url) {
-        var promise = new Promise((resolve, reject) => {
+    makeRequest(method: string, url: string): Promise<XMLHttpRequest> {
+        return new Promise((resolve, reject) => {
 ///            setTimeout(() => {
-                const {Store} = this.props;
-                console.log('Store.SecurityToken - ' + window[Store.BrowserStorageType].getItem('securityToken'));
+                const {rootStore} = this.props;
+			    if (!rootStore) throw new Error('rootStore не определен');
+                console.log('Store.SecurityToken - ' + window[rootStore.BrowserStorageType].getItem('securityToken'));
 
                 var xhr = new XMLHttpRequest();
 
@@ -41,7 +59,7 @@ class UserProfileForm extends React.Component {
                 xhr.setRequestHeader("Content-Type", "application/json");
 
                 let requestData = {
-                    token: window[Store.BrowserStorageType].getItem('securityToken')
+                    token: window[rootStore.BrowserStorageType].getItem('securityToken')
                 }
 
                 xhr.send(JSON.stringify(requestData));
@@ -64,10 +82,6 @@ class UserProfileForm extends React.Component {
                 };
 ///            }, 10000);
         });
-
-        console.log('This happens 4th.');
-
-        return promise;
     }
 
     componentDidMount() {
@@ -104,11 +118,11 @@ class UserProfileForm extends React.Component {
 //                    Store.UserNameVisible = true;
                 } else {
                     var errorDescription = respJSON.operationResult.ErrorDescription;
-                    if (errorCode == "500") {
+                    /*if (errorCode == "500") {
                         this.setState({Message: 'No user id is found by token'})
                     } else if (errorCode == "501") {
                         this.setState({Message: 'Profile with given id not found'})
-                    }
+                    }*/
                 }
                 this.setState({ loading: 'false' });
             })

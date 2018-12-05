@@ -2,7 +2,7 @@ import React from 'react';
 import './Notice.scss'
 
 export interface INoticeProps {
-	message: string;
+	message?: string;
 }
 
 class Notice extends React.Component<INoticeProps> {

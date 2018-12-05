@@ -109,6 +109,7 @@ class LoginForm extends React.Component<RouteComponentProps & IMobxProviderInjec
 				var respJSON = JSON.parse(response.responseText);
 				var errorCode = respJSON.operationResult.ErrorCode;
 				if (errorCode === "0") {
+					if (!rootStore) throw new Error('rootStore не определен');
 					window[rootStore.BrowserStorageType].setItem('securityToken', response.getResponseHeader('Security_Token'));
 					console.log('errorCode - ' + errorCode);
 					this.props.history.push("/home");
@@ -135,7 +136,7 @@ class LoginForm extends React.Component<RouteComponentProps & IMobxProviderInjec
 		this.setState({Password: e.target.value});
 	}
 
-	handleKeyPress(e: ChangeEvent<KeyboardEvent>) {
+	handleKeyPress(e: KeyboardEvent<HTMLDivElement>) {
 		if(e.charCode===13){
 			this.onSubmit();
 		}
@@ -160,10 +161,11 @@ class LoginForm extends React.Component<RouteComponentProps & IMobxProviderInjec
 		})
 	}
 
-	OnBrowserStorageTypeChange = event => {
-		let newType = (event.currentTarget.checked) ? 'sessionStorage' : 'localStorage';
-		const {Store} = this.props;
-		Store.BrowserStorageType = newType;
+	OnBrowserStorageTypeChange = (event: ChangeEvent<HTMLInputElement>) => {
+		let newType: keyof Window = (event.currentTarget.checked) ? 'sessionStorage' : 'localStorage';
+		const {rootStore} = this.props;
+		if (!rootStore) throw new Error('rootStore не определен');
+		rootStore.BrowserStorageType = newType;
 	}
 
 	render() {

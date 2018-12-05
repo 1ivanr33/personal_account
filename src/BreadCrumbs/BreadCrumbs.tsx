@@ -1,9 +1,11 @@
 import * as React from 'react';
 import './BreadCrumbs.scss';
 
+interface IBreadCrumbsProps {
+	items: string[];
+}
 
-
-class BreadCrumbs extends React.Component {
+class BreadCrumbs extends React.Component<IBreadCrumbsProps> {
 
 		static defaultProps = {
 			items: [

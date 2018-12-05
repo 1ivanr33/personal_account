@@ -34,7 +34,9 @@ class Home extends React.Component<RouteComponentProps & IMobxProviderInjectedPr
 
 		return (
 			<div className='home'>
-				<h2>Здравствуйте, {rootStore.UserFirstName} {rootStore.UserSurname} </h2>
+				<h2>Здравствуйте, {
+					rootStore ? rootStore.UserFirstName + ' ' + rootStore.UserSurname : 'rootStore не определен'
+				} </h2>
 				<p>Выберите подсистему ЕИРЦ или услугу для продолжения работы</p>
 				<div className='module_select'>
 					<a href=" "><Msp/></a>

@@ -1,14 +1,22 @@
-import React from 'react';
+import React, {FocusEvent, RefObject} from 'react';
 import './UserName.scss'
 import BackOpacity from '../ProfileSelect/BackOpacity';
 import { Link } from 'react-router-dom';
 import { inject, observer } from "mobx-react";
+import {IMobxProviderInjectedProps} from '../MobxProvider';
 
-@inject("Store")
+interface IUserNameState {
+	showMenu: string;
+	loading: string;
+}
+
+@inject("rootStore")
 @observer
-class UserName extends React.Component {
+class UserName extends React.Component<IMobxProviderInjectedProps, IUserNameState> {
 
-	constructor(props) {
+	menuRef: RefObject<HTMLDivElement>;
+
+	constructor(props: IMobxProviderInjectedProps) {
 		super(props);
 		this.state = {
 			showMenu: 'hidden',
@@ -21,30 +29,23 @@ class UserName extends React.Component {
 		this.onLinkClickExit = this.onLinkClickExit.bind(this);
 		this.onBlur = this.onBlur.bind(this);
 
-        this.userNameInfo = {
-            firstName: '',
-            lastName: '',
-            surName: '',
-        };
 	}
 
-    makeRequest(method, url) {
-        var promise = new Promise((resolve, reject) => {
+    makeRequest(method: string, url: string): Promise<XMLHttpRequest> {
+       return new Promise((resolve, reject) => {
 ///            setTimeout(() => {
-            const {Store} = this.props;
-            console.log('Store.SecurityToken - ' + window[Store.BrowserStorageType].getItem('securityToken'));
+            const {rootStore} = this.props;
+		   if (!rootStore) throw new Error('rootStore не определен');
+            console.log('Store.SecurityToken - ' + window[rootStore.BrowserStorageType].getItem('securityToken'));
 
             var xhr = new XMLHttpRequest();
 
             xhr.open(method, url);
             xhr.setRequestHeader("Content-Type", "application/json");
-
             let requestData = {
-                token: window[Store.BrowserStorageType].getItem('securityToken')
+                token: window[rootStore.BrowserStorageType].getItem('securityToken')
             }
-
             xhr.send(JSON.stringify(requestData));
-
             xhr.onload = function () {
                 if (this.status === 200) {
                     resolve(xhr);
@@ -63,16 +64,13 @@ class UserName extends React.Component {
             };
 ///            }, 10000);
         });
-
-        console.log('This happens 4th.');
-
-        return promise;
     }
 
 
     componentDidMount() {
 
-		const {Store} = this.props;
+		const {rootStore} = this.props;
+		if (!rootStore) throw new Error('rootStore не определен');
 
         console.log('This happens 3rd.');
 
@@ -89,20 +87,20 @@ class UserName extends React.Component {
                     console.log('errorCode - ' + errorCode);
                     var userName = respJSON.UserName;
 
-                    Store.UserFirstName = userName.firstName;
+					rootStore.UserFirstName = userName.firstName;
 ///                    let firstInitial = this.userNameInfo.firstName.charAt(0);
 //                    console.log('firstName - ' + this.userNameInfo.firstName);
-                    Store.UserSurname = userName.lastName;
+					rootStore.UserSurname = userName.lastName;
 //                    console.log('lastName - ' + this.userNameInfo.lastName);
-                    Store.UserPatronymic = userName.surname;
+					rootStore.UserPatronymic = userName.surname;
 //                    console.log('surName - ' + this.userNameInfo.surName);
                 } else {
                     var errorDescription = respJSON.operationResult.ErrorDescription;
-                    if (errorCode == "500") {
+                    /*if (errorCode == "500") {
                         this.setState({Message: 'No user id is found by token'})
                     } else if (errorCode == "501") {
                         this.setState({Message: 'Profile with given id not found'})
-                    }
+                    }*/
                 }
                 this.setState({ loading: 'false' });
             })
@@ -122,8 +120,9 @@ class UserName extends React.Component {
 	}
 
 	componentDidUpdate(){
-		const { Store } = this.props;
-		Store.UserMenuVisible = this.state.showMenu;
+		const { rootStore } = this.props;
+		if (!rootStore) throw new Error('rootStore не определен');
+		rootStore.UserMenuVisible = this.state.showMenu;
 	}
 
 	render() {
@@ -140,9 +139,10 @@ class UserName extends React.Component {
 
         console.log('This happens 8th - after I get data.');
 
-		const { Store } = this.props;
+		const { rootStore } = this.props;
+		if (!rootStore) throw new Error('rootStore не определен');
 		let backGroundOpacity = null;
-		if (Store.UserMenuVisible === 'visible') {
+		if (rootStore.UserMenuVisible === 'visible') {
 			backGroundOpacity = <BackOpacity/>;
 		}
 
@@ -150,8 +150,8 @@ class UserName extends React.Component {
 			<div>
 				<div className='userName' ref={this.menuRef} tabIndex={1} onBlur={this.onBlur} id={this.state.showMenu}>
 					<span onClick={this.toggleMenuShow}>
-						{Store.UserSurname + ' ' + Store.UserFirstName.charAt(0)
-							.toLocaleUpperCase() + '. ' + Store.UserPatronymic.charAt(0).toLocaleUpperCase() + '.'}
+						{rootStore.UserSurname + ' ' + rootStore.UserFirstName.charAt(0)
+							.toLocaleUpperCase() + '. ' + rootStore.UserPatronymic.charAt(0).toLocaleUpperCase() + '.'}
 						</span>
 
 					{
@@ -169,10 +169,12 @@ class UserName extends React.Component {
 		);
 	}
 
-	onBlur(event) {
+	onBlur(event: FocusEvent<HTMLDivElement>) {
 		const wrapperEl = this.menuRef.current;
-		if (!(wrapperEl.contains(event.target) && wrapperEl.contains(event.relatedTarget))) {
-			this.onProfileSelectBlur();
+		if (wrapperEl) {
+			if (!(wrapperEl.contains(event.target) && wrapperEl.contains(event.relatedTarget as HTMLSpanElement))) {
+				this.onProfileSelectBlur();
+			}
 		}
 	}
 
