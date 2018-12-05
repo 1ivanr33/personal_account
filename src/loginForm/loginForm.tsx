@@ -169,6 +169,11 @@ class LoginForm extends React.Component<TRouteComponentProps & IMobxProviderInje
 		rootStore.BrowserStorageType = newType;
 	}
 
+	sudirError = (e: MouseEvent<HTMLAnchorElement>) => {
+		alert('Данный функционал временно недоступен');
+		e.preventDefault();
+	};
+
 	render() {
 
 		return (
@@ -194,7 +199,7 @@ class LoginForm extends React.Component<TRouteComponentProps & IMobxProviderInje
 						<p className='checkForeign'><input id="foreign" type="checkbox" onChange={this.OnBrowserStorageTypeChange}/><label htmlFor="foreign">Чужой
 							компьютер </label><Link to="/PasswordRecovery" className='passwordRecover'>Восстановить пароль</Link></p>
 						<p><input type="submit" value="Войти" onClick={this.onSubmit}/></p>
-						<p className='alternate'>Вы также можете войти через <a href="">СУДИР</a></p>
+						<p className='alternate'>Вы также можете войти через <a href="" onClick={this.sudirError}>СУДИР</a></p>
 						<Notice message={this.state.Message}/>
 
 					</div>
