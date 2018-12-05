@@ -2,7 +2,8 @@ import React, {ChangeEvent, KeyboardEvent, RefObject} from 'react';
 import './CheckYourEmail.scss';
 import Notice from '../Notice';
 import FooterNavBar from '../FooterNavBar/FooterNavBar';
-import {Link, RouteComponentProps} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {TRouteComponentProps} from '../TRouteComponentProps';
 import { inject, observer } from "mobx-react";
 import MaskedInput from 'react-text-mask';
 import emailMask from 'text-mask-addons/dist/emailMask';
@@ -11,13 +12,13 @@ interface ICheckYourEmailState {
 	Email: string;
 }
 
-@inject("Store")
+@inject("rootStore")
 @observer
-class CheckYourEmail extends React.Component<RouteComponentProps, ICheckYourEmailState> {
+class CheckYourEmail extends React.Component<TRouteComponentProps, ICheckYourEmailState> {
 
 	resendRef: RefObject<HTMLDivElement>;
 
-	constructor(props: RouteComponentProps) {
+	constructor(props: TRouteComponentProps) {
 		super(props);
 		this.state = {
 			Email: ''

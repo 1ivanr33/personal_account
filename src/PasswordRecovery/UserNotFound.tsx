@@ -2,7 +2,8 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import './UserNotFound.scss';
 import Notice from '../Notice';
 import FooterNavBar from '../FooterNavBar/FooterNavBar';
-import {Link, RouteComponentProps} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {TRouteComponentProps} from '../TRouteComponentProps';
 import { inject, observer } from "mobx-react";
 import MaskedInput from 'react-text-mask';
 import emailMask from 'text-mask-addons/dist/emailMask';
@@ -11,10 +12,10 @@ interface IUserNotFoundState {
 	Email: string;
 }
 
-@inject("Store")
+@inject("rootStore")
 @observer
-class UserNotFound extends React.Component<RouteComponentProps, IUserNotFoundState> {
-	constructor(props: RouteComponentProps) {
+class UserNotFound extends React.Component<TRouteComponentProps, IUserNotFoundState> {
+	constructor(props: TRouteComponentProps) {
 		super(props);
 		this.state = {
 			Email: ''

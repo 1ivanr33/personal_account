@@ -2,7 +2,8 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import '../PasswordRecovery/PasswordRecovery.scss';
 import FooterNavBar from '../FooterNavBar/FooterNavBar';
 import { inject, observer } from "mobx-react";
-import {Link, RouteComponentProps} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {TRouteComponentProps} from '../TRouteComponentProps';
 import MaskedInput from 'react-text-mask';
 import emailMask from 'text-mask-addons/dist/emailMask'
 
@@ -10,10 +11,10 @@ interface IPasswordRecoveryState {
 	Email: string;
 }
 
-@inject("Store")
+@inject("rootStore")
 @observer
-class PasswordRecovery extends React.Component<RouteComponentProps, IPasswordRecoveryState> {
-	constructor(props: RouteComponentProps) {
+class PasswordRecovery extends React.Component<TRouteComponentProps, IPasswordRecoveryState> {
+	constructor(props: TRouteComponentProps) {
 		super(props);
 		this.state = {
 			Email: ''

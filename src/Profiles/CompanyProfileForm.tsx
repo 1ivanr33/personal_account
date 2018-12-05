@@ -8,7 +8,7 @@ interface ICompanyProfileFormState {
 	data: string;
 }
 
-@inject("Store")
+@inject("rootStore")
 @observer
 class CompanyProfileForm extends React.Component<IMobxProviderInjectedProps, ICompanyProfileFormState> {
 

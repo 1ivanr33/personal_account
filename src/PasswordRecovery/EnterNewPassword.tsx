@@ -2,14 +2,13 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import './EnterNewPassword.scss';
 import Notice from '../Notice';
 import FooterNavBar from '../FooterNavBar/FooterNavBar';
-//import { Link } from 'react-router-dom';
 import { inject, observer } from "mobx-react";
 import {TRouteComponentProps} from '../TRouteComponentProps';
 
 interface IEnterNewPasswordState {
 	isLinkValid: string;
-	password1?: string;
-	password2?: string;
+	password1?: any;
+	password2?: any;
 	passwordError: string;
 	showPassword1: string;
 	showPassword2: string;
@@ -18,7 +17,7 @@ interface IEnterNewPasswordState {
 	passwordErrorMessage: string;
 }
 
-@inject("Store")
+@inject("rootStore")
 @observer
 class EnterNewPassword extends React.Component<TRouteComponentProps, IEnterNewPasswordState> {
 	constructor(props: TRouteComponentProps) {
@@ -109,26 +108,31 @@ class EnterNewPassword extends React.Component<TRouteComponentProps, IEnterNewPa
 		let postData = {
 			method: 'POST',
 			body: JSON.stringify(requestData),
-			headers:{
+			headers: {
 				'Content-Type': 'application/json'
 			}
 		}
-		if (this.state.password1 && this.state.password2) {
-			if (this.state.password1.length < 6 && this.state.password2.length < 6) {
-				console.log('Пароль не должен быть короче 6 символов');
-				this.setState({
-					password1: '',
-					password2: '',
-					passwordError: 'visible',
-					passwordErrorMessage: 'Пароль не должен быть короче 6 символов'
-				});
-				this.errorMessageListener();
-			}
+
+		if (this.state.password1.length < 6 && this.state.password2.length < 6) {
+			console.log('Пароль не должен быть короче 6 символов');
+			this.setState({
+				password1: '',
+				password2: '',
+				passwordError: 'visible',
+				passwordErrorMessage: 'Пароль не должен быть короче 6 символов'
+			});
+			this.errorMessageListener();
 		}
+
 
 		else if (this.state.password1 !== this.state.password2) {
 			console.log('Пароли не совпадают');
-			this.setState({password1: '', password2: '', passwordError: 'visible', passwordErrorMessage: 'Пароли не совпадают'});
+			this.setState({
+				password1: '',
+				password2: '',
+				passwordError: 'visible',
+				passwordErrorMessage: 'Пароли не совпадают'
+			});
 			this.errorMessageListener();
 		}
 
@@ -141,7 +145,6 @@ class EnterNewPassword extends React.Component<TRouteComponentProps, IEnterNewPa
 					console.log('Пароль успешно сохранен');
 					this.setState({password1: '', password2: '', passwordError: 'visible', passwordErrorMessage: 'Пароль успешно сохранен'});
 					this.onSuccessfulPasswordChange();
-
 				})
 
 				.catch((error) => {

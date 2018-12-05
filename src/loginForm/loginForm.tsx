@@ -2,9 +2,10 @@ import React, {ChangeEvent, KeyboardEvent, MouseEvent} from 'react';
 import './loginForm.scss';
 import Notice from '../Notice';
 import FooterNavBar from '../FooterNavBar/FooterNavBar';
-import {Link, RouteComponentProps} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { inject, observer } from "mobx-react";
 import {IMobxProviderInjectedProps} from '../MobxProvider';
+import {TRouteComponentProps} from '../TRouteComponentProps';
 
 interface ILoginFormState {
 	Login: string;
@@ -19,8 +20,8 @@ interface ILoginFormState {
  */
 @inject("rootStore")
 @observer
-class LoginForm extends React.Component<RouteComponentProps & IMobxProviderInjectedProps, ILoginFormState> {
-	constructor(props: RouteComponentProps & IMobxProviderInjectedProps) {
+class LoginForm extends React.Component<TRouteComponentProps & IMobxProviderInjectedProps, ILoginFormState> {
+	constructor(props: TRouteComponentProps & IMobxProviderInjectedProps) {
 		super(props);
 		this.state = {
 			Login: '',

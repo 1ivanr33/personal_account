@@ -8,7 +8,7 @@ interface IUserProfileFormState {
     data: string;
 }
 
-@inject("Store")
+@inject("rootStore")
 @observer
 class UserProfileForm extends React.Component<IMobxProviderInjectedProps, IUserProfileFormState> {
     firstName: string;
