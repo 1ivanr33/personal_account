@@ -7,40 +7,22 @@ import UserProfile from './ProfileSelect/UserProfile';
 import CompanyProfile from './ProfileSelect/CompanyProfile';
 import PasswordRecovery from './PasswordRecovery/PasswordRecovery';
 import UserNotFound from './PasswordRecovery/UserNotFound';
-import { BrowserRouter, /*Link,*/ Route } from 'react-router-dom';
-import { Provider } from 'mobx-react';
-import RootStore from './stores/RootStore';
+import { BrowserRouter, Route } from 'react-router-dom';
+import {rootStore} from './stores/RootStore';
 import CheckYourEmail from './PasswordRecovery/CheckYourEmail';
 import EnterNewPassword from './PasswordRecovery/EnterNewPassword';
+import MobxProvider from './MobxProvider'
 
 
 
-/*const Home = () => (
-	<div>
-		<h2>Home</h2>
-	</div>
-)*/
-
-/*const About = () => (
-	<div>
-		<h2>About</h2>
-	</div>
-)*/
-
+// TODO Перенести определение rootStore в файл src/MobxProvider.ts (например путем наследования MobxProvider от Provider).
 
 const Router = () => (
 
 	<BrowserRouter>
-		<Provider Store={RootStore}>
+		<MobxProvider rootStore={rootStore}>
 			<div>
 				<Desktop>
-					{/*<ul>
-					 <li><Link to="/">LoginForm</Link></li>
-					 <li><Link to="/Home">Home</Link></li>
-					 <li><Link to="/topics">Topics</Link></li>
-					 </ul>
-
-					 <hr/>*/}
 					<Header/>
 					<Route exact path="/" component={LoginForm}/>
 					<Route path="/Home" component={Home}/>
@@ -50,11 +32,9 @@ const Router = () => (
 					<Route path="/UserNotFound" component={UserNotFound}/>
 					<Route path="/CheckYourEmail" component={CheckYourEmail}/>
 					<Route path="/EnterNewPassword/:id" component={EnterNewPassword}/>
-
 				</Desktop>
-
 			</div>
-		</Provider>
+		</MobxProvider>
 	</BrowserRouter>
 
 )

@@ -1,12 +1,46 @@
 import React from 'react';
 import './CompanyProfileForm.scss';
 import { inject, observer } from "mobx-react";
+import {IMobxProviderInjectedProps} from '../MobxProvider';
 
-@inject("Store")
+interface ICompanyProfileFormState {
+	loading: string;
+	data: string;
+}
+
+@inject("rootStore")
 @observer
-class CompanyProfileForm extends React.Component {
-    constructor() {
-        super();
+class CompanyProfileForm extends React.Component<IMobxProviderInjectedProps, ICompanyProfileFormState> {
+
+	firstName: string;
+	organizationInfo: {
+		organizationId: string;
+		fullName: string;
+		inn: string;
+		ogrn: string;
+		actualAddress: string;
+		actualZipCode: string;
+		legalAddress: string;
+		legalZipCode: string;
+		phone: string;
+		site: string;
+		email: string;
+		bankAccounts: {
+			bankName: string;
+			bankInn: string;
+			bankKpp: string;
+			corrAccount: string;
+			bankBic: string;
+			bankSwift: string;
+			settlementAccount: string;
+			orgName: string;
+			orgInn: string;
+			orgOgrn: string;
+		}
+}
+
+    constructor(props: {}) {
+        super(props);
 
         console.log('This happens 1st.');
 
@@ -44,11 +78,12 @@ class CompanyProfileForm extends React.Component {
         };
     }
 
-    makeRequest(method, url) {
-		const { Store } = this.props;
-        var promise = new Promise((resolve, reject) => {
+    makeRequest(method: string, url: string): Promise<XMLHttpRequest> {
+		const { rootStore } = this.props;
+		if (!rootStore) throw new Error('rootStore не определен');
+        return new Promise((resolve, reject) => {
 ///            setTimeout(() => {
-            console.log('Store.SecurityToken - ' + window[Store.BrowserStorageType].getItem('securityToken'));
+            console.log('Store.SecurityToken - ' + window[rootStore.BrowserStorageType].getItem('securityToken'));
 
             var xhr = new XMLHttpRequest();
 
@@ -56,7 +91,7 @@ class CompanyProfileForm extends React.Component {
             xhr.setRequestHeader("Content-Type", "application/json");
 
             let requestData = {
-                token: window[Store.BrowserStorageType].getItem('securityToken')
+                token: window[rootStore.BrowserStorageType].getItem('securityToken')
             }
 
             xhr.send(JSON.stringify(requestData));
@@ -79,10 +114,6 @@ class CompanyProfileForm extends React.Component {
             };
 ///            }, 10000);
         });
-
-        console.log('This happens 4th.');
-
-        return promise;
     }
 
     componentDidMount() {
@@ -136,11 +167,11 @@ class CompanyProfileForm extends React.Component {
 //                    Store.UserNameVisible = true;
                 } else {
                     var errorDescription = respJSON.operationResult.ErrorDescription;
-                    if (errorCode == "500") {
+                    /*if (errorCode == "500") {
                         this.setState({Message: 'No user id is found by token'})
                     } else if (errorCode == "501") {
                         this.setState({Message: 'Profile with given id not found'})
-                    }
+                    }*/
                 }
                 this.setState({ loading: 'false' });
             })

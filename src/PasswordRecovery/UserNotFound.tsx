@@ -1,16 +1,21 @@
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import './UserNotFound.scss';
 import Notice from '../Notice';
 import FooterNavBar from '../FooterNavBar/FooterNavBar';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {TRouteComponentProps} from '../TRouteComponentProps';
 import { inject, observer } from "mobx-react";
 import MaskedInput from 'react-text-mask';
 import emailMask from 'text-mask-addons/dist/emailMask';
 
-@inject("Store")
+interface IUserNotFoundState {
+	Email: string;
+}
+
+@inject("rootStore")
 @observer
-class UserNotFound extends React.Component {
-	constructor(props) {
+class UserNotFound extends React.Component<TRouteComponentProps, IUserNotFoundState> {
+	constructor(props: TRouteComponentProps) {
 		super(props);
 		this.state = {
 			Email: ''
@@ -54,11 +59,11 @@ class UserNotFound extends React.Component {
 			});
 	}
 
-	onEmailChange(e) {
+	onEmailChange(e: ChangeEvent<HTMLInputElement>) {
 		this.setState({Email: e.target.value});
 	}
 
-	handleKeyPress(target) {
+	handleKeyPress(target: KeyboardEvent<HTMLDivElement>) {
 		if(target.charCode===13){
 			this.onSubmit();
 		}
@@ -79,7 +84,7 @@ class UserNotFound extends React.Component {
 							Введите e-mail, который вы указывали при регистрации. Мы отправим вам письмо с инструкцией по восстановлению пароля
 						</p>
 						<p className={this.state.Email ? 'dirty' : ''}>
-							<MaskedInput mask={emailMask} id="login" type="text" name="login" value={this.state.Login}
+							<MaskedInput mask={emailMask} id="login" type="text" name="login" value={this.state.Email}
 										 onChange={this.onEmailChange}/>
 							<label htmlFor="login" className='textLabel'> E-mail </label>
 						</p>

@@ -1,15 +1,12 @@
 import React from 'react';
 import './Home.scss';
 import { inject, observer } from "mobx-react";
-import {withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
+import {IMobxProviderInjectedProps} from './MobxProvider';
 
-@inject("Store")
+@inject("rootStore")
 @observer
-
-class Home extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+class Home extends React.Component<RouteComponentProps & IMobxProviderInjectedProps> {
 
 	componentWillMount() {
 		if (!( localStorage.getItem('securityToken') || (sessionStorage.getItem('securityToken')))){
@@ -18,7 +15,7 @@ class Home extends React.Component {
 	};
 
 	render() {
-		const {Store} = this.props;
+		const {rootStore} = this.props;
 		const Msp = () => <div className='module module_1'>
 			<p className='top'>Меры социальной поддержки</p>
 			<p className='middle'>Меры социальной поддержки</p>
@@ -37,7 +34,9 @@ class Home extends React.Component {
 
 		return (
 			<div className='home'>
-				<h2>Здравствуйте, {Store.UserFirstName} {Store.UserSurname} </h2>
+				<h2>Здравствуйте, {
+					rootStore ? rootStore.UserFirstName + ' ' + rootStore.UserSurname : 'rootStore не определен'
+				} </h2>
 				<p>Выберите подсистему ЕИРЦ или услугу для продолжения работы</p>
 				<div className='module_select'>
 					<a href=" "><Msp/></a>
