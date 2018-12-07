@@ -12,7 +12,7 @@ interface ILoginFormState {
 	Password: string;
 	ShowPassword: string;
 	Eye: string;
-	Message: string
+	Message: string;
 }
 
 /**
@@ -38,35 +38,52 @@ class LoginForm extends React.Component<TRouteComponentProps & IMobxProviderInje
 		this.onEyeMouseOut = this.onEyeMouseOut.bind(this);
 	}
 
-	/*onSubmitOld(e){
-		const url_post = "http://10.82.186.67:7001/war/resources/AdministrationService/getOperatorByLoginParams";
+	/*onSubmit(){
+			const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getOperatorByLoginParams";
 
-		let requestData = {
-			login: this.state.Login,
-			password: this.state.Password
-		}
+			let requestData = {
+				Login: this.state.Login,
+				Password: this.state.Password
+			};
 
-		let postData = {
-			method: 'POST',
-			body: JSON.stringify(requestData),
-			headers:{
-				'Content-Type': 'application/json'
-			}
-		}
+			let postData = {
+				method: 'POST',
+				body: JSON.stringify(requestData),
+				headers:{
+					'Content-Type': 'application/json'
+				}
+			};
 
-		fetch(url_post, postData).then(res => res.json())
-			.then(response => {
-				console.log('Success:', JSON.stringify(response))
-				this.props.history.push("/home");
-			})
+			fetch(url_post, postData)
 
-			.catch((error) => {
-				console.error(error);
-			});
+				.then(response => {
+					return [response.json(), response.headers];
 
-		e.preventDefault();
-	}*/
+				})
+				.then(data  => {
+				const { rootStore } = this.props;
+					let errorCode = data.operationResult.ErrorCode;
+					console.log('errorCode - ' + errorCode);
+					if (errorCode == "0") {
+						if (!rootStore) throw new Error('rootStore не определен');
+						window[rootStore.BrowserStorageType].setItem('securityToken', responce.headers.get('Security_Token'));
+						console.log('errorCode - ' + errorCode);
+						this.props.history.push("/home");
+					} else {
+						if (errorCode == "405") {
+							this.setState({Message: 'Не указан логин. Пожалуйста, введите логин'})
+						} else if (errorCode == "406") {
+							this.setState({Message: 'Не указан пароль. Пожалуйста, введите пароль.'})
+						} else if (errorCode == "412" || errorCode == "413") {
+							this.setState({Message: 'Пользователь с заданным логином или паролем не найден. Пожалуйста, проверьте правильность написания логина или пароля.'})
+						}
+					}
+				})
+				.catch((err) => {debugger
+					console.error('Augh, there was an error!', err.statusText);
+				});
 
+		}*/
 	onSubmit() {
         var requestData = {
             Login: this.state.Login,
@@ -109,16 +126,16 @@ class LoginForm extends React.Component<TRouteComponentProps & IMobxProviderInje
 				const { rootStore } = this.props;
 				var respJSON = JSON.parse(response.responseText);
 				var errorCode = respJSON.operationResult.ErrorCode;
-				if (errorCode === "0") {
+				if (errorCode == "0") {
 					if (!rootStore) throw new Error('rootStore не определен');
 					window[rootStore.BrowserStorageType].setItem('securityToken', response.getResponseHeader('Security_Token'));
 					console.log('errorCode - ' + errorCode);
 					this.props.history.push("/home");
 				} else {
 					//var errorDescription = respJSON.operationResult.ErrorDescription;
-					if (errorCode == "410") {
+					if (errorCode == "405") {
 						this.setState({Message: 'Не указан логин. Пожалуйста, введите логин'})
-					} else if (errorCode == "411") {
+					} else if (errorCode == "406") {
 						this.setState({Message: 'Не указан пароль. Пожалуйста, введите пароль.'})
 					} else if (errorCode == "412" || errorCode == "413") {
 						this.setState({Message: 'Пользователь с заданным логином или паролем не найден. Пожалуйста, проверьте правильность написания логина или пароля.'})
