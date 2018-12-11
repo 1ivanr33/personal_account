@@ -54,39 +54,35 @@ class LoginForm extends React.Component<TRouteComponentProps & IMobxProviderInje
 			}
 		};
 
-		await fetch(url_post, postData)
+		const response = await fetch(url_post, postData);
+		const data = await response.json();
+		const {rootStore} = this.props;
 
-			.then(response => {
-				return [response, response.json()];
-
-			})
-			.then(([response, data]) => {
-				const {rootStore} = this.props;
-				let errorCode = data.operationResult.ErrorCode;
+		try {
+			let errorCode = data.operationResult.ErrorCode;
+			console.log('errorCode - ' + errorCode);
+			if (errorCode == "0") {
+				if (!rootStore) throw new Error ('rootStore не определен');
+				window[rootStore.BrowserStorageType].setItem('securityToken', response.headers.get('Security_Token'));
 				console.log('errorCode - ' + errorCode);
-				if (errorCode == "0") {
-					if (!rootStore) throw new Error('rootStore не определен');
-					window[rootStore.BrowserStorageType].setItem('securityToken', data.headers.get('Security_Token'));
-					console.log('errorCode - ' + errorCode);
-					this.props.history.push("/home");
-				} else {
-					if (errorCode == "405") {
-						this.setState({Message: 'Не указан логин. Пожалуйста, введите логин'})
-					} else if (errorCode == "406") {
-						this.setState({Message: 'Не указан пароль. Пожалуйста, введите пароль.'})
-					} else if (errorCode == "412" || errorCode == "413") {
-						this.setState({Message: 'Пользователь с заданным логином или паролем не найден. Пожалуйста, проверьте правильность написания логина или пароля.'})
-					}
+				this.props.history.push("/home");
+			} else {
+				if (errorCode == "405") {
+					this.setState({Message: 'Не указан логин. Пожалуйста, введите логин'})
+				} else if (errorCode == "406") {
+					this.setState({Message: 'Не указан пароль. Пожалуйста, введите пароль.'})
+				} else if (errorCode == "412" || errorCode == "413") {
+					this.setState({Message: 'Пользователь с заданным логином или паролем не найден. Пожалуйста, проверьте правильность написания логина или пароля.'})
 				}
-			})
-			.catch((err) => {//debugger
-				console.error('Augh, there was an error!', err.statusText);
-			});
+			}
+		}
+			catch (err) {
+				console.error(err);
+			}}
 
-	}
 	/*onSubmit() {
         var requestData = {
-            Login: this.state.Login,
+            Login: this.state.Login,a
             Password: this.state.Password
         }
 
