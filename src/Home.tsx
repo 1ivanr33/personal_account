@@ -15,7 +15,10 @@ class Home extends React.Component<RouteComponentProps & IMobxProviderInjectedPr
 	};
 
 	render() {
+
 		const {rootStore} = this.props;
+		if (!rootStore) throw new Error('rootStore не определен');
+		let tokenValue = window[rootStore.BrowserStorageType].getItem('securityToken');
 		const Msp = () => <div className='module module_1'>
 			<p className='top'>Меры социальной поддержки</p>
 			<p className='middle'>Меры социальной поддержки</p>
@@ -39,7 +42,7 @@ class Home extends React.Component<RouteComponentProps & IMobxProviderInjectedPr
 				} </h2>
 				<p>Выберите подсистему ЕИРЦ или услугу для продолжения работы</p>
 				<div className='module_select'>
-					<a href=" "><Msp/></a>
+					<a href={'http://localhost:3000/CheckYourEmail#' + tokenValue}><Msp/></a>
 					<a href=" "><Contracts/></a>
 					<a href=" "><Reports/></a>
 				</div>
