@@ -13,11 +13,9 @@ export class RootStore {
 	@observable UserFirstName = '';
 	@observable UserSurname = '';
 	@observable UserPatronymic = '';
+	//TODO Тип 'keyof Window' заменить на 'localStorage' | 'sessionStorage'
 	@observable BrowserStorageType: keyof Window = 'localStorage';
 
-	/*@action BrowserStorageType(){
-		localStorage.setItem();
-	}*/
 }
 
 

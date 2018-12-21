@@ -9,7 +9,7 @@ import {TRouteComponentProps} from './TRouteComponentProps';
 @observer
 class Home extends React.Component<TRouteComponentProps & IMobxProviderInjectedProps> {
 
-	constructor(props: TRouteComponentProps  & IMobxProviderInjectedProps) {
+	constructor(props: TRouteComponentProps & IMobxProviderInjectedProps) {
 		super(props);
 		this.isSessionValid = this.isSessionValid.bind(this);
 	}
