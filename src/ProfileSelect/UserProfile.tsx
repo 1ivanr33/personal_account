@@ -11,12 +11,12 @@ import { inject, observer } from "mobx-react";
 @observer
 class UserProfile extends React.Component<TRouteComponentProps & IMobxProviderInjectedProps> {
 
-	constructor(props: TRouteComponentProps) {
+	constructor(props: TRouteComponentProps  & IMobxProviderInjectedProps) {
 		super(props);
 		this.isSessionValid = this.isSessionValid.bind(this);
 	}
 
-
+	/* //Стабильная версия
 	async isSessionValid() {
 
 		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getSessionNotExpired";
@@ -48,6 +48,24 @@ class UserProfile extends React.Component<TRouteComponentProps & IMobxProviderIn
 			localStorage.clear();
 			this.props.history.push("/");
 		}
+	}*/
+
+	async isSessionValid() {
+		const {rootStore} = this.props;
+		if (!rootStore) throw new Error('rootStore не определен');
+		const qqq = await rootStore.AdministrationServiceStore.getSessionNotExpired();
+		console.log(qqq);
+
+		/*let errorCode = data.NotExpired;
+		console.log('errorCode - ' + errorCode);
+		if (errorCode == true) {
+			console.log('SessionNotExpired');
+			setTimeout(this.isSessionValid, 30000);
+		} else {
+			sessionStorage.clear();
+			localStorage.clear();
+			this.props.history.push("/");
+		}*/
 	}
 
 	 componentDidMount() {

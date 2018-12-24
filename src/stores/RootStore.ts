@@ -7,6 +7,7 @@ import {
 	// decorate
 } from "mobx";
 //import React from "react";
+import {AdministrationServiceStore} from "./AdministrationServiceStore";
 
 export class RootStore {
 	@observable UserMenuVisible = 'hidden';
@@ -15,7 +16,7 @@ export class RootStore {
 	@observable UserPatronymic = '';
 	//TODO Тип 'keyof Window' заменить на 'localStorage' | 'sessionStorage'
 	@observable BrowserStorageType: keyof Window = 'localStorage';
-
+	@observable AdministrationServiceStore = new AdministrationServiceStore();
 }
 
 
