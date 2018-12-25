@@ -16,7 +16,7 @@ class UserProfile extends React.Component<TRouteComponentProps & IMobxProviderIn
 		this.isSessionValid = this.isSessionValid.bind(this);
 	}
 
-	/* //Стабильная версия
+	 //Стабильная версия
 	async isSessionValid() {
 
 		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getSessionNotExpired";
@@ -48,15 +48,17 @@ class UserProfile extends React.Component<TRouteComponentProps & IMobxProviderIn
 			localStorage.clear();
 			this.props.history.push("/");
 		}
-	}*/
+	}
 
+	//Использовать при переносе запроса в mobx
+	/*
 	async isSessionValid() {
 		const {rootStore} = this.props;
 		if (!rootStore) throw new Error('rootStore не определен');
 		const qqq = await rootStore.AdministrationServiceStore.getSessionNotExpired();
 		console.log(qqq);
 
-		/*let errorCode = data.NotExpired;
+		let errorCode = data.NotExpired;
 		console.log('errorCode - ' + errorCode);
 		if (errorCode == true) {
 			console.log('SessionNotExpired');
@@ -65,8 +67,8 @@ class UserProfile extends React.Component<TRouteComponentProps & IMobxProviderIn
 			sessionStorage.clear();
 			localStorage.clear();
 			this.props.history.push("/");
-		}*/
-	}
+		}
+	}*/
 
 	 componentDidMount() {
 		 return this.isSessionValid();
