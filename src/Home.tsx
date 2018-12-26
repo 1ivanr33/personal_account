@@ -5,11 +5,18 @@ import {RouteComponentProps, withRouter} from "react-router-dom";
 import {IMobxProviderInjectedProps} from './MobxProvider';
 import {TRouteComponentProps} from './TRouteComponentProps';
 
+interface IHomeState {
+	modulesQuantity: []
+}
+
 @inject("rootStore")
 @observer
-class Home extends React.Component<TRouteComponentProps & IMobxProviderInjectedProps> {
+class Home extends React.Component<TRouteComponentProps & IMobxProviderInjectedProps, IHomeState> {
 	constructor(props: TRouteComponentProps & IMobxProviderInjectedProps) {
 		super(props);
+		this.state = {
+			modulesQuantity: []
+		};
 		this.getModules = this.getModules.bind(this);
 	}
 
@@ -36,17 +43,17 @@ class Home extends React.Component<TRouteComponentProps & IMobxProviderInjectedP
 		const response = await fetch(url, postData);
 		const data = await response.json();
 		let errorCode = data.operationResult.ErrorCode;
-		let moduleOne = data.moduleProperty[0];
+		let moduleOneFullName = data.moduleProperty[0].fullName;
 		let moduleTwo = data.moduleProperty[1];
 		let moduleThree = data.moduleProperty[2];
+		let modulesQuantity = data.moduleProperty;
 		console.log(errorCode);
-		/*if (errorCode == 0) {
+		if (errorCode == 0) {
 			//if(){}
-			console.log('SessionNotExpired');
+			this.setState({modulesQuantity: modulesQuantity});
 		} else {
-
 			//this.props.history.push("/");
-		}*/
+		}
 	}
 
 	componentDidMount() {
@@ -65,14 +72,14 @@ class Home extends React.Component<TRouteComponentProps & IMobxProviderInjectedP
 		if (!rootStore) throw new Error('rootStore не определен');
 		let tokenValue = window[rootStore.BrowserStorageType].getItem('securityToken');
 		const Msp = () => <div className='module module_1'>
-			<p className='top'>Меры социальной поддержки</p>
-			<p className='middle'>Меры социальной поддержки</p>
+			<p className='top'>Подать заявку на предоставление субсидии</p>
+			<p className='middle'>Заявка на создание договора по предоставлению субсидии</p>
 			<p className='bottom'>Меры социальной поддержки</p>
 		</div>;
 		const Contracts = () => <div className='module module_2'>
 			<p className='top'>Создать договор на возмещение о выпадающих доходах</p>
 			<p className='middle'>Меры социальной поддержки</p>
-			<p className='bottom'>Меры социальной поддержки</p>
+			<p className='bottom'>Модуль договоров</p>
 		</div>;
 		const Reports = () => <div className='module module_3'>
 			<p className='top'>Центр аналитической отчетности</p>
@@ -80,19 +87,42 @@ class Home extends React.Component<TRouteComponentProps & IMobxProviderInjectedP
 			<p className='bottom'> </p>
 		</div>;
 
+		if (!this.state.modulesQuantity) {
+				return (
+					<div className='home'>
+						<h2>Здравствуйте, {
+							rootStore ? rootStore.UserFirstName + ' ' + rootStore.UserSurname : 'rootStore не определен'
+						} </h2>
+						<p>Доступные модули отсутствуют</p>
+					</div>
+				)
+			}
+
 		return (
+
 			<div className='home'>
 				<h2>Здравствуйте, {
 					rootStore ? rootStore.UserFirstName + ' ' + rootStore.UserSurname : 'rootStore не определен'
 				} </h2>
 				<p>Выберите подсистему ЕИРЦ или услугу для продолжения работы</p>
 				<div className='module_select'>
-					<a href={'http://localhost:3000/CheckYourEmail#' + tokenValue}><Msp/></a>
-					<a href=" "><Contracts/></a>
-					<a href=" "><Reports/></a>
+					{
+						this.state.modulesQuantity.map((modul: any) => {
+
+							if (modul.shortName == 'MSP') {
+								return (<a href={modul.url + '#' + tokenValue}><Msp/></a>)
+							}
+							if (modul.shortName == 'MD') {
+								return (<a href={modul.url + '#' + tokenValue}><Contracts/></a>)
+							}
+
+						})
+					}
 				</div>
 			</div>
-		);
+
+		)
+
 	}
 }
 export default withRouter(Home)
