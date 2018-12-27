@@ -43,16 +43,10 @@ class Home extends React.Component<TRouteComponentProps & IMobxProviderInjectedP
 		const response = await fetch(url, postData);
 		const data = await response.json();
 		let errorCode = data.operationResult.ErrorCode;
-		let moduleOneFullName = data.moduleProperty[0].fullName;
-		let moduleTwo = data.moduleProperty[1];
-		let moduleThree = data.moduleProperty[2];
 		let modulesQuantity = data.moduleProperty;
 		console.log(errorCode);
 		if (errorCode == 0) {
-			//if(){}
 			this.setState({modulesQuantity: modulesQuantity});
-		} else {
-			//this.props.history.push("/");
 		}
 	}
 
@@ -107,13 +101,13 @@ class Home extends React.Component<TRouteComponentProps & IMobxProviderInjectedP
 				<p>Выберите подсистему ЕИРЦ или услугу для продолжения работы</p>
 				<div className='module_select'>
 					{
-						this.state.modulesQuantity.map((modul: any) => {
+						this.state.modulesQuantity.map((validModule: any) => {
 
-							if (modul.shortName == 'MSP') {
-								return (<a href={modul.url + '#' + tokenValue}><Msp/></a>)
+							if (validModule.shortName == 'MSP') {
+								return (<a href={validModule.url + '#' + tokenValue}><Msp/></a>)
 							}
-							if (modul.shortName == 'MD') {
-								return (<a href={modul.url + '#' + tokenValue}><Contracts/></a>)
+							if (validModule.shortName == 'MD') {
+								return (<a href={validModule.url + '#' + tokenValue}><Contracts/></a>)
 							}
 
 						})
