@@ -40,6 +40,9 @@ class LoginForm extends React.Component<TRouteComponentProps & IMobxProviderInje
 
 	async onSubmit() {
 		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getOperatorByLoginParams";
+		const {rootStore} = this.props;
+		if (!rootStore) throw new Error('rootStore не определен');
+		let tokenValue = window[rootStore.BrowserStorageType].getItem('securityToken');
 
 		let requestData = {
 			Login: this.state.Login,
@@ -50,14 +53,13 @@ class LoginForm extends React.Component<TRouteComponentProps & IMobxProviderInje
 			method: 'POST',
 			body: JSON.stringify(requestData),
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				'Security_Token': tokenValue
 			}
 		};
 
 		const response = await fetch(url_post, postData);
 		const data = await response.json();
-		const {rootStore} = this.props;
-
 
 		let errorCode = data.operationResult.ErrorCode;
 		console.log('errorCode - ' + errorCode);

@@ -1,8 +1,8 @@
 import React, {FocusEvent, RefObject} from 'react';
 import './UserName.scss'
 import BackOpacity from '../ProfileSelect/BackOpacity';
-import { Link } from 'react-router-dom';
-import { inject, observer } from "mobx-react";
+import {Link} from 'react-router-dom';
+import {inject, observer} from "mobx-react";
 import {IMobxProviderInjectedProps} from '../MobxProvider';
 
 interface IUserNameState {
@@ -31,85 +31,75 @@ class UserName extends React.Component<IMobxProviderInjectedProps, IUserNameStat
 
 	}
 
-    makeRequest(method: string, url: string): Promise<XMLHttpRequest> {
-       return new Promise((resolve, reject) => {
-///            setTimeout(() => {
-            const {rootStore} = this.props;
-		   if (!rootStore) throw new Error('rootStore не определен');
-            console.log('Store.SecurityToken - ' + window[rootStore.BrowserStorageType].getItem('securityToken'));
+	makeRequest(method: string, url: string): Promise<XMLHttpRequest> {
+		return new Promise((resolve, reject) => {
+			const {rootStore} = this.props;
+			if (!rootStore) throw new Error('rootStore не определен');
+			console.log('Store.SecurityToken - ' + window[rootStore.BrowserStorageType].getItem('securityToken'));
 
-            var xhr = new XMLHttpRequest();
+			var xhr = new XMLHttpRequest();
+			let tokenValue = window[rootStore.BrowserStorageType].getItem('securityToken');
+			console.log('Store.SecurityToken - ' + tokenValue);
 
-            xhr.open(method, url);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            let requestData = {
-                token: window[rootStore.BrowserStorageType].getItem('securityToken')
-            }
-            xhr.send(JSON.stringify(requestData));
-            xhr.onload = function () {
-                if (this.status === 200) {
-                    resolve(xhr);
-                } else {
-                    reject({
-                        status: this.status,
-                        statusText: xhr.statusText
-                    });
-                }
-            };
-            xhr.onerror = function () {
-                reject({
-                    status: this.status,
-                    statusText: xhr.statusText
-                });
-            };
-///            }, 10000);
-        });
-    }
+			xhr.open(method, url);
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.setRequestHeader('Security_Token', tokenValue);
+			let requestData = {
+				token: tokenValue
+			}
+			xhr.send(JSON.stringify(requestData));
+			xhr.onload = function() {
+				if (this.status === 200) {
+					resolve(xhr);
+				} else {
+					reject({
+						status: this.status,
+						statusText: xhr.statusText
+					});
+				}
+			};
+			xhr.onerror = function() {
+				reject({
+					status: this.status,
+					statusText: xhr.statusText
+				});
+			};
+		});
+	}
 
 
-    componentDidMount() {
+	componentDidMount() {
 
 		const {rootStore} = this.props;
 		if (!rootStore) throw new Error('rootStore не определен');
 
-        console.log('This happens 3rd.');
+		console.log('This happens 3rd.');
 
-        this.setState({ loading: 'true' });
+		this.setState({loading: 'true'});
 
-        this.makeRequest('POST', 'http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getUsernameByToken')
-            .then(response => {
-                var respJSON = JSON.parse(response.responseText);
-                console.log('respJSON - ' + respJSON.operationResult);
+		this.makeRequest('POST', 'http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getUsernameByToken')
+			.then(response => {
+				var respJSON = JSON.parse(response.responseText);
+				console.log('respJSON - ' + respJSON.operationResult);
 
-                var errorCode = respJSON.operationResult.ErrorCode;
-                console.log('Response - ' + response.responseText);
-                if (errorCode === "0") {
-                    console.log('errorCode - ' + errorCode);
-                    var userName = respJSON.UserName;
+				var errorCode = respJSON.operationResult.ErrorCode;
+				console.log('Response - ' + response.responseText);
+				if (errorCode === "0") {
+					console.log('errorCode - ' + errorCode);
+					var userName = respJSON.UserName;
 
 					rootStore.UserFirstName = userName.firstName;
-///                    let firstInitial = this.userNameInfo.firstName.charAt(0);
-//                    console.log('firstName - ' + this.userNameInfo.firstName);
 					rootStore.UserSurname = userName.lastName;
-//                    console.log('lastName - ' + this.userNameInfo.lastName);
 					rootStore.UserPatronymic = userName.surname;
-//                    console.log('surName - ' + this.userNameInfo.surName);
-                } else {
-                    var errorDescription = respJSON.operationResult.ErrorDescription;
-                    /*if (errorCode == "500") {
-                        this.setState({Message: 'No user id is found by token'})
-                    } else if (errorCode == "501") {
-                        this.setState({Message: 'Profile with given id not found'})
-                    }*/
-                }
-                this.setState({ loading: 'false' });
-            })
-            .catch(function (err) {
-                console.error('Augh, there was an error!', err.statusText);
-            });
-    }
+				}
+				this.setState({loading: 'false'});
+			})
+			.catch(function(err) {
+				console.error('Augh, there was an error!', err.statusText);
+			});
+	}
 
-    toggleMenuShow() {
+	toggleMenuShow() {
 
 		let oldState = this.state.showMenu;
 		let isVisibleOrHidden = (oldState === 'hidden');
@@ -119,27 +109,27 @@ class UserName extends React.Component<IMobxProviderInjectedProps, IUserNameStat
 		});
 	}
 
-	componentDidUpdate(){
-		const { rootStore } = this.props;
+	componentDidUpdate() {
+		const {rootStore} = this.props;
 		if (!rootStore) throw new Error('rootStore не определен');
 		rootStore.UserMenuVisible = this.state.showMenu;
 	}
 
 	render() {
-        if (this.state.loading === 'initial') {
-            console.log('This happens 2nd - after the class is constructed. You will not see this element because React is still computing changes to the DOM.');
-            return <h2>Intializing...</h2>;
-        }
+		if (this.state.loading === 'initial') {
+			console.log('This happens 2nd - after the class is constructed. You will not see this element because React is still computing changes to the DOM.');
+			return <h2>Intializing...</h2>;
+		}
 
 
-        if (this.state.loading === 'true') {
-            console.log('This happens 5th - when waiting for data.');
-            return <h2>Loading...</h2>;
-        }
+		if (this.state.loading === 'true') {
+			console.log('This happens 5th - when waiting for data.');
+			return <h2>Loading...</h2>;
+		}
 
-        console.log('This happens 8th - after I get data.');
+		console.log('This happens 8th - after I get data.');
 
-		const { rootStore } = this.props;
+		const {rootStore} = this.props;
 		if (!rootStore) throw new Error('rootStore не определен');
 		let backGroundOpacity = null;
 		if (rootStore.UserMenuVisible === 'visible') {
@@ -184,7 +174,6 @@ class UserName extends React.Component<IMobxProviderInjectedProps, IUserNameStat
 		this.setState({
 			showMenu: 'hidden'
 		});
-
 	}
 
 	onLinkClick() {
@@ -199,4 +188,5 @@ class UserName extends React.Component<IMobxProviderInjectedProps, IUserNameStat
 		});
 	}
 }
+
 export default UserName

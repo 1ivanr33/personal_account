@@ -51,12 +51,14 @@ class UserProfileForm extends React.Component<IMobxProviderInjectedProps, IUserP
 ///            setTimeout(() => {
                 const {rootStore} = this.props;
 			    if (!rootStore) throw new Error('rootStore не определен');
-                console.log('Store.SecurityToken - ' + window[rootStore.BrowserStorageType].getItem('securityToken'));
+			    let tokenValue = window[rootStore.BrowserStorageType].getItem('securityToken');
+                console.log('Store.SecurityToken - ' + tokenValue);
 
                 var xhr = new XMLHttpRequest();
 
                 xhr.open(method, url);
                 xhr.setRequestHeader("Content-Type", "application/json");
+			    xhr.setRequestHeader('Security_Token', tokenValue);
 
                 let requestData = {
                     token: window[rootStore.BrowserStorageType].getItem('securityToken')

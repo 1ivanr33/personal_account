@@ -81,14 +81,15 @@ class CompanyProfileForm extends React.Component<IMobxProviderInjectedProps, ICo
     makeRequest(method: string, url: string): Promise<XMLHttpRequest> {
 		const { rootStore } = this.props;
 		if (!rootStore) throw new Error('rootStore не определен');
-        return new Promise((resolve, reject) => {
-///            setTimeout(() => {
-            console.log('Store.SecurityToken - ' + window[rootStore.BrowserStorageType].getItem('securityToken'));
+		return new Promise((resolve, reject) => {
+			let tokenValue = window[rootStore.BrowserStorageType].getItem('securityToken');
+			console.log('Store.SecurityToken - ' + tokenValue);
 
-            var xhr = new XMLHttpRequest();
+			var xhr = new XMLHttpRequest();
 
             xhr.open(method, url);
             xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.setRequestHeader('Security_Token', tokenValue);
 
             let requestData = {
                 token: window[rootStore.BrowserStorageType].getItem('securityToken')

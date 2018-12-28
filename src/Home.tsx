@@ -29,7 +29,8 @@ class Home extends React.Component<TRouteComponentProps & IMobxProviderInjectedP
 			method: 'POST',
 			body: JSON.stringify(requestData),
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				'Security_Token': tokenValue
 			}
 		};
 

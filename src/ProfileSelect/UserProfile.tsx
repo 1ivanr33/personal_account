@@ -32,7 +32,8 @@ class UserProfile extends React.Component<TRouteComponentProps & IMobxProviderIn
 			method: 'POST',
 			body: JSON.stringify(requestData),
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				'Security_Token': tokenValue
 			}
 		};
 
