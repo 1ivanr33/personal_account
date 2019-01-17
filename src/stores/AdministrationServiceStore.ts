@@ -6,22 +6,16 @@ import {
 	// flow,
 	// decorate
 } from "mobx";
-import React from 'react';
 import {rootStore} from './RootStore';
 import {IMobxProviderInjectedProps} from '../MobxProvider';
-//import React from "react";
-/*export class AdministrationServiceStore extends React.Component<IMobxProviderInjectedProps>  {
+import React from "react";
+export class AdministrationServiceStore {
 
-	constructor(props: IMobxProviderInjectedProps) {
-		super(props);
-		};
 	readonly url = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService";
 
 	@action
 	async getSessionNotExpired(): Promise<boolean> {
 
-		const {rootStore} = this.props;
-		if (!rootStore) throw new Error('rootStore не определен');
 		const url = this.url + '/getSessionNotExpired';
 		const tokenValue = window[rootStore.BrowserStorageType].getItem('securityToken');
 
@@ -44,4 +38,4 @@ import {IMobxProviderInjectedProps} from '../MobxProvider';
 
 }
 
-export const administrationServiceStore = new AdministrationServiceStore(this);*/
+export const administrationServiceStore = new AdministrationServiceStore();

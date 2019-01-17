@@ -9,6 +9,7 @@ import PasswordRecovery from './PasswordRecovery/PasswordRecovery';
 import UserNotFound from './PasswordRecovery/UserNotFound';
 import { BrowserRouter, Route } from 'react-router-dom';
 import {rootStore} from './stores/RootStore';
+import {administrationServiceStore} from './stores/AdministrationServiceStore'
 import CheckYourEmail from './PasswordRecovery/CheckYourEmail';
 import EnterNewPassword from './PasswordRecovery/EnterNewPassword';
 import MobxProvider from './MobxProvider'
@@ -20,7 +21,7 @@ import MobxProvider from './MobxProvider'
 const Router = () => (
 
 	<BrowserRouter>
-		<MobxProvider rootStore={rootStore}>
+		<MobxProvider rootStore={rootStore} administrationServiceStore={administrationServiceStore}>
 			<div>
 				<Desktop>
 					<Header/>
