@@ -6,6 +6,7 @@ import {IMobxProviderInjectedProps} from './MobxProvider';
 import {TRouteComponentProps} from './TRouteComponentProps';
 
 @inject("rootStore")
+@inject("administrationServiceStore")
 @observer
 class Home extends React.Component<TRouteComponentProps & IMobxProviderInjectedProps> {
 
@@ -15,28 +16,12 @@ class Home extends React.Component<TRouteComponentProps & IMobxProviderInjectedP
 	}
 
 	async isSessionValid() {
+		const {rootStore, administrationServiceStore} = this.props;
+		if (!rootStore || !administrationServiceStore) throw new Error('rootStore не определен');
+		const NotExpired = await administrationServiceStore.getSessionNotExpired();
+		console.log(NotExpired);
 
-		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getSessionNotExpired";
-		const {rootStore} = this.props;
-		if (!rootStore) throw new Error('rootStore не определен');
-		let tokenValue = window[rootStore.BrowserStorageType].getItem('securityToken');
-
-		let requestData = {
-			SecurityToken: tokenValue
-		};
-
-		let postData = {
-			method: 'POST',
-			body: JSON.stringify(requestData),
-			headers: {
-				'Content-Type': 'application/json',
-				'Security_Token': tokenValue
-			}
-		};
-
-		const response = await fetch(url_post, postData);
-		const data = await response.json();
-		let errorCode = data.NotExpired;
+		let errorCode = NotExpired;
 		console.log('errorCode - ' + errorCode);
 		if (errorCode == true) {
 			console.log('SessionNotExpired');
