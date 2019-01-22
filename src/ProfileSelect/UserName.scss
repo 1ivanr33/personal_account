@@ -39,35 +39,31 @@
 			background-color: #F2F8FF;
 		}
 
-		li {
-
-		}
-
 	}
-}
 
-#hidden span:before {
-	position: absolute;
-	right: 0;
-	top: 3px;
-	display: block;
-	content: '';
-	background: url(up-down.svg) no-repeat 0 6px;
-	width: 10px;
-	height: 15px;
-	transition-duration: .3s;
-}
+	&#hidden span:before {
+		position: absolute;
+		right: 0;
+		top: 3px;
+		display: block;
+		content: '';
+		background: url(up-down.svg) no-repeat 0 6px;
+		width: 10px;
+		height: 15px;
+		transition-duration: .3s;
+	}
 
-#visible span:before {
-	position: absolute;
-	right: 0;
-	top: 3px;
-	display: block;
-	content: '';
-	background: url(up-down.svg) no-repeat 0 6px;
-	width: 10px;
-	height: 15px;
-	transform: rotate(180deg);
-	transition-duration: .3s;
-}
+	&#visible span:before {
+		position: absolute;
+		right: 0;
+		top: 3px;
+		display: block;
+		content: '';
+		background: url(up-down.svg) no-repeat 0 6px;
+		width: 10px;
+		height: 15px;
+		transform: rotate(180deg);
+		transition-duration: .3s;
+	}
 
+}

@@ -10,6 +10,7 @@ import {
 
 export class RootStore {
 	@observable UserMenuVisible = 'hidden';
+	@observable NoticeList = 'hidden';
 	@observable UserFirstName = '';
 	@observable UserSurname = '';
 	@observable UserPatronymic = '';
