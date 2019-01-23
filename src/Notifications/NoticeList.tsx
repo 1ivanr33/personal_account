@@ -18,7 +18,7 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 	constructor(props: IMobxProviderInjectedProps) {
 		super(props);
 		this.state = {
-			showMenu: 'hidden'
+			showMenu: 'hidden' // after test = hidden
 		};
 		this.menuRef = React.createRef();
 		this.toggleMenuShow = this.toggleMenuShow.bind(this);
@@ -65,12 +65,36 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 
 					{
 						this.state.showMenu === 'visible' && (
-							<div className='profileSelect'>
+							<div className='noticeSelect'>
 								<h3>Уведомления</h3>
 								<span>Отметить все как прочитанное</span>
-								<span><Link onClick={this.onLinkClick} to="/UserProfile">Профиль пользователя</Link></span>
-								<span><Link onClick={this.onLinkClick} to="/CompanyProfile">Профиль компании</Link></span>
-								<span><Link onClick={this.onLinkClickExit} to="/">Выйти</Link></span>
+								<div className='noticeScrollArea'>
+									<p><span className='noticeDate'>02.05.2018</span> <Link onClick={this.onLinkClick} to="">Поступление денежных средств в
+										счет оплаты долга</Link></p>
+									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
+										требуют определения и уточнения существенных финансовых и административных
+										условий</Link></p>
+									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClickExit} to="/">Равным образом новая модель
+										организационной деятельности</Link></p>
+									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Поступление денежных средств в
+										счет оплаты долга</Link></p>
+									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
+										требуют определения и уточнения существенных финансовых и административных
+										условий</Link></p>
+									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClickExit} to="/">Равным образом новая модель
+										организационной деятельности</Link></p>
+									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Поступление денежных средств в
+										счет оплаты долга</Link></p>
+									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
+										требуют определения и уточнения существенных финансовых и административных
+										условий</Link></p>
+									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClickExit} to="/">Равным образом новая модель
+										организационной деятельности</Link></p>
+								</div>
+								<p className='noticeListFooter'>
+									<span className='noticeSettings'>Настройки</span>
+									<span className='noticeWatchAll'>Просмотреть все</span>
+								</p>
 							</div>
 						)
 					}
