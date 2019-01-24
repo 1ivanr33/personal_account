@@ -71,21 +71,21 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 								<div className='noticeScrollArea'>
 									<p><span className='noticeDate'>02.05.2018</span> <Link onClick={this.onLinkClick} to="">Поступление денежных средств в
 										счет оплаты долга</Link></p>
-									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
+									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
 										требуют определения и уточнения существенных финансовых и административных
 										условий</Link></p>
-									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClickExit} to="/">Равным образом новая модель
+									<p className='noticeWatched'><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClickExit} to="/">Равным образом новая модель
 										организационной деятельности</Link></p>
 									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Поступление денежных средств в
 										счет оплаты долга</Link></p>
-									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
+									<p className='noticeWatched'><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
 										требуют определения и уточнения существенных финансовых и административных
 										условий</Link></p>
-									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClickExit} to="/">Равным образом новая модель
+									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClickExit} to="/">Равным образом новая модель
 										организационной деятельности</Link></p>
 									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Поступление денежных средств в
 										счет оплаты долга</Link></p>
-									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
+									<p className='noticeWatched noticeImportant'><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
 										требуют определения и уточнения существенных финансовых и административных
 										условий</Link></p>
 									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClickExit} to="/">Равным образом новая модель

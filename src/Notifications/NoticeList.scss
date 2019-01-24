@@ -25,6 +25,8 @@ $noticeButtonsTextColor: #087FFF;
 		outline: none;
 		color: #000;
 
+
+
 		h3{
 			font-family: FiraSans-Regular, arial, verdana, sans-serif;
 			font-size: 18px;
@@ -51,12 +53,45 @@ $noticeButtonsTextColor: #087FFF;
 		}
 
 		.noticeScrollArea{
+			&::-webkit-scrollbar-track
+			{
+				display: none;
+			}
+
+			&::-webkit-scrollbar
+			{
+				width: 7px;
+			}
+
+			&::-webkit-scrollbar-thumb
+			{
+				border-radius: 4px;
+				background-color: rgba(151, 151, 151, .2);
+			}
 			max-height: 320px;
 			margin-top: 15px;
 			overflow-y: scroll;
+			position: relative;
+			.noticeImportant{
+				.noticeDate:before{
+					content: '';
+					position: absolute;
+					left: 20px;
+					display: block;
+					width: 20px;
+					height: 16px;
+					background: url("../images/noticeTriangle.svg") no-repeat;
+				}
+			}
+
+			.noticeWatched *{
+				 color: #A4A4A4;
+			 }
+
 			.noticeDate{
 				vertical-align: top;
-				margin-left: 50px;
+				margin-left: 60px;
+				color: #A4A4A4;
 			}
 			a{
 				max-width: 400px;
@@ -65,13 +100,34 @@ $noticeButtonsTextColor: #087FFF;
 			}
 		}
 
-		.noticeListFooter span{
-			float: right;
-			color: $noticeButtonsTextColor;
-			margin: 10px 0 0 20px;
-			cursor: pointer;
-			font-family: FiraSans-Regular, arial, verdana, sans-serif;
-			font-size: 14px;
+		.noticeListFooter{
+			span{
+				float: right;
+				color: $noticeButtonsTextColor;
+				margin: 10px 0 0 60px;
+				cursor: pointer;
+				font-family: FiraSans-Regular, arial, verdana, sans-serif;
+				font-size: 14px;
+				position: relative;
+			}
+
+			.noticeWatchAll:before, .noticeSettings:before{
+				content: '';
+				position: absolute;
+				left: -25px;
+				display: block;
+				width: 20px;
+				height: 16px;
+			}
+
+			.noticeWatchAll:before{
+				top: 2px;
+				background: url("../images/noticeEyeOpen.svg") no-repeat;
+			}
+
+			.noticeSettings:before{
+				background: url("../images/settings.svg") no-repeat;
+			}
 		}
 
 	}
