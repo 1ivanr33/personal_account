@@ -34,7 +34,7 @@ class Home extends React.Component<TRouteComponentProps & IMobxProviderInjectedP
 	}
 
 	 componentDidMount() {
-		 return this.isSessionValid();
+		 //return this.isSessionValid();
 	}
 
 	componentWillMount() {

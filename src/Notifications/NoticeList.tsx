@@ -4,9 +4,11 @@ import BackOpacity from '../ProfileSelect/BackOpacity';
 import {Link} from 'react-router-dom';
 import {inject, observer} from "mobx-react";
 import {IMobxProviderInjectedProps} from '../MobxProvider';
+import Modal from 'react-modal';
 
 interface INoticeListState {
-	showMenu: string
+	showMenu: string,
+	showModal: boolean
 }
 
 @inject("rootStore")
@@ -18,6 +20,7 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 	constructor(props: IMobxProviderInjectedProps) {
 		super(props);
 		this.state = {
+			showModal: false,
 			showMenu: 'hidden' // after test = hidden
 		};
 		this.menuRef = React.createRef();
@@ -26,9 +29,17 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 		this.onLinkClick = this.onLinkClick.bind(this);
 		this.onLinkClickExit = this.onLinkClickExit.bind(this);
 		this.onBlur = this.onBlur.bind(this);
+		this.handleOpenModal = this.handleOpenModal.bind(this);
+		this.handleCloseModal = this.handleCloseModal.bind(this);
 	}
 
+	handleOpenModal () {
+		this.setState({ showModal: true });
+	}
 
+	handleCloseModal () {
+		this.setState({ showModal: false });
+	}
 
 	toggleMenuShow() {
 		let oldState = this.state.showMenu;
@@ -37,6 +48,10 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 		this.setState({
 			showMenu: newState
 		});
+	}
+
+	componentWillMount() {
+		Modal.setAppElement('body');
 	}
 
 	componentDidUpdate() {
@@ -69,8 +84,8 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 								<h3>Уведомления</h3>
 								<span>Отметить все как прочитанное</span>
 								<div className='noticeScrollArea'>
-									<p><span className='noticeDate'>02.05.2018</span> <Link onClick={this.onLinkClick} to="">Поступление денежных средств в
-										счет оплаты долга</Link></p>
+									<p><span className='noticeDate'>02.05.2018</span> <a onClick={this.handleOpenModal}>Поступление денежных средств в
+										счет оплаты долга</a></p>
 									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
 										требуют определения и уточнения существенных финансовых и административных
 										условий</Link></p>
@@ -95,6 +110,12 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 									<span className='noticeSettings'>Настройки</span>
 									<span className='noticeWatchAll'>Просмотреть все</span>
 								</p>
+								<Modal
+
+									isOpen={this.state.showModal}
+									contentLabel="Minimal Modal Example">
+									<button onClick={this.handleCloseModal}>Close Modal</button>
+								</Modal>
 							</div>
 						)
 					}
