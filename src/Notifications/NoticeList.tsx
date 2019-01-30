@@ -4,9 +4,10 @@ import BackOpacity from '../ProfileSelect/BackOpacity';
 import {Link} from 'react-router-dom';
 import {inject, observer} from "mobx-react";
 import {IMobxProviderInjectedProps} from '../MobxProvider';
-import Modal from 'react-modal';
+import Modal from './Modal/Modal';
 
 interface INoticeListState {
+	modalVisible: boolean,
 	showMenu: string,
 	showModal: boolean
 }
@@ -20,25 +21,29 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 	constructor(props: IMobxProviderInjectedProps) {
 		super(props);
 		this.state = {
+			modalVisible: false,
 			showModal: false,
-			showMenu: 'hidden' // after test = hidden
+			showMenu: 'visible' // after test = hidden
 		};
 		this.menuRef = React.createRef();
 		this.toggleMenuShow = this.toggleMenuShow.bind(this);
 		this.onProfileSelectBlur = this.onProfileSelectBlur.bind(this);
 		this.onLinkClick = this.onLinkClick.bind(this);
-		this.onLinkClickExit = this.onLinkClickExit.bind(this);
 		this.onBlur = this.onBlur.bind(this);
-		this.handleOpenModal = this.handleOpenModal.bind(this);
-		this.handleCloseModal = this.handleCloseModal.bind(this);
+		this.onOpenModalButtonClick = this.onOpenModalButtonClick.bind(this);
+		this.onModalClose = this.onModalClose.bind(this);
 	}
 
-	handleOpenModal () {
-		this.setState({ showModal: true });
+	onOpenModalButtonClick() {
+		this.setState({
+			modalVisible: true
+		});
 	}
 
-	handleCloseModal () {
-		this.setState({ showModal: false });
+	onModalClose() {
+		this.setState({
+			modalVisible: false
+		});
 	}
 
 	toggleMenuShow() {
@@ -50,10 +55,6 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 		});
 	}
 
-	componentWillMount() {
-		Modal.setAppElement('body');
-	}
-
 	componentDidUpdate() {
 		const {rootStore} = this.props;
 		if (!rootStore) throw new Error('rootStore не определен');
@@ -61,8 +62,6 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 	}
 
 	render() {
-
-		console.log('This happens 8th - after I get data.');
 
 		const {rootStore} = this.props;
 		if (!rootStore) throw new Error('rootStore не определен');
@@ -73,49 +72,43 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 
 		return (
 			<div>
-				<div className='noticeList' onClick={this.toggleMenuShow} ref={this.menuRef} tabIndex={1} onBlur={this.onBlur} id={this.state.showMenu}>
-					<span >
-
-						</span>
-
+				<div className='noticeList' onClick={this.toggleMenuShow} ref={this.menuRef} tabIndex={1} id={this.state.showMenu} onBlur={this.onBlur}>
 					{
 						this.state.showMenu === 'visible' && (
 							<div className='noticeSelect'>
 								<h3>Уведомления</h3>
 								<span>Отметить все как прочитанное</span>
 								<div className='noticeScrollArea'>
-									<p><span className='noticeDate'>02.05.2018</span> <a onClick={this.handleOpenModal}>Поступление денежных средств в
-										счет оплаты долга</a></p>
-									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
+									<p><span className='noticeDate'>02.05.2018</span>
+										<a onClick={this.onOpenModalButtonClick}>Поступление денежных средств в счет оплаты долга</a>
+										{this.state.modalVisible && (
+											<Modal onClose={this.onModalClose}>	<a href='#'>Link </a> </Modal>
+										)}</p>
+									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link  to="">Место обучения кадров
 										требуют определения и уточнения существенных финансовых и административных
 										условий</Link></p>
-									<p className='noticeWatched'><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClickExit} to="/">Равным образом новая модель
+									<p className='noticeWatched'><span className='noticeDate'>02.05.2018</span><Link  to="/">Равным образом новая модель
 										организационной деятельности</Link></p>
-									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Поступление денежных средств в
+									<p><span className='noticeDate'>02.05.2018</span><Link  to="">Поступление денежных средств в
 										счет оплаты долга</Link></p>
-									<p className='noticeWatched'><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
+									<p className='noticeWatched'><span className='noticeDate'>02.05.2018</span><Link  to="">Место обучения кадров
 										требуют определения и уточнения существенных финансовых и административных
 										условий</Link></p>
-									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClickExit} to="/">Равным образом новая модель
+									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link  to="/">Равным образом новая модель
 										организационной деятельности</Link></p>
 									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Поступление денежных средств в
 										счет оплаты долга</Link></p>
 									<p className='noticeWatched noticeImportant'><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
 										требуют определения и уточнения существенных финансовых и административных
 										условий</Link></p>
-									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClickExit} to="/">Равным образом новая модель
+									<p><span className='noticeDate'>02.05.2018</span><Link to="/">Равным образом новая модель
 										организационной деятельности</Link></p>
 								</div>
 								<p className='noticeListFooter'>
 									<span className='noticeSettings'>Настройки</span>
 									<span className='noticeWatchAll'>Просмотреть все</span>
 								</p>
-								<Modal
 
-									isOpen={this.state.showModal}
-									contentLabel="Minimal Modal Example">
-									<button onClick={this.handleCloseModal}>Close Modal</button>
-								</Modal>
 							</div>
 						)
 					}
@@ -132,14 +125,6 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 				this.onProfileSelectBlur();
 			}
 		}
-	}
-
-	onLinkClickExit() {
-		sessionStorage.clear();
-		localStorage.clear();
-		this.setState({
-			showMenu: 'hidden'
-		});
 	}
 
 	onLinkClick() {
