@@ -4,16 +4,23 @@ $noticeButtonsTextColor: #087FFF;
 	z-index: 300;
 	float: right;
 	position: relative;
-	top: 19px;
+	top: 5px;
 	margin-right: 55px;
 	width: 16px;
 	height: 20px;
-	background: url("../images/bell.svg") no-repeat;
+	//background: url("../images/bell.svg") no-repeat;
+
+	.toggler {
+		top: 19px;
+		height: 20px;
+		background: url("../images/bell.svg") no-repeat;
+
+	}
 
 	.noticeSelect {
 		position: absolute;
 		right: 0;
-		top: 20px;
+		top: 30px;
 		margin: 10px 0 0;
 		background-color: #fff;
 		width: 606px;

@@ -23,7 +23,7 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 		this.state = {
 			modalVisible: false,
 			showModal: false,
-			showMenu: 'visible' // after test = hidden
+			showMenu: 'hidden'
 		};
 		this.menuRef = React.createRef();
 		this.toggleMenuShow = this.toggleMenuShow.bind(this);
@@ -72,7 +72,8 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 
 		return (
 			<div>
-				<div className='noticeList' onClick={this.toggleMenuShow} ref={this.menuRef} tabIndex={1} id={this.state.showMenu} onBlur={this.onBlur}>
+				<div className='noticeList' ref={this.menuRef} tabIndex={1} id={this.state.showMenu} onBlur={this.onBlur}>
+					<p className='toggler' onClick={this.toggleMenuShow}> </p>
 					{
 						this.state.showMenu === 'visible' && (
 							<div className='noticeSelect'>
@@ -82,7 +83,7 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 									<p><span className='noticeDate'>02.05.2018</span>
 										<a onClick={this.onOpenModalButtonClick}>Поступление денежных средств в счет оплаты долга</a>
 										{this.state.modalVisible && (
-											<Modal onClose={this.onModalClose}>	<a href='#'>Link </a> </Modal>
+											<Modal onClose={this.onModalClose}>	<a href='#'>Текст уведомления</a> </Modal>
 										)}</p>
 									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link  to="">Место обучения кадров
 										требуют определения и уточнения существенных финансовых и административных
