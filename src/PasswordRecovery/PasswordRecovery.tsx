@@ -5,7 +5,8 @@ import { inject, observer } from "mobx-react";
 import {Link} from 'react-router-dom';
 import {TRouteComponentProps} from '../TRouteComponentProps';
 import MaskedInput from 'react-text-mask';
-import emailMask from 'text-mask-addons/dist/emailMask'
+import emailMask from 'text-mask-addons/dist/emailMask';
+import {GoogleReCaptchaProvider, GoogleReCaptcha} from 'react-google-recaptcha-v3';
 
 interface IPasswordRecoveryState {
 	Email: string;
@@ -120,12 +121,14 @@ class PasswordRecovery extends React.Component<TRouteComponentProps, IPasswordRe
 		}
 	}
 
-
 	render() {
 
 		return (
 
 			<div className='passwordRecovery'>
+
+					<GoogleReCaptcha onVerify={token => console.log(token)} />
+
 				<div className='passwordRecoveryWrapper'>
 
 					<div className='mainFormPasswordRecovery' onKeyPress={this.handleKeyPress} onSubmit={this.onSubmit}>
@@ -135,9 +138,12 @@ class PasswordRecovery extends React.Component<TRouteComponentProps, IPasswordRe
 							Введите e-mail, который вы указывали при регистрации. Мы отправим вам письмо с инструкцией по восстановлению пароля
 						</p>
 						<p className={this.state.Email ? 'dirty' : ''}>
+
 							<MaskedInput mask={emailMask} id="login" type="text" name="login" value={this.state.Email}
 								   onChange={this.onEmailChange}/>
 							<label htmlFor="login" className='textLabel'> E-mail </label>
+
+
 						</p>
 
 
@@ -148,6 +154,7 @@ class PasswordRecovery extends React.Component<TRouteComponentProps, IPasswordRe
 
 				</div>
 				<FooterNavBar/>
+
 			</div>
 
 		);
