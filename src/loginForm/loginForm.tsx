@@ -39,7 +39,7 @@ class LoginForm extends React.Component<TRouteComponentProps & IMobxProviderInje
 	}
 
 	async onSubmit() {
-		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getOperatorByLoginParams";
+		const url_post = "http://localhost:7001/war/resources/AdministrationService/getOperatorByLoginParams";
 		const {rootStore} = this.props;
 		if (!rootStore) throw new Error('rootStore не определен');
 		let tokenValue = window[rootStore.BrowserStorageType].getItem('securityToken');

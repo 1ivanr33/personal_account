@@ -26,7 +26,7 @@ class PasswordRecovery extends React.Component<TRouteComponentProps, IPasswordRe
 	}
 
 	onSubmit(){
-		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/putUserGenerateCodeByEmail";
+		const url_post = "http://localhost:7001/war/resources/AdministrationService/putUserGenerateCodeByEmail";
 
 		const requestData = {
 			email: this.state.Email
@@ -127,7 +127,7 @@ class PasswordRecovery extends React.Component<TRouteComponentProps, IPasswordRe
 
 			<div className='passwordRecovery'>
 
-					<GoogleReCaptcha onVerify={token => console.log(token)} />
+					<GoogleReCaptcha  onVerify={token => console.log('token', token)} />
 
 				<div className='passwordRecoveryWrapper'>
 
