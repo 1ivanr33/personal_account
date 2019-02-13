@@ -83,7 +83,12 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 									<p><span className='noticeDate'>02.05.2018</span>
 										<a onClick={this.onOpenModalButtonClick}>Поступление денежных средств в счет оплаты долга</a>
 										{this.state.modalVisible && (
-											<Modal onClose={this.onModalClose}>	<a href='#'>Текст уведомления</a> </Modal>
+											<Modal onClose={this.onModalClose}>
+												<p className='singleNoticeDate'>02.05.2018 / 12:00</p>
+												<p className='singleNoticeTitle'>Место обучения кадров требует
+													определения и уточнения существенных финансовых и административных
+													условий</p>
+											</Modal>
 										)}</p>
 									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link  to="">Место обучения кадров
 										требуют определения и уточнения существенных финансовых и административных

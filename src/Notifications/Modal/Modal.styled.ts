@@ -95,6 +95,19 @@ export const ModalContentContainer = styled.div`
 		${h1Css};
 		margin-top: 0;
 	}
+	
+	.singleNoticeDate{
+	font-size: 14px;
+	color: #020202;
+	}
+	
+	.singleNoticeTitle{
+	width: 602px;
+	font-family: Formular, arial, verdana, sans-serif;
+	font-size: 24px;
+	color: #000000;
+	}
+	
 `;
 
 /**
