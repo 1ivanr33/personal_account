@@ -26,7 +26,7 @@ class PasswordRecovery extends React.Component<TRouteComponentProps, IPasswordRe
 	}
 
 	onSubmit(){
-		const url_post = "http://localhost:7001/war/resources/AdministrationService/putUserGenerateCodeByEmail";
+		const url_post = "http://ivan-comp:7001/war/resources/AdministrationService/putUserGenerateCodeByEmail";
 
 		const requestData = {
 			email: this.state.Email

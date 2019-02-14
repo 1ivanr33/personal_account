@@ -30,7 +30,7 @@ class CheckYourEmail extends React.Component<TRouteComponentProps, ICheckYourEma
 	}
 
 	onSubmit(){
-		const url_post = "http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/putUserGenerateCodeByEmail";
+		const url_post = "http://ivan-comp:7001/war/resources/AdministrationService/putUserGenerateCodeByEmail";
 
 		const requestData = {
 			email: this.state.Email

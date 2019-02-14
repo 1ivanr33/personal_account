@@ -92,7 +92,7 @@ class UserProfileForm extends React.Component<IMobxProviderInjectedProps, IUserP
 
         this.setState({ loading: 'true' });
 
-        this.makeRequest('POST', 'http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getCurrentUserInfo')
+        this.makeRequest('POST', 'http://ivan-comp:7001/war/resources/AdministrationService/getCurrentUserInfo')
             .then(response => {
                 var respJSON = JSON.parse(response.responseText);
                 console.log('respJSON - ' + respJSON.operationResult);

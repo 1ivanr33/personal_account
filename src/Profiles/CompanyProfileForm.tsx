@@ -123,7 +123,7 @@ class CompanyProfileForm extends React.Component<IMobxProviderInjectedProps, ICo
 
         this.setState({ loading: 'true' });
 
-        this.makeRequest('POST', 'http://igitb1700000221.hq.corp.mos.ru:7001/war/resources/AdministrationService/getCurrentUserOrganizationInfo')
+        this.makeRequest('POST', 'http://ivan-comp:7001/war/resources/AdministrationService/getCurrentUserOrganizationInfo')
             .then(response => {
                 var respJSON = JSON.parse(response.responseText);
                 console.log('respJSON - ' + respJSON.operationResult);

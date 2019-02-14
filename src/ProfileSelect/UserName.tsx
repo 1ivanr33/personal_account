@@ -77,7 +77,7 @@ class UserName extends React.Component<IMobxProviderInjectedProps, IUserNameStat
 
 		this.setState({loading: 'true'});
 
-		this.makeRequest('POST', 'http://localhost:7001/war/resources/AdministrationService/getUsernameByToken')
+		this.makeRequest('POST', 'http://ivan-comp:7001/war/resources/AdministrationService/getUsernameByToken')
 			.then(response => {
 				var respJSON = JSON.parse(response.responseText);
 				console.log('respJSON - ' + respJSON.operationResult);
