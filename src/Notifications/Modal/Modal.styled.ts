@@ -104,8 +104,9 @@ export const ModalContentContainer = styled.div`
 	.singleNoticeTitle{
 	width: 602px;
 	font-family: Formular, arial, verdana, sans-serif;
-	font-size: 24px;
+	font-size: 19px;
 	color: #000000;
+	font-weight: bold;
 	}
 	
 `;

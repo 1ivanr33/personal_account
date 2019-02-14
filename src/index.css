@@ -14,6 +14,11 @@
 }
 
 @font-face {
+  font-family: "Formular";
+  src: url("fonts/Formular-Regular.otf") format("opentype");
+}
+
+@font-face {
   font-family: "FiraSans-Regular";
   src: url("fonts/fira-sans/FiraSans-Regular.otf") format("opentype");
 }
