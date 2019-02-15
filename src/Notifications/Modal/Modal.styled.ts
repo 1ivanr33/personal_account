@@ -84,9 +84,13 @@ export const ModalContentContainer = styled.div`
 	flex: 1 1 0;
 	display: flex;
 	flex-direction: column;
-
 	width: ${contentWidth};
 	background-color: white;
+	margin-top: 44px;
+	padding-left: 30px;
+	p{
+	width: 602px;
+	}
 	&:focus {
 		outline: none;
 	}
@@ -99,16 +103,46 @@ export const ModalContentContainer = styled.div`
 	.singleNoticeDate{
 	font-size: 14px;
 	color: #020202;
+	margin: 0 0 16px 0;
 	}
 	
 	.singleNoticeTitle{
-	width: 602px;
 	font-family: Formular, arial, verdana, sans-serif;
-	font-size: 19px;
+	font-size: 24px;
+	line-height: 28px;
 	color: #000000;
 	font-weight: bold;
+	margin: 0 0 3px;
 	}
 	
+	.noticeSubsystem, .noticeCategory{
+	font-size: 16px;
+	margin-bottom: -8px;
+	span{
+	font-weight: bold;
+	}
+	}
+	
+	.noticeText{
+	text-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+	margin-top: 24px;
+	line-height: 23px;	
+	p{
+	font-size: 16px;
+	color: #A4A4A4;	
+	text-shadow: none;
+	margin-bottom: 6px;
+	}
+	}
+	
+	.noticeLinks{
+	p{
+	font-size: 16px;
+	color: #A4A4A4;	
+	text-shadow: none;
+	margin-bottom: 6px;
+	}
+	}
 `;
 
 /**
