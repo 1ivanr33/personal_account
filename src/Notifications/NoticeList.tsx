@@ -96,8 +96,13 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 													условий
 												</p>
 												<p className='noticeLinks'><p>Ссылки</p>
-													Документ.pdf
+													<span>Документ.pdf</span>
+													<span className='noticeLinkRequest'>Заявка на добавление реквизитов в карточку должника</span>
+													<span className='noticeLinkRequest'>Заявка на создание учетной записи</span>
 												</p>
+												<button>
+													Ознакомлен
+												</button>
 											</Modal>
 										)}</p>
 									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link  to="">Место обучения кадров
@@ -138,7 +143,7 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 		const wrapperEl = this.menuRef.current;
 		if (wrapperEl) {
 			if (!(wrapperEl.contains(event.target) && wrapperEl.contains(event.relatedTarget as HTMLSpanElement))) {
-				this.onProfileSelectBlur();
+				//this.onProfileSelectBlur();
 			}
 		}
 	}

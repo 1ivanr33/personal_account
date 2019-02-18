@@ -1,5 +1,7 @@
 import styled, {css} from 'styled-components';
-
+import attachedDocIcon from '../../images/attachedDoc.svg';
+import requestIcon from '../../images/requestIcon.svg';
+import closeIcon from '../../images/noticeCloseIcon.svg';
 const zIndex = 1070;
 const contentWidth = '1060px';
 
@@ -88,6 +90,24 @@ export const ModalContentContainer = styled.div`
 	background-color: white;
 	margin-top: 44px;
 	padding-left: 30px;
+	height: 100vh;
+    overflow: scroll;
+    overflow-x: visible;
+    &::-webkit-scrollbar-track
+			{
+				display: none;
+			}
+
+			&::-webkit-scrollbar
+			{
+				width: 7px;
+			}
+
+			&::-webkit-scrollbar-thumb
+			{
+				border-radius: 4px;
+				background-color: rgba(151, 151, 151, .2);
+			}
 	p{
 	width: 602px;
 	}
@@ -136,12 +156,51 @@ export const ModalContentContainer = styled.div`
 	}
 	
 	.noticeLinks{
-	p{
+	margin-top: -3px;		
+	span{
+	position: relative;
+	display: block;
+	margin-bottom: 13px;
+	
+	&:before{
+	content: '';
+	position: absolute;
+	left: -31px;
+    top: 3px;
+    display: block;
+    width: 15px;
+    height: 16px;
+	background: url(${attachedDocIcon}) no-repeat;
+	}	
+	
+	&.noticeLinkRequest:before{
+	width: 18px;
+    height: 19px;
+    top: 0;
+	background: url(${requestIcon}) no-repeat;
+	}
+	}
+	
+	p{	
 	font-size: 16px;
 	color: #A4A4A4;	
 	text-shadow: none;
-	margin-bottom: 6px;
+	margin-bottom: 10px;
+	
 	}
+	}
+	
+	button{
+	margin: 14px 0 0 -4px;
+	background: transparent;
+	border: 1px solid #208CFF;
+	min-height: 60px;
+	width: fit-content;
+	padding: 0 50px;
+	box-sizing: border-box;
+	font-size: 16px;
+	color: #208CFF;
+	font-family: ProximaNova-Reg, arial, verdana, sans-serif;
 	}
 `;
 
@@ -154,6 +213,18 @@ export const CloseButtonContainer = styled.div`
 		text-decoration: none;
 		span {
 			margin-left: 10px;
+			font: 16px ProximaNova-Reg arial verdana sans-serif;
+			position: relative;
+			&:before{
+			content: '';
+			position: absolute;
+			left: -22px;
+			top: 3px;
+			display: block;
+			width: 14px;
+			height: 14px;
+			background: url(${closeIcon}) no-repeat;
+			}
 		}
 	}
 	img {
