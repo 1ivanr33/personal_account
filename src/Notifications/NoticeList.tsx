@@ -91,9 +91,9 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 												<p className='noticeSubsystem'>Подсистема: <span>ПИР</span></p>
 												<p className='noticeCategory'>Категория: <span>Название категории</span></p>
 												<p className='noticeText'><p>Текст уведомления</p>
-													Место обучения кадров требуют
-													определения и уточнения существенных финансовых и административных
-													условий
+													Таким образом новая модель организационной деятельности представляет
+													собой интересный эксперимент проверки дальнейших направлений
+													развития
 												</p>
 												<p className='noticeLinks'><p>Ссылки</p>
 													<span>Документ.pdf</span>

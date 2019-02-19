@@ -89,10 +89,9 @@ export const ModalContentContainer = styled.div`
 	width: ${contentWidth};
 	background-color: white;
 	margin-top: 44px;
-	padding-left: 30px;
+	padding-left: 31px;
 	height: 100vh;
-    overflow: scroll;
-    overflow-x: visible;
+    overflow-y: scroll;    
     &::-webkit-scrollbar-track
 			{
 				display: none;
@@ -144,6 +143,7 @@ export const ModalContentContainer = styled.div`
 	}
 	
 	.noticeText{
+	width: 453px;
 	text-shadow: 0 4px 4px rgba(0, 0, 0, .25);
 	margin-top: 24px;
 	line-height: 23px;	
@@ -212,7 +212,7 @@ export const CloseButtonContainer = styled.div`
 		${closeButtonCss};
 		text-decoration: none;
 		span {
-			margin-left: 10px;
+			margin-left: 11px;
 			font: 16px ProximaNova-Reg arial verdana sans-serif;
 			position: relative;
 			&:before{
