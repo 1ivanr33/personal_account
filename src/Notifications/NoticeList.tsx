@@ -84,25 +84,6 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 										<a onClick={this.onOpenModalButtonClick}>Поступление денежных средств в счет оплаты долга</a>
 										{this.state.modalVisible && (
 											<Modal onClose={this.onModalClose}>
-												<p className='singleNoticeDate'>02.05.2018 / 12:00</p>
-												<p className='singleNoticeTitle'>Место обучения кадров требуют
-													определения и уточнения существенных финансовых и административных
-													условий</p>
-												<p className='noticeSubsystem'>Подсистема: <span>ПИР</span></p>
-												<p className='noticeCategory'>Категория: <span>Название категории</span></p>
-												<p className='noticeText'><p>Текст уведомления</p>
-													Таким образом новая модель организационной деятельности представляет
-													собой интересный эксперимент проверки дальнейших направлений
-													развития
-												</p>
-												<p className='noticeLinks'><p>Ссылки</p>
-													<span>Документ.pdf</span>
-													<span className='noticeLinkRequest'>Заявка на добавление реквизитов в карточку должника</span>
-													<span className='noticeLinkRequest'>Заявка на создание учетной записи</span>
-												</p>
-												<button>
-													Ознакомлен
-												</button>
 											</Modal>
 										)}</p>
 									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link  to="">Место обучения кадров
@@ -143,7 +124,7 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 		const wrapperEl = this.menuRef.current;
 		if (wrapperEl) {
 			if (!(wrapperEl.contains(event.target) && wrapperEl.contains(event.relatedTarget as HTMLSpanElement))) {
-				//this.onProfileSelectBlur();
+				this.onProfileSelectBlur();
 			}
 		}
 	}

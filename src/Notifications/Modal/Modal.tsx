@@ -59,7 +59,25 @@ export default class Modal extends Component<IModalProps> {
 						style={this.props.windowStyle}
 					>
 						{this.props.title && <h1>{this.props.title}</h1>}
-						{this.props.children}
+						<p className='singleNoticeDate'>02.05.2018 / 12:00</p>
+						<p className='singleNoticeTitle'>Место обучения кадров требуют
+							определения и уточнения существенных финансовых и административных
+							условий</p>
+						<p className='noticeSubsystem'>Подсистема: <span>ПИР</span></p>
+						<p className='noticeCategory'>Категория: <span>Название категории</span></p>
+						<p className='noticeText'><p>Текст уведомления</p>
+							Таким образом новая модель организационной деятельности представляет
+							собой интересный эксперимент проверки дальнейших направлений
+							развития
+						</p>
+						<p className='noticeLinks'><p>Ссылки</p>
+							<span>Документ.pdf</span>
+							<span className='noticeLinkRequest'>Заявка на добавление реквизитов в карточку должника</span>
+							<span className='noticeLinkRequest'>Заявка на создание учетной записи</span>
+						</p>
+						<button>
+							Ознакомлен
+						</button>
 					</ModalContentContainer>
 				</ModalWrapperContainer>
 				<ModalShadowContainer />
