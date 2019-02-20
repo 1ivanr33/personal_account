@@ -98,7 +98,7 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 										условий</Link></p>
 									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link  to="/">Равным образом новая модель
 										организационной деятельности</Link></p>
-									<p><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Поступление денежных средств в
+									<p><span className='noticeDate'>02.05.2018</span><Link to="">Поступление денежных средств в
 										счет оплаты долга</Link></p>
 									<p className='noticeWatched noticeImportant'><span className='noticeDate'>02.05.2018</span><Link onClick={this.onLinkClick} to="">Место обучения кадров
 										требуют определения и уточнения существенных финансовых и административных
@@ -106,9 +106,9 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 									<p><span className='noticeDate'>02.05.2018</span><Link to="/">Равным образом новая модель
 										организационной деятельности</Link></p>
 								</div>
-								<p className='noticeListFooter'>
+								<p className='noticeListFooter' >
 									<span className='noticeSettings'>Настройки</span>
-									<span className='noticeWatchAll'>Просмотреть все</span>
+									<Link to="/NotificationCenter" className='noticeWatchAll' onClick={this.toggleMenuShow}>Просмотреть все</Link>
 								</p>
 
 							</div>
@@ -120,7 +120,7 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 		);
 	}
 
-	onBlur(event: FocusEvent<HTMLDivElement>) {
+	onBlur(event: FocusEvent<HTMLDivElement> ) {
 		const wrapperEl = this.menuRef.current;
 		if (wrapperEl) {
 			if (!(wrapperEl.contains(event.target) && wrapperEl.contains(event.relatedTarget as HTMLSpanElement))) {

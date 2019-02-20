@@ -12,6 +12,7 @@ import {rootStore} from './stores/RootStore';
 import {administrationServiceStore} from './stores/AdministrationServiceStore'
 import CheckYourEmail from './PasswordRecovery/CheckYourEmail';
 import EnterNewPassword from './PasswordRecovery/EnterNewPassword';
+import NotificationCenter from './Notifications/NotificationCenter';
 import MobxProvider from './MobxProvider'
 
 
@@ -33,6 +34,7 @@ const Router = () => (
 					<Route path="/UserNotFound" component={UserNotFound}/>
 					<Route path="/CheckYourEmail" component={CheckYourEmail}/>
 					<Route path="/EnterNewPassword/:id" component={EnterNewPassword}/>
+					<Route path="/NotificationCenter" component={NotificationCenter}/>
 				</Desktop>
 			</div>
 		</MobxProvider>

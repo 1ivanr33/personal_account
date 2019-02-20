@@ -108,7 +108,7 @@ $noticeButtonsTextColor: #087FFF;
 		}
 
 		.noticeListFooter{
-			span{
+			span, a{
 				float: right;
 				color: $noticeButtonsTextColor;
 				margin: 10px 0 0 60px;
@@ -116,6 +116,10 @@ $noticeButtonsTextColor: #087FFF;
 				font-family: FiraSans-Regular, arial, verdana, sans-serif;
 				font-size: 14px;
 				position: relative;
+				&.noticeWatchAll{
+					line-height: 18px;
+					padding: 0;
+				}
 			}
 
 			.noticeWatchAll:before, .noticeSettings:before{
