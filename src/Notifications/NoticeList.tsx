@@ -81,19 +81,28 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 								<span>Отметить все как прочитанное</span>
 								<div className='noticeScrollArea'>
 									<p><span className='noticeDate'>02.05.2018</span>
-										<a onClick={this.onOpenModalButtonClick}>Поступление денежных средств в счет оплаты долга</a>
+										<a onClick={this.onOpenModalButtonClick}>Поступление денежных средств в счет
+											оплаты долга</a>
 										{this.state.modalVisible && (
-											<Modal onClose={this.onModalClose}>
-											</Modal>
+											<Modal onClose={this.onModalClose}/>
 										)}</p>
-									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link  to="">Место обучения кадров
+									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><a
+										onClick={this.onOpenModalButtonClick}>Место обучения кадров
 										требуют определения и уточнения существенных финансовых и административных
-										условий</Link></p>
-									<p className='noticeWatched'><span className='noticeDate'>02.05.2018</span><Link  to="/">Равным образом новая модель
-										организационной деятельности</Link></p>
-									<p><span className='noticeDate'>02.05.2018</span><Link  to="">Поступление денежных средств в
+										условий</a>
+										{this.state.modalVisible && (
+											<Modal onClose={this.onModalClose}/>
+										)}</p>
+									<p className='noticeWatched'><span className='noticeDate'>02.05.2018</span><a
+										onClick={this.onOpenModalButtonClick}>Равным образом новая модель
+										организационной деятельности</a>{this.state.modalVisible && (
+										<Modal onClose={this.onModalClose}/>
+										)}</p>
+									<p><span className='noticeDate'>02.05.2018</span><Link to="">Поступление денежных
+										средств в
 										счет оплаты долга</Link></p>
-									<p className='noticeWatched'><span className='noticeDate'>02.05.2018</span><Link  to="">Место обучения кадров
+									<p className='noticeWatched'><span className='noticeDate'>02.05.2018</span><Link
+										to="">Место обучения кадров
 										требуют определения и уточнения существенных финансовых и административных
 										условий</Link></p>
 									<p className='noticeImportant'><span className='noticeDate'>02.05.2018</span><Link  to="/">Равным образом новая модель
@@ -124,7 +133,7 @@ class NoticeList extends React.Component<IMobxProviderInjectedProps, INoticeList
 		const wrapperEl = this.menuRef.current;
 		if (wrapperEl) {
 			if (!(wrapperEl.contains(event.target) && wrapperEl.contains(event.relatedTarget as HTMLSpanElement))) {
-				this.onProfileSelectBlur();
+				//this.onProfileSelectBlur();
 			}
 		}
 	}
