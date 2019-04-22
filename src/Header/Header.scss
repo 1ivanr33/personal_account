@@ -4,4 +4,24 @@
 	background: url("E.png") no-repeat -1px 13px;
 	width: 1060px;
 	margin: 0 auto;
+	overflow: visible;
+	.right{
+		overflow: visible;
+		display: flex;
+		flex-direction: row;
+		margin-left: 1035px;
+		position: relative;
+	}
+	&:after{
+		content: '';
+		display: block;
+		width: 100vw;
+		min-width: 1060px;
+		height: 1px;
+		background: rgba(0, 0, 0, 0.05);
+		position: absolute;
+		left: 0;
+		top: 60px;
+		z-index: 10;
+	}
 }

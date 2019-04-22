@@ -7,15 +7,18 @@ class Header extends React.Component {
 	render() {
 		let profileSelectMenu, noticeIcon = null;
 		if (localStorage.getItem('securityToken') || sessionStorage.getItem('securityToken')) {
-			profileSelectMenu = <UserName/>
+			profileSelectMenu = <UserName/>;
 			noticeIcon = <NoticeList/>
 		}
 
 		return (
 			<div className='header'>
-				{this.props.children}
-				{profileSelectMenu}
-				{noticeIcon}
+				{//this.props.children
+				}
+				<div className='right'>
+					{noticeIcon}
+					{profileSelectMenu}
+				</div>
 			</div>
 		);
 	}
