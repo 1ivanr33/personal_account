@@ -137,11 +137,11 @@ class UserName extends React.Component<IMobxProviderInjectedProps, IUserNameStat
 		}
 
 		return (
-			<div>
+			<React.Fragment>
 				<div className='userName' ref={this.menuRef} tabIndex={1} onBlur={this.onBlur} id={this.state.showMenu}>
 					<span onClick={this.toggleMenuShow}>
-						{rootStore.UserSurname + ' ' + rootStore.UserFirstName.charAt(0)
-							.toLocaleUpperCase() + '. ' + rootStore.UserPatronymic.charAt(0).toLocaleUpperCase() + '.'}
+						{rootStore.UserSurname + '\u00A0' + rootStore.UserFirstName.charAt(0)
+							.toLocaleUpperCase() + '.\u00A0' + rootStore.UserPatronymic.charAt(0).toLocaleUpperCase() + '.'}
 						</span>
 
 					{
@@ -155,7 +155,7 @@ class UserName extends React.Component<IMobxProviderInjectedProps, IUserNameStat
 					}
 				</div>
 				{backGroundOpacity}
-			</div>
+			</React.Fragment>
 		);
 	}
 
