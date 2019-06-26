@@ -145,12 +145,14 @@
 			/*Кнопка Войти*/
 
 			input[type="submit"] {
-				width: 340px;
+				display: flex;
+				padding: 0 60px;
+				margin: 40px auto;
 				height: 60px;
-				background-color: #eee;
+				background-color: #208cff;
 				font-size: 16px;
 				border-radius: 2px;
-				color: #9a9a9a;
+				color: #fff;
 				outline: none;
 			}
 
@@ -160,13 +162,18 @@
 			}
 
 			input[type="submit"]:hover {
-				background-color: #208cff;
+				background-color: #087fff;
+				color: #fff;
+				cursor: pointer;
+			}
+
+			input[type="submit"]:active {
+				background-color: #076cd9;
 				color: #fff;
 				cursor: pointer;
 			}
 
 			.alternate {
-				margin: 45px 0;
 				color: #000;
 			}
 
